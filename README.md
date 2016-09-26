@@ -1,0 +1,2 @@
+# -Cataloging-samples
+ Development of a database system for cataloging sediment samples from different regions of Brazil and the world, the project is developed through unified scholarship program of the University of São Paulo (USP), is a project conducted by a graduate student the mathematical and statistical institute, the laboratory cataloging the geosciences institute sediments. The project is carried out through python, Django and PostgreSQL.
