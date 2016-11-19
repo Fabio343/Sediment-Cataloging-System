@@ -1,0 +1,69 @@
+<img src="{{amostra_id.logo_amostra}}">
+
+<h1>{{amostra_id.codigo}}</h1>
+<h2>{{amostra_id.ambiente}}</h2>
+
+{% if error_message %}
+   <p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action=" /sedimentos/{{amostra.id}}/" method="post">
+    {% csrf_token %}
+    {% for cidade in amostra_id.cidade_set.all %}
+         <input type="radio" id="cidade{{forloop.counter}}" name="cidade" value="{{cidade.id}}"/>
+         <label for="cidade{{forloop.counter}}">
+                 {{cidade.nome}}
+                 {{cidade.geologia}}
+                 {{cidade.graus}}
+                 {{cidade.minutos}}
+                 {{cidade.segundos}}
+                 {{cidade.UTM}}
+             {% if cidade.is_destaque %}
+                <img src="http://i.imgur.com/b9b13Rd.jpg"/>
+             {% endif %}
+         </label><br>
+    {% endfor %}
+    <input type="submit" value="destaque">
+
+</form>
+
+
+
+
+
+<ul>
+    {% for continente in amostra_id.continente_set.all %}
+       <li>{{continente.nome}} </li>
+       <li> {{ continente.sigla}} </li>
+    {% endfor %}
+</ul>
+
+
+
+
+<ul>
+    {% for estado in amostra_id.estado_set.all %}
+       <li>{{estado.nome}} </li>
+    {% endfor %}
+</ul>
+
+
+
+
+<ul>
+    {% for coletador in amostra_id.coletador_set.all %}
+       <li>{{coletador.nome}} </li>
+       <li>{{coletador.país}} </li>
+       <li>{{coletador.estado}} </li>
+       <li>{{coletador.cidade}} </li>
+    {% endfor %}
+</ul>
+
+
+
+
+<ul>
+    {% for clima in amostra_id.clima_set.all %}
+       <li>{{clima.tipo}} </li>
+    {% endfor %}
+</ul>

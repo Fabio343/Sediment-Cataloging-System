@@ -1,0 +1,11 @@
+body{
+   areia: white url("imagens/ areia.jpg");
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand{
+ font-family: 'Satisfy',cursive;
+}

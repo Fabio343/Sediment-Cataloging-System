@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{% static 'sedimentos/style.css' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button
+                typy="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="incon-bar"></span>
+                <span class="incon-bar"></span>
+                <span class="incon-bar"></span>
+            </button>
+             <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> UNIVERSIDADE DE SÃO PAULO </a>
+             <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Projeto em Conjunto :</a>
+             <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Instituto de Geociências (IGC-USP) e  </a>
+             <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Instituto de Matemática e Estatística (IME-USP) </a>
+             <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{% url 'sedimentos:index' %}">
+                        <span class="glyphicon glyphicoon-terra" aria-hidden="true"></span>&nbsp; Amostras
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; cidades
+                    </a>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="">
+                </div>
+                <button type="submit" class="btn btn-default">Pesquisar</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Amostra
+                    </a>
+                </li>
+                  <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+              </ul>
+        </div>
+    </div>
+</nav>
+
+
+{% if all_amostras %}
+   <h3> Aqui estão todos os dados do sistema de catalogação: </h3>
+   <ul>
+       {% for amostra.id in all_amostras %}
+          <li><a href= "/sedimentos/{{amostra.id}}/">{{ amostra.id.codigo }}</a></li>
+       {% endfor %}
+
+   </ul>
+{% else %}
+   <h3> Não temos essa informação</h3>
+{% endif %}
