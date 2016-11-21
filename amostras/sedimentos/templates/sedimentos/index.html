@@ -10,13 +10,12 @@
 
         <div class="navbar-header">
             <button
-                typy="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
                 <span class="incon-bar"></span>
                 <span class="incon-bar"></span>
                 <span class="incon-bar"></span>
             </button>
              <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> UNIVERSIDADE DE SÃO PAULO </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Projeto em Conjunto :</a>
              <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Instituto de Geociências (IGC-USP) e  </a>
              <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Instituto de Matemática e Estatística (IME-USP) </a>
              <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS </a>
@@ -32,10 +31,36 @@
 
                 <li class="">
                     <a href="#">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; cidades
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Cidades
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Estados
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Países
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Continentes
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Coletadores
                     </a>
                 </li>
             </ul>
+
+
 
             <form class="navbar-form navbar-left" role="search" method="get" action="#">
                 <div class="form-group">
@@ -49,19 +74,46 @@
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Amostra
                     </a>
                 </li>
+                 <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Cidade
+                    </a>
+                </li>
+                 <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Estado
+                    </a>
+                </li>
+                 <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add País
+                    </a>
+                </li>
+                 <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Continente
+                    </a>
+                </li>
+                 <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Coletador
+                    </a>
+                </li>
+
                   <li class="">
                     <a href="#">
                         <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Logout
                     </a>
                 </li>
               </ul>
+
         </div>
     </div>
 </nav>
 
 
 {% if all_amostras %}
-   <h3> Aqui estão todos os dados do sistema de catalogação: </h3>
+   <h3> Aqui estão todas as amostras do sistema de catalogação: </h3>
    <ul>
        {% for amostra.id in all_amostras %}
           <li><a href= "/sedimentos/{{amostra.id}}/">{{ amostra.id.codigo }}</a></li>
@@ -71,3 +123,5 @@
 {% else %}
    <h3> Não temos essa informação</h3>
 {% endif %}
+
+

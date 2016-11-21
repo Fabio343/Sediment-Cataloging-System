@@ -14,7 +14,7 @@ def detail(request,amostra_id):
     return render(request,'sedimentos/detail.html',{'amostra_id':amostra_id})
 
 
-def destaque (request, amostra_id):
+def Destaque (request, amostra_id):
     amostra_id = get_object_or_404(amostra, pk=amostra_id)
     try:
         selected_cidade =amostra_id.cidade_set.get(pk=request.POST['cidade'])
@@ -22,7 +22,7 @@ def destaque (request, amostra_id):
         return render(request,'sedimentos/detail.html',{'amostra_id':amostra_id, 'error_message': "Sem essa informação",})
 
     else:
-        selected_cidade.is_destaque=True
+        selected_cidade.is_Destaque=True
         selected_cidade.save()
         return render(request, 'sedimentos/detail.html', {'amostra_id': amostra_id})
 

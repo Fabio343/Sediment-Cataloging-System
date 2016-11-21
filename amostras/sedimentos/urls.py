@@ -10,7 +10,7 @@ urlpatterns=[
     # se refere a uma em especifico/
     url(r'^(?P<amostra_id>[0-9]+)/$', views.detail, name='detail'),
 
-    url(r'^(?P<amostra_id>[0-9]+)/destaque$', views.destaque, name='destaque'),
+    url(r'^(?P<amostra_id>[0-9]+)/Destaque$', views.Destaque, name='Destaque'),
 
 
 ]

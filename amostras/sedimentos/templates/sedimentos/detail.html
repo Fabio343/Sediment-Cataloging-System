@@ -13,57 +13,110 @@
          <input type="radio" id="cidade{{forloop.counter}}" name="cidade" value="{{cidade.id}}"/>
          <label for="cidade{{forloop.counter}}">
                  {{cidade.nome}}
-                 {{cidade.geologia}}
-                 {{cidade.graus}}
-                 {{cidade.minutos}}
-                 {{cidade.segundos}}
-                 {{cidade.UTM}}
-             {% if cidade.is_destaque %}
+                     <>
+                 {{ cidade.geologia}}
+                     <>
+                 {{ cidade.graus}}
+                     <>
+                 {{ cidade.minutos}}
+                     <>
+                 {{ cidade.segundos}}
+                     <>
+                 {{ cidade.UTM}}
+
+             {% if cidade.is_Destaque %}
                 <img src="http://i.imgur.com/b9b13Rd.jpg"/>
              {% endif %}
          </label><br>
     {% endfor %}
-    <input type="submit" value="destaque">
+    <input type="submit" value="Destaque">
 
 </form>
 
 
 
+{% if error_message %}
+   <p><strong>{{error_message}}</strong></p>
+{% endif %}
 
-
-<ul>
+<form action=" /sedimentos/{{amostra.id}}/" method="post">
+    {% csrf_token %}
     {% for continente in amostra_id.continente_set.all %}
-       <li>{{continente.nome}} </li>
-       <li> {{ continente.sigla}} </li>
+         <input type="radio" id="continente{{forloop.counter}}" name="continente" value="{{continente.id}}"/>
+         <label for="continente{{forloop.counter}}">
+                {{continente.nome}}<>
+                {{ continente.sigla}}
+             {% if continente.is_Destaque %}
+                <img src="http://i.imgur.com/b9b13Rd.jpg"/>
+             {% endif %}
+         </label><br>
     {% endfor %}
-</ul>
+    <input type="submit" value="Destaque">
+
+</form>
 
 
 
+{% if error_message %}
+   <p><strong>{{error_message}}</strong></p>
+{% endif %}
 
-<ul>
+<form action=" /sedimentos/{{amostra.id}}/" method="post">
+    {% csrf_token %}
     {% for estado in amostra_id.estado_set.all %}
-       <li>{{estado.nome}} </li>
+         <input type="radio" id="estado{{forloop.counter}}" name="estado" value="{{estado.id}}"/>
+         <label for="estado{{forloop.counter}}">
+                {{estado.nome}}
+             {% if estado.is_Destaque %}
+                <img src="http://i.imgur.com/b9b13Rd.jpg"/>
+             {% endif %}
+         </label><br>
     {% endfor %}
-</ul>
+    <input type="submit" value="Destaque">
+
+</form>
 
 
 
+{% if error_message %}
+   <p><strong>{{error_message}}</strong></p>
+{% endif %}
 
-<ul>
+<form action=" /sedimentos/{{amostra.id}}/" method="post">
+    {% csrf_token %}
     {% for coletador in amostra_id.coletador_set.all %}
-       <li>{{coletador.nome}} </li>
-       <li>{{coletador.país}} </li>
-       <li>{{coletador.estado}} </li>
-       <li>{{coletador.cidade}} </li>
+         <input type="radio" id="coletador{{forloop.counter}}" name="coletador" value="{{coletador.id}}"/>
+         <label for="coletador{{forloop.counter}}">
+                 {{coletador.nome}}<>
+                 {{ coletador.país}}<>
+                 {{ coletador.estado}}<>
+                 {{ coletador.cidade}}<>
+             {% if coletador.is_Destaque %}
+                <img src="http://i.imgur.com/b9b13Rd.jpg"/>
+             {% endif %}
+         </label><br>
     {% endfor %}
-</ul>
+    <input type="submit" value="Destaque">
+
+</form>
 
 
+{% if error_message %}
+   <p><strong>{{error_message}}</strong></p>
+{% endif %}
 
-
-<ul>
+<form action=" /sedimentos/{{amostra.id}}/" method="post">
+    {% csrf_token %}
     {% for clima in amostra_id.clima_set.all %}
-       <li>{{clima.tipo}} </li>
+         <input type="radio" id="clima{{forloop.counter}}" name="clima" value="{{clima.id}}"/>
+         <label for="clima{{forloop.counter}}">
+                 {{clima.tipo}}
+             {% if clima.is_Destaque %}
+                <img src="http://i.imgur.com/b9b13Rd.jpg"/>
+             {% endif %}
+         </label><br>
     {% endfor %}
-</ul>
+    <input type="submit" value="Destaque">
+
+</form>
+

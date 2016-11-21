@@ -1,5 +1,5 @@
 body{
-   areia: white url("imagens/ areia.jpg");
+   areia.jpg: white url("imagens/ areia.jpg");
 }
 
 .navbar{
