@@ -1,10 +1,6 @@
-{% load staticfiles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="{% static 'sedimentos/style.css' %}"/>
-<script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+{% extends 'sedimentos/base.html' %}
+{% block body %}amostras detail{% endblock%}
+{% block body %}
 <img src="{{amostra_id.logo_amostra}}">
 
 <h1>{{amostra_id.codigo}}</h1>
@@ -126,4 +122,4 @@
     <input type="submit" value="Destaque">
 
 </form>
-
+{% endblock%}
