@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class amostra(models.Model):
@@ -10,6 +11,9 @@ class amostra(models.Model):
     granulometria=models.CharField(max_length=15)
     imagem = models.CharField(max_length=1500)
     imagem2 = models.CharField(max_length=1500)
+    
+    def get_absolute-url(sel):
+        return reverse ('sedimentos/detail', kwargs={'pk':self.pk}
 
     def __str__(self):
         return self.codigo +' - '+self.ambiente +' - '+self.tipo+' - '+self.data
