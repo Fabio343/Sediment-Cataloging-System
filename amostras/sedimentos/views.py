@@ -1,4 +1,5 @@
 from django.views import generic
+from django.views.generic.edit import Createview,Updateview,Deleteview
 from .models import amostra
 
 class IndexView(generic.ListView):
@@ -12,3 +13,8 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = amostra
     template_name='sedimentos/detail.html'
+    
+    
+class amostraCreat(Creatview):
+    model=amostra
+    fields=['codigo','ambiente','descrição','tipo','data','granulometria']
