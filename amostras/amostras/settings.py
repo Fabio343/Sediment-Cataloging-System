@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j$mwj14wl65f2!dke8smkr)!yj@$z^k5i7kkv8xp)2v0x6s^_%'
+SECRET_KEY = '1=dg3x*0-_(p7n!m8ex8h-*m#f)1bjmvp!%441bic%h90j&&ct'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,15 +73,14 @@ WSGI_APPLICATION = 'amostras.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'amostras',
+        'NAME': 'SedimentosIGC3',
         'USER': 'postgres',
-        'PASSWORD': 'resident343',
+        'PASSWORD': 'sedimentos123',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 
@@ -124,3 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'
