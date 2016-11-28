@@ -1,51 +1,42 @@
-<img src="{{amostra_id.logo_amostra}}">
-
-<h1>{{amostra_id.codigo}}</h1>
-
-
-   <ul>
-    {% for cidade in amostra_id.cidade_set.all %}
-
-                 {{cidade.nome}}
-                     <>
-                 {{ cidade.geologia}}
+{% extends 'sedimentos/base.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+{% block body %}
+<ul>
+    {% for cidade in amostra.cidade_set.all %}
+    <h3>{{cidade.amostra}}</h3>
+    Cidade de Coleta:
+           <li>{{cidade.nome}}</li>
+    Geologia Local:
+           <li>{{cidade.geologia}}</li>
     {% endfor %}
-     </ul>
 
-
-
-
-
-   <ul>
-    {% for continente in amostra_id.continente_set.all %}
-                {{continente.nome}}<>
-                {{ continente.sigla}}
+    {% for estado in amostra.estado_set.all %}
+     Estado de Coleta:
+    <li>{{estado.nome}}</li>
     {% endfor %}
-    </ul>
 
-
-
-
-    <ul>
-    {% for estado in amostra_id.estado_set.all %}
-                {{estado.nome}}
+    {% for ambiente in amostra.ambiente_set.all %}
+    Ambiente de Coleta :
+    <li>{{ambiente.tipo}}</li>
     {% endfor %}
-    </ul>
 
-
-
-
-    <ul>
-    {% for ambiente in amostra_id.ambiente_set.all %}
-               {{ambiente.tipo}}
+    {% for país in amostra.país_set.all %}
+    País de coleta:
+    <li>{{país.nome}}</li>
     {% endfor %}
-    </ul>
 
-
-
-
-    <ul>
-    {% for clima in amostra_id.clima_set.all %}
-                 {{clima.tipo}}
+    {% for continente in amostra.continente_set.all %}
+    Continente de Origem:
+    <li>{{continente.nome}}</li>
+    Sigla do Continente:
+    <li>{{continente.sigla}}</li>
     {% endfor %}
-    </ul>
+
+
+    {% for clima in amostra.clima_set.all %}
+    Clima da Região:
+    <li>{{clima.tipo}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

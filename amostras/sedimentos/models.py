@@ -25,6 +25,8 @@ class continente(models.Model):
     sigla=models.CharField(max_length=15)
     is_destaque=models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
     def __str__(self):
        return self.nome+' - '+self.sigla
 
@@ -37,6 +39,8 @@ class país(models.Model):
     região=models.CharField(max_length=20)
     is_destaque = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
     def __str__(self):
         return self.nome+' - '+self.região
 
@@ -49,7 +53,8 @@ class estado(models.Model):
     nome=models.CharField(max_length=20)
     is_destaque = models.BooleanField(default=False)
 
-
+    def get_absolute_url(self):
+        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
     def __str__(self):
          return self.nome
 
@@ -63,6 +68,8 @@ class cidade(models.Model):
     geologia=models.TextField(max_length=255)
     is_destaque = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
     def __str__(self):
         return self.nome
 
@@ -75,6 +82,8 @@ class ambiente(models.Model):
     cidade = models.ForeignKey(cidade, on_delete=models.CASCADE)
     tipo=models.CharField(max_length=25)
 
+    def get_absolute_url(self):
+        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
     def __str__(self):
         return self.tipo
 
@@ -90,5 +99,7 @@ class clima(models.Model):
     tipo=models.CharField(max_length=40)
     is_destaque = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
     def __str__(self):
         return self.tipo

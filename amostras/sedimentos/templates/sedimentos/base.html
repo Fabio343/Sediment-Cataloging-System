@@ -74,37 +74,43 @@
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{{% url 'sedimentos:index' %}">
+                    <a href="{% url 'sedimentos:index' %}">
                         <span class="glyphicon glyphicoon-terra" aria-hidden="true"></span>&nbsp; Amostras
                     </a>
                 </li>
 
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:index3' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Cidades
                     </a>
                 </li>
 
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:index4' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Estados
                     </a>
                 </li>
 
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:index5' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Países
                     </a>
                 </li>
 
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:index2' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Continentes
                     </a>
                 </li>
 
                 <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:index6' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
+                    </a>
+                </li>
+
+                 <li class="">
+                    <a href="{% url 'sedimentos:index7' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
                     </a>
                 </li>
@@ -125,34 +131,40 @@
                     </a>
                 </li>
                  <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:cidade-add'%}">
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Cidade
                     </a>
                 </li>
                  <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:estado-add'%}">
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Estado
                     </a>
                 </li>
                  <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:país-add'%}">
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add País
                     </a>
                 </li>
                  <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:continente-add'%}">
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Continente
                     </a>
                 </li>
                  <li class="">
-                    <a href="#">
+                    <a href="{% url 'sedimentos:ambiente-add'%}">
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Ambiente
                     </a>
                 </li>
 
+                 <li class="">
+                    <a href="{% url 'sedimentos:clima-add'%}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Clima
+                    </a>
+                </li>
+
                   <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Logout
+                    <a href="{% url 'sedimentos:register'%}">
+                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Login
                     </a>
                 </li>
               </ul>
