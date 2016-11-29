@@ -13,13 +13,13 @@
             {% for estado.id in estados %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
-                        <a href="{% url 'sedimentos:detail' estado.id %}">
+                        <a href="{% url 'sedimentos:detail4' estado.id %}">
                         </a>
                         <div class="caption">
                             <h2>{{ estado.nome }}</h2>
 
 
-                            <a href="{% url 'sedimentos:detail' estado.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+                            <a href="{% url 'sedimentos:detail4' estado.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
 
 
                             <form action="{% url 'sedimentos:estado-delete' estado.id %}" method="post" style="display: inline;">

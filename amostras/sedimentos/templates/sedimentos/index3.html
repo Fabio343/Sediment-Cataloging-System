@@ -12,13 +12,13 @@
             {% for cidade.id in cidades %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
-                        <a href="{% url 'sedimentos:detail' cidade.id %}">
+                        <a href="{% url 'sedimentos:detail5' cidade.id %}">
                         </a>
                         <div class="caption">
                             <h2>{{ cidade.nome }}</h2>
 
 
-                            <a href="{% url 'sedimentos:detail' cidade.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+                            <a href="{% url 'sedimentos:detail5' cidade.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
 
 
                             <form action="{% url 'sedimentos:cidade-delete' cidade.id %}" method="post" style="display: inline;">

@@ -2,6 +2,7 @@ from django.views.generic.edit import CreateView ,UpdateView ,DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import  render,redirect
 from django.contrib.auth import authenticate,login
+from django.contrib.auth import logout
 from django.views import generic
 from django.views.generic import View
 from .models import amostra, continente, cidade, estado, país, ambiente, clima
@@ -50,7 +51,7 @@ class IndexView2(generic.ListView):
 
 class DetailView2(generic.DetailView):
     model = continente
-    template_name = 'sedimentos/detail.html'
+    template_name = 'sedimentos/detail2.html'
 
 
 class continenteCreate(CreateView):
@@ -79,7 +80,7 @@ class IndexView3(generic.ListView):
 
 class DetailView3(generic.DetailView):
     model = cidade
-    template_name = 'sedimentos/detail.html'
+    template_name = 'sedimentos/detail5.html'
 
 
 class cidadeCreate(CreateView):
@@ -112,7 +113,7 @@ class IndexView4(generic.ListView):
 
 class DetailView4(generic.DetailView):
     model = estado
-    template_name = 'sedimentos/detail.html'
+    template_name = 'sedimentos/detail4.html'
 
 
 class estadoCreate(CreateView):
@@ -142,7 +143,7 @@ class IndexView5(generic.ListView):
 
 class DetailView5(generic.DetailView):
     model = país
-    template_name = 'sedimentos/detail.html'
+    template_name = 'sedimentos/detail3.html'
 
 
 class paísCreate(CreateView):
@@ -172,7 +173,7 @@ class IndexView6(generic.ListView):
 
 class DetailView6(generic.DetailView):
     model = ambiente
-    template_name = 'sedimentos/detail.html'
+    template_name = 'sedimentos/detail6.html'
 
 
 class ambienteCreate(CreateView):
@@ -202,7 +203,7 @@ class IndexView7(generic.ListView):
 
 class DetailView7(generic.DetailView):
     model = ambiente
-    template_name = 'sedimentos/detail.html'
+    template_name = 'sedimentos/detail7.html'
 
 
 class climaCreate(CreateView):
@@ -249,3 +250,29 @@ class UserFormView(View):
                 return redirect('sedimentos:index')
 
         return render(request, self.template_name, {'form': form})
+########################################################################################################################
+def logout_user(request):
+    logout(request)
+    form = UserForm(request.POST or None)
+    context = {
+        "form": form,
+        }
+    return render(request, 'sedimentos/login.html', context)
+########################################################################################################################
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                amostras = amostra.objects.filter(user=request.user)
+                return render(request, 'sedimentos/index.html', {'amostras': amostras})
+            else:
+                return render(request, 'sedimentos/login.html', {'error_message': 'Your account has been disabled'})
+        else:
+                return render(request, 'sedimentos/login.html', {'error_message': 'Invalid login'})
+
+    return render(request, 'sedimentos/login.html')
+

@@ -72,46 +72,47 @@
         </div>
 
         <div class="collapse navbar-collapse" id="topNavBar">
+
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-terra" aria-hidden="true"></span>&nbsp; Amostras
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Amostras
                     </a>
                 </li>
 
-                <li class="">
+                <li class="active">
                     <a href="{% url 'sedimentos:index3' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Cidades
                     </a>
                 </li>
 
-                <li class="">
+                <li class="active">
                     <a href="{% url 'sedimentos:index4' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Estados
                     </a>
                 </li>
 
-                <li class="">
+                <li class="active">
                     <a href="{% url 'sedimentos:index5' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Países
                     </a>
                 </li>
 
-                <li class="">
+                <li class="active">
                     <a href="{% url 'sedimentos:index2' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Continentes
                     </a>
                 </li>
 
-                <li class="">
+                <li class="active">
                     <a href="{% url 'sedimentos:index6' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
                     </a>
                 </li>
 
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:index7' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp;Climas
                     </a>
                 </li>
             </ul>
@@ -125,48 +126,52 @@
                 <button type="submit" class="btn btn-default">Pesquisar</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li class="">
+                <a class="navbar-brand" href="{% url 'sedimentos:index' %}"> Adicionar: </a>
+              <li class="active">
                     <a href="{% url 'sedimentos:amostra-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Amostra
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Amostra
                     </a>
                 </li>
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:cidade-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Cidade
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  Cidade
                     </a>
                 </li>
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:estado-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Estado
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  Estado
                     </a>
                 </li>
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:país-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add País
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  País
                     </a>
                 </li>
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:continente-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Continente
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  Continente
                     </a>
                 </li>
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:ambiente-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Ambiente
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  Ambiente
                     </a>
                 </li>
 
-                 <li class="">
+                 <li class="active">
                     <a href="{% url 'sedimentos:clima-add'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Add Clima
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  Clima
                     </a>
                 </li>
-
-                  <li class="">
-                    <a href="{% url 'sedimentos:register'%}">
-                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Login
+                 <li class="">
+                    <a href="{%url 'sedimentos:register' %}">
+                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Registrar
                     </a>
                 </li>
+                <li class="">
+                    <a href="{% url 'sedimentos:logout_user' %}">
+                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp;Logout
+                    </a>
               </ul>
 
         </div>

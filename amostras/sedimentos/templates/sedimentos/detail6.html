@@ -1,0 +1,37 @@
+{% extends 'sedimentos/base.html' %}
+{% block title %}{{ ambiente}}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+{% block body %}
+<ul>
+    {% for amostra in ambiente.amostra_set.all %}
+           <h3>{{amostra.codigo}}</h3>
+           <li>{{amostra.tipo}}</li>
+           <li>{{amostra.descrição}}</li>
+           <li>{{amostra.granulometria}}</li>
+           <li>{{amostra.data}}</li>
+           <li>{{amostra.coletador}}</li>
+    {% endfor %}
+    
+    {% for continente in ambiente.continente_set.all %}
+    Continente de Origem:
+    <li>{{continente.nome}}</li>
+    Sigla do Continente:
+    <li>{{continente.sigla}}</li>
+    {% endfor %}
+    
+    {% for país in ambiente.país_set.all %}
+    País de coleta:
+    <li>{{país.nome}}</li>
+    {% endfor %}
+    
+     {% for estado in ambiente.estado_set.all %}
+     Estado de Coleta:
+    <li>{{estado.nome}}</li>
+    {% endfor %}
+
+    {% for clima in ambiente.clima_set.all %}
+    Clima da Região:
+    <li>{{clima.tipo}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
