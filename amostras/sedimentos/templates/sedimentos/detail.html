@@ -2,41 +2,63 @@
 {% block title %}{{ amostra }}{% endblock %}
 {% block amostras_active %}active{% endblock %}
 {% block body %}
-<ul>
-    {% for cidade in amostra.cidade_set.all %}
-    <h3>{{cidade.amostra}}</h3>
-    Cidade de Coleta:
-           <li>{{cidade.nome}}</li>
-    Geologia Local:
-           <li>{{cidade.geologia}}</li>
-    {% endfor %}
+<div class="panel panel-default">
+                <div class="panel-body">
 
-    {% for estado in amostra.estado_set.all %}
-     Estado de Coleta:
-    <li>{{estado.nome}}</li>
-    {% endfor %}
+                    <a href="{% url 'sedimentos:detail' amostra.id %}">
+                        {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                        {% endif %}
+                    </a>
 
-    {% for ambiente in amostra.ambiente_set.all %}
-    Ambiente de Coleta :
-    <li>{{ambiente.tipo}}</li>
-    {% endfor %}
+                        <h4>Codigo Da Amostra:</h4>
+                        <h5>{{amostra.codigo}}</h5>
+                        <h4>Descrição Breve Da Amostra:</h4>
+                        <h5>{{amostra.descrição}}</h5>
+                        <h4>Tipo De Amostra:</h4>
+                        <h5>{{amostra.tipo}}</h5>
+                        <h4>Coletador Responsável:</h4>
+                        <h5>{{amostra.coletador}}</h5>
+                        <h4>Data:</h4>
+                        <h5>{{amostra.data}}</h5>
+                        <h4>Granulometria Do Exemplar:</h4>
+                        <h5>{{amostra.granulometria}}</h5>
+                        <ul>
+                       {% for cidade in amostra.cidade_set.all %}
+                        <h4>Cidade de Coleta:</h4>
+                        <li>{{cidade.nome}}</li>
+                        <h4>Geologia Local:</h4>
+                        <li>{{cidade.geologia}}</li>
+                       {% endfor %}
 
-    {% for país in amostra.país_set.all %}
-    País de coleta:
-    <li>{{país.nome}}</li>
-    {% endfor %}
+                       {% for estado in amostra.estado_set.all %}
+                        <h4>Estado de Coleta:</h4>
+                        <li>{{estado.nome}}</li>
+                      {% endfor %}
 
-    {% for continente in amostra.continente_set.all %}
-    Continente de Origem:
-    <li>{{continente.nome}}</li>
-    Sigla do Continente:
-    <li>{{continente.sigla}}</li>
-    {% endfor %}
+                       {% for país in amostra.país_set.all %}
+                        <h4>País de coleta:</h4>
+                        <li>{{país.nome}}</li>
+                       {% endfor %}
 
+                        {% for continente in amostra.continente_set.all %}
+                         <h4>Continente de Origem:</h4>
+                         <li>{{continente.nome}}</li>
+                          <h4>Sigla do Continente:</h4>
+                         <li>{{continente.sigla}}</li>
+                       {% endfor %}
 
-    {% for clima in amostra.clima_set.all %}
-    Clima da Região:
-    <li>{{clima.tipo}}</li>
-    {% endfor %}
-</ul>
-{% endblock %}
+                       {% for clima in amostra.clima_set.all %}
+                        <h4>Clima da Região:</h4>
+                        <li>{{clima.tipo}}</li>
+                       {% endfor %}
+
+                       {% for ambiente in amostra.ambiente_set.all %}
+                        <h4> Ambiente de Coleta :</h4>
+                        <li>{{ambiente.tipo}}</li>
+                        {% endfor %}
+                    </ul>
+
+ </div>
+                 </div>
+ {% endblock %}

@@ -26,7 +26,7 @@ class continente(models.Model):
     is_destaque=models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
+        return reverse('sedimentos:detail2', kwargs={'pk': self.pk})
     def __str__(self):
        return self.nome+' - '+self.sigla
 
@@ -40,7 +40,7 @@ class país(models.Model):
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
+        return reverse('sedimentos:detail3', kwargs={'pk': self.pk})
     def __str__(self):
         return self.nome+' - '+self.região
 
@@ -54,7 +54,7 @@ class estado(models.Model):
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
+        return reverse('sedimentos:detail4', kwargs={'pk': self.pk})
     def __str__(self):
          return self.nome
 
@@ -69,7 +69,7 @@ class cidade(models.Model):
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
+        return reverse('sedimentos:detail5', kwargs={'pk': self.pk})
     def __str__(self):
         return self.nome
 
@@ -83,7 +83,7 @@ class ambiente(models.Model):
     tipo=models.CharField(max_length=25)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
+        return reverse('sedimentos:detail6', kwargs={'pk': self.pk})
     def __str__(self):
         return self.tipo
 
@@ -100,6 +100,6 @@ class clima(models.Model):
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail', kwargs={'pk': self.pk})
+        return reverse('sedimentos:detail7', kwargs={'pk': self.pk})
     def __str__(self):
         return self.tipo

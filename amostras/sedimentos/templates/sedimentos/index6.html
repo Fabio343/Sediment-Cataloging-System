@@ -9,7 +9,7 @@
             <h3> Aqui Estão todos os Ambientes do Sistema de Catalogação: </h3>
         </div>
         {% if  paíss %}
-            {% for ambiente.id in ambientes %}
+            {% for ambiente in ambientes %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
                         <a href="{% url 'sedimentos:detail6' ambiente.id %}">
@@ -36,6 +36,6 @@
             {% endfor %}
         {% endif %}
     </div>
- </div>
+</div>
 {% endblock %}
 

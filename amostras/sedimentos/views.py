@@ -13,6 +13,7 @@ class IndexView(generic.ListView):
     template_name = 'sedimentos/index.html'
     context_object_name = 'all_amostras'
 
+
     def get_queryset(self):
 
        return amostra.objects.all()

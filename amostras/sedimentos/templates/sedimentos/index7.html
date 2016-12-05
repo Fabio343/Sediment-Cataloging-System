@@ -9,7 +9,7 @@
             <h3> Aqui Estão Todos os Climas do Sistema de Catalogação: </h3>
         </div>
         {% if  climas %}
-            {% for clima.id in climas %}
+            {% for clima in climas %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
                         <a href="{% url 'sedimentos:detail7' clima.id %}">
@@ -34,16 +34,7 @@
                 </div>
                 {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
             {% endfor %}
-        {% else %}
-            <div class="col-sm-12">
-                <br>
-                <a href="{% url 'sedimentos:clima-add' %}">
-                    <button type="button" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Adicionar um Clima
-                    </button>
-                </a>
-            </div>
         {% endif %}
     </div>
- </div>
+</div>
 {% endblock %}
