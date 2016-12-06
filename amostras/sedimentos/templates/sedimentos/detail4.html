@@ -2,6 +2,14 @@
 {% block title %}{{ estado }}{% endblock %}
 {% block amostras_active %}active{% endblock %}
 {% block body %}
+<div class="panel panel-default">
+                <div class="panel-body">
+
+                    <a href="{% url 'sedimentos:detail' amostra.id %}">
+                        {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                        {% endif %}
+                    </a>
 <ul>
     {% for amostra in estado.amostra_set.all %}
            <h3>{{amostra.codigo}}</h3>
@@ -42,4 +50,6 @@
     <li>{{clima.tipo}}</li>
     {% endfor %}
 </ul>
+                     </div>
+</div>
 {% endblock %}

@@ -74,7 +74,7 @@ urlpatterns = [
     url(r'^$', views.IndexView7.as_view(), name='index7'),
     # se refere a uma em especifico/
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView7.as_view(), name='detail7'),
-    url(r'clima/add/$', views.ambienteCreate.as_view(), name='clima-add'),
+    url(r'clima/add/$', views.climaCreate.as_view(), name='clima-add'),
     url(r'clima/(?P<pk>[0-9]+)/$', views.climaUpdate.as_view(), name='clima-Update'),
     url(r'clima/(?P<pk>[0-9]+)/$', views.climaDelete.as_view(), name='clima-Delete'),
 
@@ -82,5 +82,9 @@ urlpatterns = [
 
     url(r'^login_user/$', views.login_user, name='login_user'),
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
+
+
 ]
+
+
 

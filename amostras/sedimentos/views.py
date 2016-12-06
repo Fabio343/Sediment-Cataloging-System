@@ -5,8 +5,15 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth import logout
 from django.views import generic
 from django.views.generic import View
-from .models import amostra, continente, cidade, estado, país, ambiente, clima
+from .models import amostra
+from .models import  continente
+from .models import  cidade
+from .models import  estado
+from .models import  país
+from .models import ambiente
+from .models import clima
 from .forms import UserForm
+
 
 
 class IndexView(generic.ListView):
@@ -208,18 +215,18 @@ class DetailView7(generic.DetailView):
 
 
 class climaCreate(CreateView):
-    model = ambiente
+    model = clima
     fields = ['amostra','continente','país','estado','cidade','tipo']
 
 
 
 class climaUpdate(UpdateView ):
-     model = ambiente
+     model = clima
      fields = ['amostra','continente','país','estado','cidade','tipo']
 
 
 class climaDelete(DeleteView):
-    model=ambiente
+    model=clima
     sucess_url=reverse_lazy('sedimentos:index7')
 ########################################################################################################################
 class UserFormView(View):
@@ -276,4 +283,5 @@ def login_user(request):
                 return render(request, 'sedimentos/login.html', {'error_message': 'Invalid login'})
 
     return render(request, 'sedimentos/login.html')
+########################################################################################################################
 
