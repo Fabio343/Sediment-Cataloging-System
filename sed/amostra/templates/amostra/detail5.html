@@ -1,0 +1,51 @@
+{% extends 'amostra/base.html' %}
+{% block title %}{{ cidade }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+{% block body %}
+<div class="panel panel-default">
+                <div class="panel-body">
+
+                    <a href="{% url 'amostra:detail' amostra.id %}">
+                        {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                        {% endif %}
+                    </a>
+<ul>
+    {% for amostra in cidade.amostra_set.all %}
+           <h3>{{amostra.codigo}}</h3>
+           <li>{{amostra.tipo}}</li>
+           <li>{{amostra.descrição}}</li>
+           <li>{{amostra.granulometria}}</li>
+           <li>{{amostra.data}}</li>
+           <li>{{amostra.coletador}}</li>
+    {% endfor %}
+    
+    {% for continente in cidade.continente_set.all %}
+    Continente de Origem:
+    <li>{{continente.nome}}</li>
+    Sigla do Continente:
+    <li>{{continente.sigla}}</li>
+    {% endfor %}
+    
+    {% for país in cidade.país_set.all %}
+    País de coleta:
+    <li>{{país.nome}}</li>
+    {% endfor %}
+
+     {% for estado in cidade.estado_set.all %}
+     Estado de Coleta:
+    <li>{{estado.nome}}</li>
+    {% endfor %}
+    {% for ambiente in cidade.ambiente_set.all %}
+    Ambiente de Coleta :
+    <li>{{ambiente.tipo}}</li>
+    {% endfor %}
+    
+    {% for clima in cidade.clima_set.all %}
+    Clima da Região:
+    <li>{{clima.tipo}}</li>
+    {% endfor %}
+</ul>
+                     </div>
+</div>
+{% endblock %}

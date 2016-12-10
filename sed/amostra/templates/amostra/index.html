@@ -1,0 +1,13 @@
+{% extends 'amostra/base.html' %}
+{% block amostras_active %}active{% endblock %}
+{% block body %}
+{% if all_amostras %}
+   <ul>
+   <h3>Todas as Amostras Disponiveis No Sistema:</h3></ul>
+  <ul>
+      {% for amostra in all_amostras %}
+      <li><a href="{% url 'amostra:detail' amostra.id %}">{{amostra.codigo}}</a></li>
+      {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

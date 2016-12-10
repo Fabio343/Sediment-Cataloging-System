@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS{% endblock %}</title>
+    {% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{% static 'amostra/style.css' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button
+                type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="incon-bar"></span>
+                <span class="incon-bar"></span>
+                <span class="incon-bar"></span>
+            </button>
+             <a class="navbar-brand" href="{% url 'amostra:index' %}"> UNIVERSIDADE DE SÃO PAULO </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="{% url 'amostra:index' %}"> Instituto de Geociências (IGC-USP)   </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="{% url 'amostra:index' %}"> Instituto de Matemática e Estatística (IME-USP) </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="#"> </a>
+             <a class="navbar-brand" href="{% url 'amostra:index' %}"> SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'amostra:index' %}">
+                        <span class="glyphicon glyphicoon-terra" aria-hidden="true"></span>&nbsp; Amostras
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:index3' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Cidades
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:index4' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Estados
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:index5' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Países
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:index2' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Continentes
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:index6' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:index7' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Climas
+                    </a>
+                </li>
+            </ul>
+
+
+
+            <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="">
+                </div>
+                <button type="submit" class="btn btn-default">Pesquisar</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Adicionar:
+                    </a>
+                </li>
+              <li class="active">
+                    <a href="{% url 'amostra:amostra-add' %}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Amostra
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostra:cidade-add' %}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Cidade
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostra:estado-add' %}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Estado
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostra:país-add' %}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; País
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostra:continente-add' %}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Continente
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostra:ambiente-add' %}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp; Ambiente
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'amostra:clima-add' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp;Clima
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'amostra:register' %}">
+                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Registrar
+                    </a>
+                </li>
+                  <li class="">
+                    <a href="{% url 'amostra:logout_user' %}">
+                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+              </ul>
+
+        </div>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

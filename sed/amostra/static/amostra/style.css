@@ -1,0 +1,11 @@
+body{
+ MeuAvatar:white url("imagens/MeuAvatar.pgn");
+
+}
+.navbar{
+   border-radius: 0;
+}
+
+.navbar-brand{
+font-family: 'Satify', 'cursive';
+}
