@@ -6,11 +6,11 @@ from django.core.urlresolvers import reverse
 class amostra(models.Model):
     codigo=models.CharField(max_length=15)
     tipo = models.CharField(max_length=25)
-    descrição=models.TextField(max_length=300)
-    data=models.CharField(max_length=15)
+    descrição=models.TextField(max_length=300,null=True)
+    data=models.CharField(max_length=15,null=True)
     granulometria=models.CharField(max_length=15)
-    coletador=models.CharField(max_length=50)
-    imagem = models.FileField()
+    coletador=models.CharField(max_length=50,null=True)
+    imagem = models.FileField(null=True)
 
     def get_absolute_url(self):
         return reverse('sedimentos:detail',kwargs={'pk': self.pk})
@@ -21,8 +21,8 @@ class amostra(models.Model):
 
 class continente(models.Model):
     amostra=models.ForeignKey(amostra,on_delete=models.CASCADE)
-    nome=models.CharField(max_length=15)
-    sigla=models.CharField(max_length=15)
+    nome=models.CharField(max_length=20,null=True)
+    sigla=models.CharField(max_length=15,null=True)
     is_destaque=models.BooleanField(default=False)
 
     def get_absolute_url(self):
@@ -35,8 +35,8 @@ class continente(models.Model):
 class país(models.Model):
     amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
     continente = models.ForeignKey(continente, on_delete=models.CASCADE)
-    nome=models.CharField(max_length=30)
-    região=models.CharField(max_length=20)
+    nome=models.CharField(max_length=30,null=True)
+    região=models.CharField(max_length=20,null=True)
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
@@ -50,7 +50,7 @@ class estado(models.Model):
     amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
     continente = models.ForeignKey(continente, on_delete=models.CASCADE)
     país = models.ForeignKey(país, on_delete=models.CASCADE)
-    nome=models.CharField(max_length=20)
+    nome=models.CharField(max_length=50,null=True)
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
@@ -64,8 +64,8 @@ class cidade(models.Model):
     continente = models.ForeignKey(continente, on_delete=models.CASCADE)
     país = models.ForeignKey(país, on_delete=models.CASCADE)
     estado = models.ForeignKey(estado, on_delete=models.CASCADE)
-    nome=models.CharField(max_length=30)
-    geologia=models.TextField(max_length=255)
+    nome=models.CharField(max_length=50,null=True)
+    geologia=models.TextField(max_length=300,null=True)
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):
@@ -80,7 +80,7 @@ class ambiente(models.Model):
     país = models.ForeignKey(país, on_delete=models.CASCADE)
     estado = models.ForeignKey(estado, on_delete=models.CASCADE)
     cidade = models.ForeignKey(cidade, on_delete=models.CASCADE)
-    tipo=models.CharField(max_length=25)
+    tipo=models.CharField(max_length=30,null=True)
 
     def get_absolute_url(self):
         return reverse('sedimentos:detail6', kwargs={'pk': self.pk})
@@ -96,7 +96,7 @@ class clima(models.Model):
     país = models.ForeignKey(país, on_delete=models.CASCADE)
     estado = models.ForeignKey(estado, on_delete=models.CASCADE)
     cidade = models.ForeignKey(cidade, on_delete=models.CASCADE)
-    tipo=models.CharField(max_length=40)
+    tipo=models.CharField(max_length=40,null=True)
     is_destaque = models.BooleanField(default=False)
 
     def get_absolute_url(self):

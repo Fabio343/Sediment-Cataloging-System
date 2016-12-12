@@ -1,15 +1,15 @@
 from django.views.generic.edit import CreateView ,UpdateView ,DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import  render,redirect
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views import generic
 from django.views.generic import View
 from .models import amostra
-from .models import  continente
-from .models import  cidade
-from .models import  estado
-from .models import  país
+from .models import continente
+from .models import cidade
+from .models import estado
+from .models import país
 from .models import ambiente
 from .models import clima
 from .forms import UserForm
@@ -231,7 +231,7 @@ class climaDelete(DeleteView):
 ########################################################################################################################
 class UserFormView(View):
     form_class=UserForm
-    template_name='sedimentos/registration_form.html'
+    template_name='sedimentos/register_form.html'
 
     def get(self,request):
         form=self.form_class(None)
@@ -256,7 +256,6 @@ class UserFormView(View):
                 if user.is_active:
                     login(request,user)
                 return redirect('sedimentos:index')
-
         return render(request, self.template_name, {'form': form})
 ########################################################################################################################
 def logout_user(request):
@@ -281,7 +280,5 @@ def login_user(request):
                 return render(request, 'sedimentos/login.html', {'error_message': 'Your account has been disabled'})
         else:
                 return render(request, 'sedimentos/login.html', {'error_message': 'Invalid login'})
-
     return render(request, 'sedimentos/login.html')
 ########################################################################################################################
-

@@ -16,9 +16,9 @@ urlpatterns = [
 
 
 
-    url(r'^$', views.IndexView2.as_view(), name='index2'),
+    url(r'^$', views.IndexView.as_view(), name='index2'),
     # se refere a uma em especifico/
-    url(r'^(?P<pk>[0-9]+)/$', views.DetailView2.as_view(), name='detail2'),
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail2'),
     url(r'continente/add/$', views.continenteCreate.as_view(), name='continente-add'),
     url(r'continente/(?P<pk>[0-9]+)/$', views.continenteUpdate.as_view(), name='continente-Update'),
     url(r'continente/(?P<pk>[0-9]+)/$', views.continenteDelete.as_view(), name='continente-Delete'),
@@ -85,6 +85,4 @@ urlpatterns = [
 
 
 ]
-
-
 

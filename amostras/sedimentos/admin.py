@@ -2,7 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import amostra
-from .models import amostra
 admin.site.register(amostra)
 
 from .models import continente
