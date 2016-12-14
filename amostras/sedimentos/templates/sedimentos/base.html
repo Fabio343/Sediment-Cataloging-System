@@ -5,12 +5,12 @@
     <title>{% block tutle %}SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS{% endblock %}</title>
 
     {% load staticfiles %}
-   <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% static 'sedimentos/js/main.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'sedimentos/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -24,6 +24,7 @@
                 <span class="incon-bar"></span>
                 <span class="incon-bar"></span>
             </button>
+
              <a class="navbar-brand" > UNIVERSIDADE DE SÃO PAULO </a>
              <a class="navbar-brand" >  </a>
              <a class="navbar-brand">   </a>
@@ -70,7 +71,6 @@
 
              <a class="navbar-brand"> SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS </a>
         </div>
-
         <div class="collapse navbar-collapse" id="topNavBar">
 
             <ul class="nav navbar-nav">
@@ -79,44 +79,55 @@
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Amostras
                     </a>
                 </li>
+            </ul>
 
+            <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'sedimentos:index3' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Cidades
                     </a>
                 </li>
+            </ul>
 
+            <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'sedimentos:index4' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Estados
                     </a>
                 </li>
+            </ul>
 
+            <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'sedimentos:index5' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Países
                     </a>
                 </li>
+            </ul>
 
+            <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{% url 'sedimentos:index2' %}">
+                    <a href="{% url 'sedimentos:contid' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Continentes
                     </a>
                 </li>
+            </ul>
 
+            <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'sedimentos:index6' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
                     </a>
                 </li>
+            </ul>
 
+            <ul class="nav navbar-nav">
                  <li class="active">
                     <a href="{% url 'sedimentos:index7' %}">
                         <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp;Climas
                     </a>
                 </li>
             </ul>
-
 
 
             <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'sedimentos:index' %}">
@@ -163,17 +174,21 @@
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;  Clima
                     </a>
                 </li>
+
+                <li class="">
+                    <a href="{% url 'sedimentos:logout_user' %}">
+                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp;Logout
+                    </a>
+                </li>
                  <li class="">
                     <a href="{%url 'sedimentos:register' %}">
                         <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp; Registrar
                     </a>
                 </li>
-                <li class="">
-                    <a href="{% url 'sedimentos:logout_user' %}">
-                        <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp;Logout
-                    </a>
+                 <li class="">
+                <a href="/sedimentos/contato">
+                <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>Fale Conosco</a>
               </ul>
-
         </div>
     </div>
 </nav>

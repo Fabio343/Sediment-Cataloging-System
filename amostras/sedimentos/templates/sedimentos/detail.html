@@ -2,14 +2,14 @@
 {% block title %}{{ amostra }}{% endblock %}
 {% block amostras_active %}active{% endblock %}
 {% block body %}
-<div class="panel panel-default" >
+  <div class="col-sm-4 col-md-4">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'sedimentos:detail' amostra.id %}">
                         {% if amostra.imagem %}
                           <ul> <img src="{{ amostra.imagem.url }}" class="img-responsive"> </ul>
                         {% endif %}
                     </a>
-
                      <ul>
                         <h4>Codigo Da Amostra:</h4>
                         <h5><li>{{amostra.codigo}}</li></h5>
@@ -71,8 +71,8 @@
                         <li>{{ambiente.tipo}}</li>
                         {% endfor %}
                     </ul>
-
                 </div>
-
+            </div>
 </div>
  {% endblock %}
+

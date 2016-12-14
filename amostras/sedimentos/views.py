@@ -12,7 +12,10 @@ from .models import estado
 from .models import país
 from .models import ambiente
 from .models import clima
-from .forms import UserForm
+from .forms import UserForm, ContatoForm
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
+from django.template import Context
 
 
 
@@ -49,7 +52,7 @@ class amostraDelete(DeleteView):
 ########################################################################################################################
 
 class IndexView2(generic.ListView):
-    template_name = 'sedimentos/index2.html'
+    template_name = 'sedimentos/contid.html'
     context_object_name = 'all_continentes'
 
     def get_queryset(self):
@@ -59,7 +62,7 @@ class IndexView2(generic.ListView):
 
 class DetailView2(generic.DetailView):
     model = continente
-    template_name = 'sedimentos/detail2.html'
+    template_name = 'sedimentos/contd.html'
 
 
 class continenteCreate(CreateView):
@@ -75,7 +78,7 @@ class continenteUpdate(UpdateView ):
 
 class continenteDelete(DeleteView):
     model=continente
-    sucess_url=reverse_lazy('sedimentos:index2')
+    sucess_url=reverse_lazy('sedimentos:contid')
 ########################################################################################################################
 class IndexView3(generic.ListView):
     template_name = 'sedimentos/index3.html'
@@ -282,3 +285,34 @@ def login_user(request):
                 return render(request, 'sedimentos/login.html', {'error_message': 'Invalid login'})
     return render(request, 'sedimentos/login.html')
 ########################################################################################################################
+def contato(request):
+    form_class = ContatoForm
+
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+
+        if form.is_valid():
+            Nome = request.POST.get('Nome', '')
+            Email = request.POST.get('Email', '')
+            Mensagem = request.POST.get('Mensagem', '')
+            template = get_template('sedimentos/contato.html')
+            context = Context({
+                'Nome': Nome,
+                'Email': Email,
+                'Mensagem': Mensagem,
+            })
+
+            content = template.render(context)
+
+            email =EmailMessage (
+                "New contact form submission", content, "Adiministração" + '', ['fabio.carvalho.souza@usp.br'],
+                headers={'Reply-To': Email}
+            )
+            email.send()
+            return redirect('contato')
+
+        #https://hellowebapp.com/news/tutorial-setting-up-a-contact-form-with-django/
+
+    return render(request, 'sedimentos/contato.html', {'form': form_class, })
+########################################################################################################################
+

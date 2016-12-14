@@ -15,7 +15,7 @@ class amostra(models.Model):
     def get_absolute_url(self):
         return reverse('sedimentos:detail',kwargs={'pk': self.pk})
     def __str__(self):
-        return self.codigo +' - '+self.tipo+' - '+self.data
+        return self.codigo +' - '+self.tipo
 
 
 
@@ -26,9 +26,9 @@ class continente(models.Model):
     is_destaque=models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('sedimentos:detail2', kwargs={'pk': self.pk})
+        return reverse('sedimentos:contd', kwargs={'pk': self.pk})
     def __str__(self):
-       return self.nome+' - '+self.sigla
+       return self.nome
 
 
 

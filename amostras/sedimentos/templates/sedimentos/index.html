@@ -2,32 +2,31 @@
 {% block amostras_active %}active{% endblock %}
 
 {% block body %}
-<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'sedimentos:index' %}">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
-                </div>
-                <button type="submit" class="btn btn-default">Pesquisar</button>
-            </form>
-
 <div class="amostras-container container-fluid">
 {% if all_amostras %}
    <ul>
-   <h3>Todas as Amostras Disponiveis no Sistema:</h3></ul>
-  <ul>
+        <ul><h3>Todas as Amostras Disponiveis no Sistema:</h3></ul>
+       <ul>
 
-      {% for amostra in all_amostras %}
-      <div class="col-sm-2 col-lg-2">
-          <div class="thumbnail">
-              <div class="caption">
-                 <a href="{% url 'sedimentos:detail' amostra.id %}">{{amostra.codigo}}</a>
-                  <img src="{{ amostra.imagem.url }}" class="img-responsive">
-                 <a href="{% url 'sedimentos:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
-  </ul>
-
+           {% for amostra in all_amostras %}
+            <div class="col-sm-2 col-lg-2">
+                <div class="thumbnail">
+                   <div class="caption">
+                      <a href="{% url 'sedimentos:detail' amostra.id %}">{{amostra.codigo}}</a>
+                         <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                            <a href="{% url 'sedimentos:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+                                <form action="{% url 'sedimentos:amostra-Delete' amostra.id %}" method="post" style="display: inline;">
+                                   {% csrf_token %}
+                                      <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
+                                             </b type="submit" class="btn btn-default btn-sm">
+                                             <span class="glyphicon glyphicon-trash"></span>
+                                </form>
+                   </div>
+                </div>
+             </div>
+            {% endfor %}
+        </ul>
+   </ul>
 </div>
 {% endif %}
 {% endblock %}
