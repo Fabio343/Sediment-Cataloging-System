@@ -1,4 +1,4 @@
-{% extends 'sedimentos/base.html' %}
+{% extends 'admin/base.html' %}
 {% block amostras_active %}active{% endblock %}
 
 {% block body %}
@@ -7,7 +7,6 @@
    <ul>
         <ul><h3>Todas as Amostras Disponiveis no Sistema:</h3></ul>
        <ul>
-
            {% for amostra in all_amostras %}
             <div class="col-sm-2 col-lg-2">
                 <div class="thumbnail">
@@ -15,12 +14,6 @@
                       <a href="{% url 'sedimentos:detail' amostra.id %}">{{amostra.codigo}}</a>
                          <img src="{{ amostra.imagem.url }}" class="img-responsive">
                             <a href="{% url 'sedimentos:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-                                <form action="{% url 'sedimentos:amostra-Delete' amostra.id %}" method="post" style="display: inline;">
-                                   {% csrf_token %}
-                                      <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
-                                             </b type="submit" class="btn btn-default btn-sm">
-                                             <span class="glyphicon glyphicon-trash"></span>
-                                </form>
                    </div>
                 </div>
              </div>

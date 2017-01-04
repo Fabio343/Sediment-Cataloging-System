@@ -234,7 +234,7 @@ class climaDelete(DeleteView):
 ########################################################################################################################
 class UserFormView(View):
     form_class=UserForm
-    template_name='sedimentos/register_form.html'
+    template_name='admin/register_form.html'
 
     def get(self,request):
         form=self.form_class(None)
@@ -267,7 +267,7 @@ def logout_user(request):
     context = {
         "form": form,
         }
-    return render(request, 'sedimentos/login.html', context)
+    return render(request, 'admin/login.html', context)
 ########################################################################################################################
 def login_user(request):
     if request.method == "POST":
@@ -280,10 +280,10 @@ def login_user(request):
                 amostras = amostra.objects.filter(user=request.user)
                 return render(request, 'sedimentos/index.html', {'amostras': amostras})
             else:
-                return render(request, 'sedimentos/login.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'admin/login.html', {'error_message': 'Sua conta foi desativada'})
         else:
-                return render(request, 'sedimentos/login.html', {'error_message': 'Invalid login'})
-    return render(request, 'sedimentos/login.html')
+                return render(request, 'admin/login.html', {'error_message': ' Login Invalido '})
+    return render(request, 'admin/login.html')
 ########################################################################################################################
 def contato(request):
     form_class = ContatoForm
@@ -315,4 +315,9 @@ def contato(request):
 
     return render(request, 'sedimentos/contato.html', {'form': form_class, })
 ########################################################################################################################
-
+def adicionar(request):
+    form = UserForm(request.POST or None)
+    context = {
+        "form": form,
+        }
+    return render(request, 'admin/adicionar.html', context)

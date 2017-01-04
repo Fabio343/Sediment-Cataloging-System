@@ -1,0 +1,23 @@
+{% extends 'admin/base.html' %}
+{% block continentes_active %}active{% endblock %}
+{% block body %}
+<div class="continentes-container container-fluid">
+{% if all_continentes %}
+   <ul>
+   <h3>Todas as continentes Disponiveis no Sistema:</h3></ul>
+  <ul>
+      {% for continente in all_continentes %}
+      <div class="col-sm-2 col-lg-2">
+          <div class="thumbnail">
+              <div class="caption">
+                 <a href="{% url 'sedimentos:contd' continente.id %}">{{continente.nome}}</a>
+                 <a href="{% url 'sedimentos:contd' continente.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </ul>
+
+</div>
+{% endif %}
+{% endblock %}
