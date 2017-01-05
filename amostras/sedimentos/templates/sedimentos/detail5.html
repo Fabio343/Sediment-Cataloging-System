@@ -1,14 +1,17 @@
-{% extends 'admin/base.html' %}
+{% extends 'sedimentos/base.html' %}
 {% block title %}{{ cidade }}{% endblock %}
 {% block amostras_active %}active{% endblock %}
 {% block body %}
-<div class="panel panel-default">
-                <div class="panel-body">
+<div class="container-fluid songs-container">
 
-                    <a href="{% url 'sedimentos:detail' amostra.id %}">
-                        {% if amostra.imagem %}
-                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
-                        {% endif %}
+    <div class="row">
+
+
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'sedimentos:detail5' cidade.id %}">
+
                     </a>
 <ul>
     {% for amostra in cidade.amostra_set.all %}
@@ -46,6 +49,9 @@
     <li>{{clima.tipo}}</li>
     {% endfor %}
 </ul>
-                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

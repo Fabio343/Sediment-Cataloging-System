@@ -1,23 +1,38 @@
-{% extends 'admin/base.html' %}
+{% extends 'sedimentos/base.html' %}
 {% block estados_active %}active{% endblock %}
+
 {% block body %}
 <div class="estados-container container-fluid">
 {% if all_estados %}
    <ul>
-   <h3>Todas as estados Disponiveis no Sistema:</h3></ul>
-  <ul>
-      {% for estado in all_estados %}
-      <div class="col-sm-2 col-lg-2">
-          <div class="thumbnail">
-              <div class="caption">
-                 <a href="{% url 'sedimentos:detail4' estado.id %}">{{estado.nome}}</a>
-                 <a href="{% url 'sedimentos:detail4' estado.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
-  </ul>
+        <ul><h3>Todas as estados Disponiveis no Sistema:</h3></ul>
+       <ul>
+           {% for estado in all_estados %}
+            <div class="col-sm-2 col-lg-2">
+                <div class="thumbnail">
+                   <div class="caption">
+                      <a href="{% url 'sedimentos:detail4' estado.id %}">{{estado.nome}}</a>
+                        <div class="caption">
+                            <h2>{{ estado.nome }}</h2>
+                            <h4>{{ estado.país }}</h4>
 
+                            <!-- View Details -->
+                             <a href="{% url 'sedimentos:detail4' estado.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+
+                            <!-- Delete  -->
+                            <form action="{% url 'sedimentos:delete_estado' estado.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                   </div>
+                </div>
+             </div>
+            {% endfor %}
+        </ul>
+   </ul>
 </div>
 {% endif %}
 {% endblock %}

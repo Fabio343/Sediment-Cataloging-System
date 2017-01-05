@@ -1,23 +1,39 @@
-{% extends 'admin/base.html' %}
+{% extends 'sedimentos/base.html' %}
 {% block climas_active %}active{% endblock %}
+
 {% block body %}
 <div class="climas-container container-fluid">
 {% if all_climas %}
    <ul>
-   <h3>Todas as climas Disponiveis no Sistema:</h3></ul>
-  <ul>
-      {% for clima in all_climas %}
-      <div class="col-sm-2 col-lg-2">
-          <div class="thumbnail">
-              <div class="caption">
-                 <a href="{% url 'sedimentos:detail7' clima.id %}">{{clima.tipo}}</a>
-                 <a href="{% url 'sedimentos:detail7' clima.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
-  </ul>
+        <ul><h3>Todas os aclimas Disponiveis no Sistema:</h3></ul>
+       <ul>
+           {% for clima in all_climas %}
+            <div class="col-sm-2 col-lg-2">
+                <div class="thumbnail">
+                   <div class="caption">
+                      <a href="{% url 'sedimentos:detail7' clima.id %}">{{clima.tipo}}</a>
 
+                        <div class="caption">
+                            <h2>{{ clima.tipo }}</h2>
+                            <h4>{{ clima.amostra }}</h4>
+
+                            <!-- View Details -->
+                             <a href="{% url 'sedimentos:detail7' clima.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+
+                            <!-- Delete  -->
+                            <form action="{% url 'sedimentos:delete_clima' clima.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="clima_id" value="{{ clima.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                   </div>
+                </div>
+             </div>
+            {% endfor %}
+        </ul>
+   </ul>
 </div>
 {% endif %}
 {% endblock %}

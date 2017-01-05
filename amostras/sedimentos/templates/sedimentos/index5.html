@@ -1,23 +1,39 @@
-{% extends 'admin/base.html' %}
+{% extends 'sedimentos/base.html' %}
 {% block paíss_active %}active{% endblock %}
+
 {% block body %}
 <div class="paíss-container container-fluid">
 {% if all_paíss %}
    <ul>
-   <h3>Todas as paíss Disponiveis no Sistema:</h3></ul>
-  <ul>
-      {% for país in all_paíss %}
-      <div class="col-sm-2 col-lg-2">
-          <div class="thumbnail">
-              <div class="caption">
-                 <a href="{% url 'sedimentos:detail3' país.id %}">{{país.nome}}</a>
-                 <a href="{% url 'sedimentos:detail3' país.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
-  </ul>
+        <ul><h3>Todas as países Disponiveis no Sistema:</h3></ul>
+       <ul>
+           {% for país in all_paíss %}
+            <div class="col-sm-2 col-lg-2">
+                <div class="thumbnail">
+                   <div class="caption">
+                      <a href="{% url 'sedimentos:detail3' país.id %}">{{país.nome}}</a>
 
+                        <div class="caption">
+                            <h2>{{ país.nome }}</h2>
+                            <h4>{{ país.continente }}</h4>
+
+                            <!-- View Details -->
+                             <a href="{% url 'sedimentos:detail3' país.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+
+                            <!-- Delete -->
+                            <form action="{% url 'sedimentos:delete_país' país.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="país_id" value="{{ país.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                   </div>
+                </div>
+             </div>
+            {% endfor %}
+        </ul>
+   </ul>
 </div>
 {% endif %}
 {% endblock %}
