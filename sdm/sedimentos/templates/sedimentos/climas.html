@@ -1,0 +1,52 @@
+{% extends 'sedimentos/base.html' %}
+{% block title %}All climas{% endblock %}
+{% block climas_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid climas-container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills" style="margin-bottom: 100px;">
+                <li role="presentation" {% if filter_by =='all' %}class="active"{% endif %}><a href="{% url 'sedimentos:climas' 'all' %}">View All</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>tipo</th>
+                                <th>amostra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for clima in clima_list %}
+                                <tr>
+                                    <td>{{ clima.tipo }}</td>
+                                    <td>{{ clima.amostra.codigo }}</td>
+                                    <td>
+                                        <a href="{% url 'sedimentos:detail' climas.amostra.id %}">
+                                            <img src="{{ climas.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                        </a>
+                                        <a href="{% url 'sedimentos:detail' climas.amostra.id %}">{{ climas.amostra.tipo }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'sedimentos/base.html' %}
+{% block title %}All cidades{% endblock %}
+{% block cidades_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid cidades-container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills" style="margin-bottom: 100px;">
+                <li role="presentation" {% if filter_by =='all' %}class="active"{% endif %}><a href="{% url 'sedimentos:cidades' 'all' %}">View All</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>nome</th>
+                                <th>estado</th>
+                                <th>amostra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cidade in cidade_list %}
+                                <tr>
+                                    <td>{{ cidade.nome }}</td>
+                                    <td>{{ cidade.amostra.codigo }}</td>
+                                    <td>
+                                        <a href="{% url 'sedimentos:detail' cidades.amostra.id %}">
+                                            <img src="{{ cidades.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                        </a>
+                                        <a href="{% url 'sedimentos:detail' cidades.amostra.id %}">{{ cidades.amostra.nome }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

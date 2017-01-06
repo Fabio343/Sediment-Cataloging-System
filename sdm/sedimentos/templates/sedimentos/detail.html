@@ -1,0 +1,292 @@
+{% extends 'sedimentos/base.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left amostra Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'sedimentos:detail' amostra.id %}">
+                        {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ amostra.codigo }} <small></small></h1>
+                    <h2>{{ amostra.tipo }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right continente Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'sedimentos:detail' amostra.id %}">View All</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All continentes</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>sigla</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for continente in amostra.cotinente_set.all %}
+                            <tr>
+                                <td>{{ continente.nome}}</td>
+                                <td>
+                                    <form action="{% url 'sedimentos:delete_continente' amostra.id continente.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="continente_id" value="{{ continente.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+         <!-- Right país Info -->
+         <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'sedimentos:detail' amostra.id %}">View All</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All paíss</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>região</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for país in amostra.país_set.all %}
+                            <tr>
+                                <td>{{ país.nome}}</td>
+                                <td>
+                                    <form action="{% url 'sedimentos:delete_país' amostra.id país.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="país_id" value="{{ país.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+         <!-- Right estado Info -->
+         <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'sedimentos:detail' amostra.id %}">View All</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All estados</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>país</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for estado in amostra.estado_set.all %}
+                            <tr>
+                                <td>{{ estado.nome}}</td>
+                                <td>
+                                    <form action="{% url 'sedimentos:delete_estado' amostra.id estado.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+         <!-- Right cidade Info -->
+         <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'sedimentos:detail' amostra.id %}">View All</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All cidades</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cidade in amostra.cidade_set.all %}
+                            <tr>
+                                <td>{{ cidade.nome}}</td>
+                                <td>
+                                    <form action="{% url 'sedimentos:delete_cidade' amostra.id cidade.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="cidade_id" value="{{ cidade.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Right clima Info -->
+
+         <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'sedimentos:detail' amostra.id %}">View All</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All climas</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>tipo</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for clima in amostra.clima_set.all %}
+                            <tr>
+                                <td>{{ clima.tipo}}</td>
+                                <td>
+                                    <form action="{% url 'sedimentos:delete_clima' amostra.id clima.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clima_id" value="{{ clima.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right ambiente Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'sedimentos:detail' amostra.id %}">View All</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All ambientes</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>tipo</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ambiente in amostra.ambiente_set.all %}
+                            <tr>
+                                <td>{{ ambiente.tipo}}</td>
+                                <td>
+                                    <form action="{% url 'sedimentos:delete_ambiente' amostra.id ambiente.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="clima_id" value="{{ clima.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
