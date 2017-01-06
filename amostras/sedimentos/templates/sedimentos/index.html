@@ -7,7 +7,7 @@
     <!-- amostra -->
     <div class="row">
         <div class="col-sm-12">
-            <h3>{{ user.username }}'s amostras</h3>
+            <h3>Todas as Amostras Disponíveis no Sistema:</h3>
         </div>
         {% if amostras %}
             {% for amostra in amostras %}
@@ -17,11 +17,11 @@
                             <img src="{{ amostra.imagem.url }}" class="img-responsive">
                         </a>
                         <div class="caption">
-                            <h2>{{ amostra.codigo }}</h2>
-                            <h4>{{ amostra.descrição}}</h4>
+                            <h3>{{ amostra.codigo }}</h3>
+                            <h4>{{ amostra.tipo }}</h4>
 
                             <!-- View Details -->
-                            <a href="{% url 'sedimentos:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+                            <a href="{% url 'sedimentos:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
 
                             <!-- Delete amostra -->
                             <form action="{% url 'sedimentos:delete_amostra' amostra.id %}" method="post" style="display: inline;">
@@ -37,15 +37,6 @@
                 </div>
                 {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
             {% endfor %}
-        {% else %}
-            <div class="col-sm-12">
-                <br>
-                <a href="{% url 'sedimentos:create_amostra' %}">
-                    <button type="button" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an amostra
-                    </button>
-                </a>
-            </div>
         {% endif %}
     </div>
 
@@ -63,19 +54,20 @@
                                 <tr>
                                     <th>nome</th>
                                     <th>sigla</th>
+                                    <th>codigo da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for continente in continentes %}
                                     <tr>
                                         <td>{{ continente.nome }}</td>
-                                        <td>{{ continente.amostra.codigo }}</td>
+                                        <td>{{ continente.sigla}}</td>
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' continente.amostra.id %}">
                                                 <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
-                                            <a href="{% url 'sedimentos:detail' song.album.id %}">{{ continente.amostra.codigo }}</a>
+                                            <a href="{% url 'sedimentos:detail' continente.amostra.id %}">{{ continente.amostra.codigo }}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -87,5 +79,212 @@
         </div>
     {% endif %}
 
+
+
+
+     <!-- If user searches and there are paises -->
+    {% if paíss %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>países</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>nome</th>
+                                    <th>região</th>
+                                    <th>codigo da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for país in paíss %}
+                                    <tr>
+                                        <td>{{ país.nome }}</td>
+                                        <td>{{ país.região}}</td>
+
+                                        <td>
+                                            <a href="{% url 'sedimentos:detail' país.amostra.id %}">
+                                                <img src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                            </a>
+                                            <a href="{% url 'sedimentos:detail' país.amostra.id %}">{{ país.amostra.codigo }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+ <!-- If user searches and there are estados -->
+    {% if estados %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>estados</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>nome</th>
+                                    <th>país</th>
+                                    <th>codigo da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for estado in estados %}
+                                    <tr>
+                                        <td>{{ estado.nome }}</td>
+                                        <td>{{ estado.país}}</td>
+
+                                        <td>
+                                            <a href="{% url 'sedimentos:detail' estado.amostra.id %}">
+                                                <img src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                            </a>
+                                            <a href="{% url 'sedimentos:detail' estado.amostra.id %}">{{ estado.amostra.codigo }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+
+ <!-- If user searches and there are cidades -->
+    {% if cidades %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>cidades</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>nome</th>
+                                    <th>estado</th>
+                                    <th>codigo da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cidade in cidades %}
+                                    <tr>
+                                        <td>{{ cidade.nome }}</td>
+                                        <td>{{ cidade.estado}}</td>
+
+                                        <td>
+                                            <a href="{% url 'sedimentos:detail' cidade.amostra.id %}">
+                                                <img src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                            </a>
+                                            <a href="{% url 'sedimentos:detail' cidade.amostra.id %}">{{ cidade.amostra.codigo }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+ <!-- If user searches and there are climas -->
+
+    {% if climas %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>climas</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>tipo</th>
+                                    <th>codigo da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for clima in climas %}
+                                    <tr>
+                                        <td>{{ clima.tipo }}</td>
+
+
+                                        <td>
+                                            <a href="{% url 'sedimentos:detail' clima.amostra.id %}">
+                                                <img src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                            </a>
+                                            <a href="{% url 'sedimentos:detail' clima.amostra.id %}">{{ clima.amostra.codigo }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+ <!-- If user searches and there are ambientes -->
+    {% if ambientes %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>ambientes</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>tipo</th>
+                                    <th>codigo da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ambiente in ambientes %}
+                                    <tr>
+                                        <td>{{ ambiente.tipo }}</td>
+
+
+                                        <td>
+                                            <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">
+                                                <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                            </a>
+                                            <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">{{ clima.amostra.codigo }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

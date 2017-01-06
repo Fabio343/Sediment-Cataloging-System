@@ -1,23 +1,41 @@
 {% extends 'sedimentos/base.html' %}
 {% block continentes_active %}active{% endblock %}
 {% block body %}
-<div class="continentes-container container-fluid">
-{% if all_continentes %}
-   <ul>
-   <h3>Todas as continentes Disponiveis no Sistema:</h3></ul>
-  <ul>
-      {% for continente in all_continentes %}
-      <div class="col-sm-2 col-lg-2">
-          <div class="thumbnail">
-              <div class="caption">
-                 <a href="{% url 'sedimentos:contd' continente.id %}">{{continente.nome}}</a>
-                 <a href="{% url 'sedimentos:contd' continente.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
-  </ul>
+    {% if continentes %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>continentes</h3>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>nome</th>
+                                    <th>sigla</th>
+                                    <th>codigo da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for continente in continentes %}
+                                    <tr>
+                                        <td>{{ continente.nome }}</td>
+                                        <td>{{ continente.sigla}}</td>
 
-</div>
-{% endif %}
+                                        <td>
+                                            <a href="{% url 'sedimentos:detail' continente.amostra.id %}">
+                                                <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                            </a>
+                                            <a href="{% url 'sedimentos:detail' continente.amostra.id %}">{{ continente.amostra.codigo }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
