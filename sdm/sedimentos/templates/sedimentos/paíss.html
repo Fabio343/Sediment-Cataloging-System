@@ -8,23 +8,23 @@
     <div class="row">
         <div class="col-sm-12">
             <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by =='all' %}class="active"{% endif %}><a href="{% url 'sedimentos:paíss' 'all' %}">View All</a></li>
+                <li role="presentation" {% if filter_by == 'all' %}class="active"{% endif %}><a href="{% url 'sedimentos:paíss' 'all' %}">View All</a></li>
             </ul>
         </div>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-12">
+        <div class="col-sm-5">
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>nome</th>
-                                <th>amostra</th>
-                                <th>amostra</th>
+                                <th>Nome do País</th>
+                                <th>Amostra</th>
+                                <th>Imagem e Codigo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,10 +33,9 @@
                                     <td>{{ país.nome }}</td>
                                     <td>{{ país.amostra.codigo }}</td>
                                     <td>
-                                        <a href="{% url 'sedimentos:detail' paíss.amostra.id %}">
-                                            <img src="{{ paíss.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                        </a>
-                                        <a href="{% url 'sedimentos:detail' paíss.amostra.id %}">{{ paíss.amostra.nome }}</a>
+                                        <a href="{% url 'sedimentos:detail' país.amostra.id %}">
+                                            <img src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                          <a href="{% url 'sedimentos:detail' país.amostra.id %}">{{ país.amostra.codigo }}</a>
                                     </td>
                                 </tr>
                             {% endfor %}

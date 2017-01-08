@@ -69,63 +69,16 @@
              <a class="navbar-brand"> SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS </a>
         </div>
         <div class="collapse navbar-collapse" id="topNavBar">
+              <ul class="nav navbar-nav">
+                   <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'sedimentos:index' %}"><span class="glyphicon glyphicon-ball" aria-hidden="true"></span>&nbsp; Amostras</a></li>
+                   <li class="{% block continentes_active %}{% endblock %}"><a href="{% url 'sedimentos:continentes' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Continentes</a></li>
+                   <li class="{% block paíss_active %}{% endblock %}"><a href="{% url 'sedimentos:paíss' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Países</a></li>
+                   <li class="{% block estados_active %}{% endblock %}"><a href="{% url 'sedimentos:estados' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Estados</a></li>
+                   <li class="{% block cidades_active %}{% endblock %}"><a href="{% url 'sedimentos:cidades' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Cidades</a></li>
+                   <li class="{% block climas_active %}{% endblock %}"><a href="{% url 'sedimentos:climas' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Climas</a></li>
+                   <li class="{% block ambientes_active %}{% endblock %}"><a href="{% url 'sedimentos:ambientes' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Ambientes</a></li>
 
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Amostras
-                    </a>
-                </li>
             </ul>
-
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Cidades
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Estados
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Países
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Continentes
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp; Ambientes
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav">
-                 <li class="active">
-                    <a href="{% url 'sedimentos:index' %}">
-                        <span class="glyphicon glyphicoon-ball" aria-hidden="true"></span>&nbsp;Climas
-                    </a>
-                </li>
-            </ul>
-
 
             <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'sedimentos:index' %}">
                 <div class="form-group">

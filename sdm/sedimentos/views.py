@@ -2,13 +2,13 @@ from django.shortcuts import  render,redirect,get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import View
-from .models import amostra
-from .models import continente
-from .models import cidade
-from .models import estado
-from .models import país
-from .models import ambiente
-from .models import clima
+from .models import Amostra
+from .models import Continente
+from .models import Cidade
+from .models import Estado
+from .models import País
+from .models import Ambiente
+from .models import Clima
 from .forms import UserForm, ContatoForm, amostraForm, continenteForm, paísForm, estadoForm, cidadeForm,climaForm,ambienteForm
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
@@ -46,7 +46,7 @@ def create_amostra(request):
 
 
 def delete_amostra(request, amostra_id):
-    amostra = amostra.objects.get(pk=amostra_id)
+    amostra = Amostra.objects.get(pk=amostra_id)
     amostra.delete()
     amotras = amostra.objects.filter(user=request.user)
     return render(request, 'sedimentos/index.html', {'amostras': amotras})
@@ -56,7 +56,7 @@ def detail(request, amostra_id):
         return render(request, 'sedimentos/login.html')
     else:
         user = request.user
-        amostra = get_object_or_404(amostra, pk=amostra_id)
+        amostra = get_object_or_404(Amostra, pk=amostra_id)
         return render(request, 'sedimentos/detail.html', {'amostra': amostra, 'user': user})
 
 
@@ -82,8 +82,8 @@ def create_continente(request):
 
 
 def delete_continente(request, continente_id):
-    amostra = get_object_or_404(amostra, pk=amostra_id)
-    continente = continente.objects.get(pk=continente_id)
+    amostra = get_object_or_404(Amostra, pk=amostra_id)
+    continente = Continente.objects.get(pk=continente_id)
     continente.delete()
     return render(request, 'sedimentos/index.html', {'amostra':amostra})
 
@@ -111,8 +111,8 @@ def create_cidade(request):
 
 
 def delete_cidade(request, cidade_id):
-    amostra = get_object_or_404(amostra, pk=amostra_id)
-    cidade = continente.objects.get(pk=cidade_id)
+    amostra = get_object_or_404(Amostra, pk=amostra_id)
+    cidade = Cidade.objects.get(pk=cidade_id)
     cidade.delete()
     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
@@ -139,8 +139,8 @@ def create_estado(request):
 
 
 def delete_estado(request, estado_id):
-    amostra = get_object_or_404(amostra, pk=amostra_id)
-    estado = estado.objects.get(pk=estado_id)
+    amostra = get_object_or_404(Amostra, pk=amostra_id)
+    estado = Estado.objects.get(pk=estado_id)
     estado.delete()
     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 ########################################################################################################################
@@ -166,8 +166,8 @@ def create_país(request):
 
 
 def delete_país(request, país_id):
-    amostra = get_object_or_404(amostra, pk=amostra_id)
-    país = país.objects.get(pk=país_id)
+    amostra = get_object_or_404(Amostra, pk=amostra_id)
+    país = País.objects.get(pk=país_id)
     país.delete()
     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
@@ -192,8 +192,8 @@ def create_ambiente(request):
 
 
 def delete_ambiente(request, ambiente_id):
-    amostra = get_object_or_404(amostra, pk=amostra_id)
-    ambiente = ambiente.objects.get(pk=ambiente_id)
+    amostra = get_object_or_404(Amostra, pk=amostra_id)
+    ambiente = Ambiente.objects.get(pk=ambiente_id)
     ambiente.delete()
     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
@@ -218,8 +218,8 @@ def create_clima(request):
 
 
 def delete_clima(request, clima_id):
-    amostra = get_object_or_404(amostra, pk=amostra_id)
-    clima = clima.objects.get(pk=clima_id)
+    amostra = get_object_or_404(Amostra, pk=amostra_id)
+    clima = Clima.objects.get(pk=clima_id)
     clima.delete()
     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
@@ -230,14 +230,14 @@ def index(request):
     if not request.user.is_authenticated():
         return render(request, 'sedimentos/login.html')
     else:
-        amostras = amostra.objects.filter(user=request.user)
-        país_results = país.objects.all()
-        amostra_results = amostra.objects.all()
-        continente_results = continente.objects.all()
-        estado_results = estado.objects.all()
-        cidade_results = cidade.objects.all()
-        clima_results = clima.objects.all()
-        ambiente_results = ambiente.objects.all()
+        amostras = Amostra.objects.filter(user=request.user)
+        país_results = País.objects.all()
+        amostra_results = Amostra.objects.all()
+        continente_results = Continente.objects.all()
+        estado_results = Estado.objects.all()
+        cidade_results = Cidade.objects.all()
+        clima_results = Clima.objects.all()
+        ambiente_results = Ambiente.objects.all()
 
         query = request.GET.get("q")
         if query:
@@ -337,7 +337,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                amostras = amostra.objects.filter(user=request.user)
+                amostras = Amostra.objects.filter(user=request.user)
                 return render(request, 'sedimentos/index.html', {'amostras': amostras})
             else:
                 return render(request, 'sedimentos/login.html', {'error_message': 'Sua conta foi desativada'})
@@ -361,7 +361,7 @@ def register(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                amostras = amostra.objects.filter(user=request.user)
+                amostras = Amostra.objects.filter(user=request.user)
                 return render(request, 'sedimentos/index.html', {'amostras': amostras})
     context = {
         "form": form,
@@ -418,13 +418,13 @@ def amostras(request, filter_by):
     else:
         try:
             amostra_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter(user=request.user):
                 for amostra in amostra.amostra_set.all():
                     amostra_ids.append(amostra.pk)
-            users_amostras = amostra.objects.filter(pk__in=amostra_ids)
+            users_amostras = Amostra.objects.filter(pk__in=amostra_ids)
             if filter_by == 'favorites':
                 users_amostras = users_amostras.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_amostras = []
         return render(request, 'sedimentos/amostras.html', {
             'amostra_list': users_amostras,
@@ -439,13 +439,13 @@ def continentes(request, filter_by):
     else:
         try:
             continente_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter(user=request.user):
                 for continente in amostra.continente_set.all():
                     continente_ids.append(continente.pk)
-            users_continentes = continente.objects.filter(pk__in=continente_ids)
+            users_continentes = Continente.objects.filter(pk__in=continente_ids)
             if filter_by == 'favorites':
                 users_continentes = users_continentes.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_continentes = []
         return render(request, 'sedimentos/continentes.html', {
             'continente_list': users_continentes,
@@ -461,13 +461,13 @@ def paíss(request, filter_by):
     else:
         try:
             país_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter(user=request.user):
                 for país in amostra.país_set.all():
                     país_ids.append(país.pk)
-            users_paíss = país.objects.filter(pk__in=país_ids)
+            users_paíss = País.objects.filter(pk__in=país_ids)
             if filter_by == 'favorites':
                 users_paíss = users_paíss.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_paíss = []
         return render(request, 'sedimentos/paíss.html', {
             'país_list': users_paíss,
@@ -483,13 +483,13 @@ def estados(request, filter_by):
     else:
         try:
             estado_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter(user=request.user):
                 for estado in amostra.estado_set.all():
                     estado_ids.append(estado.pk)
-            users_estados = estado.objects.filter(pk__in=estado_ids)
+            users_estados = Estado.objects.filter(pk__in=estado_ids)
             if filter_by == 'favorites':
                 users_estados = users_estados.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_estados = []
         return render(request, 'sedimentos/estados.html', {
             'estado_list': users_estados,
@@ -506,13 +506,13 @@ def cidades(request, filter_by):
     else:
         try:
             cidade_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter(user=request.user):
                 for cidade in amostra.cidade_set.all():
                     cidade_ids.append(cidade.pk)
-            users_cidades = cidade.objects.filter(pk__in=cidade_ids)
+            users_cidades = Cidade.objects.filter(pk__in=cidade_ids)
             if filter_by == 'favorites':
                 users_cidades = users_cidades.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_cidades = []
         return render(request, 'sedimentos/cidades.html', {
             'cidade_list': users_cidades,
@@ -529,13 +529,13 @@ def climas(request, filter_by):
     else:
         try:
             clima_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter(user=request.user):
                 for clima in amostra.clima_set.all():
                     clima_ids.append(clima.pk)
-            users_climas = clima.objects.filter(pk__in=clima_ids)
+            users_climas = Clima.objects.filter(pk__in=clima_ids)
             if filter_by == 'favorites':
                 users_climas = users_climas.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_climas = []
         return render(request, 'sedimentos/climas.html', {
             'clima_list': users_climas,
@@ -550,13 +550,13 @@ def ambientes(request, filter_by):
     else:
         try:
             ambiente_ids = []
-            for amostra in amostra.objects.filter(user=request.user):
-                for ambiente in amostra.ambiente.all():
+            for amostra in Amostra.objects.filter(user=request.user):
+                for ambiente in amostra.ambiente_set.all():
                     ambiente_ids.append(ambiente.pk)
-            users_ambientes = ambiente.objects.filter(pk__in=ambiente_ids)
+            users_ambientes = Ambiente.objects.filter(pk__in=ambiente_ids)
             if filter_by == 'favorites':
                 users_ambientes = users_ambientes.filter(is_favorite=True)
-        except amostra.DoesNotExist:
+        except Amostra.DoesNotExist:
             users_ambientes = []
         return render(request, 'sedimentos/ambientes.html', {
             'ambiente_list': users_ambientes,

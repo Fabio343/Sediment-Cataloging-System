@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-sm-12">
             <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by =='all' %}class="active"{% endif %}><a href="{% url 'sedimentos:amostra' 'all' %}">View All</a></li>
+                <li role="presentation" {% if filter_by == 'all' %}class="active"{% endif %}><a href="{% url 'sedimentos:amostra' 'all' %}">View All</a></li>
             </ul>
         </div>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-12">
+        <div class="col-sm-5">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -37,10 +37,10 @@
                                     <td>{{ amostra.tipo }}</td>
                                     <td>{{ amostra.amostra.codigo }}</td>
                                     <td>
-                                        <a href="{% url 'sedimentos:detail' amostras.amostra.id %}">
-                                            <img src="{{ amostras.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                        <a href="{% url 'sedimentos:detail' amostra.amostra.id %}">
+                                            <img src="{{ amostra.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
                                         </a>
-                                        <a href="{% url 'sedimentos:detail' amostras.amostra.id %}">{{ amostras.amostra.tipo }}</a>
+                                        <a href="{% url 'sedimentos:detail' amostra.amostra.id %}">{{ amostra.amostra.tipo }}</a>
                                     </td>
                                 </tr>
                             {% endfor %}

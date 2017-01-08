@@ -10,7 +10,7 @@ from django.db import models
 
 
 # Create your models here.
-class amostra(models.Model):
+class Amostra(models.Model):
     user = models.ForeignKey(User, default=1)
     codigo=models.CharField(max_length=15)
     tipo = models.CharField(max_length=25)
@@ -32,8 +32,8 @@ class amostra(models.Model):
 
 
 
-class continente(models.Model):
-    amostra=models.ForeignKey(amostra,on_delete=models.CASCADE)
+class Continente(models.Model):
+    amostra=models.ForeignKey(Amostra,on_delete=models.CASCADE)
     nome=models.CharField(max_length=25)
     sigla=models.CharField(max_length=10)
     is_destaque=models.BooleanField(default=False)
@@ -46,9 +46,9 @@ class continente(models.Model):
 
 
 
-class país(models.Model):
-    amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
-    continente = models.ForeignKey(continente, on_delete=models.CASCADE)
+class País(models.Model):
+    amostra = models.ForeignKey(Amostra, on_delete=models.CASCADE)
+    continente = models.ForeignKey(Continente, on_delete=models.CASCADE)
     nome=models.CharField(max_length=35)
     região=models.CharField(max_length=25,blank=True,null=True)
     is_destaque = models.BooleanField(default=False)
@@ -65,10 +65,10 @@ class país(models.Model):
 
 
 
-class estado(models.Model):
-    amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
-    continente = models.ForeignKey(continente, on_delete=models.CASCADE)
-    país = models.ForeignKey(país, on_delete=models.CASCADE)
+class Estado(models.Model):
+    amostra = models.ForeignKey(Amostra, on_delete=models.CASCADE)
+    continente = models.ForeignKey(Continente, on_delete=models.CASCADE)
+    país = models.ForeignKey(País, on_delete=models.CASCADE)
     nome=models.CharField(max_length=55,blank=True,null=True)
     is_destaque = models.BooleanField(default=False)
 
@@ -78,11 +78,11 @@ class estado(models.Model):
          return self.nome
 
 
-class cidade(models.Model):
-    amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
-    continente = models.ForeignKey(continente, on_delete=models.CASCADE)
-    país = models.ForeignKey(país, on_delete=models.CASCADE)
-    estado = models.ForeignKey(estado, on_delete=models.CASCADE)
+class Cidade(models.Model):
+    amostra = models.ForeignKey(Amostra, on_delete=models.CASCADE)
+    continente = models.ForeignKey(Continente, on_delete=models.CASCADE)
+    país = models.ForeignKey(País, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     nome=models.CharField(max_length=55,blank=True,null=True)
     geologia=models.TextField(max_length=300,blank=True,null=True)
     is_destaque = models.BooleanField(default=False)
@@ -98,12 +98,12 @@ class cidade(models.Model):
            return "%s" % (self.nome)
 
 
-class ambiente(models.Model):
-    amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
-    continente = models.ForeignKey(continente, on_delete=models.CASCADE)
-    país = models.ForeignKey(país, on_delete=models.CASCADE)
-    estado = models.ForeignKey(estado, on_delete=models.CASCADE)
-    cidade = models.ForeignKey(cidade, on_delete=models.CASCADE)
+class Ambiente(models.Model):
+    amostra = models.ForeignKey(Amostra, on_delete=models.CASCADE)
+    continente = models.ForeignKey(Continente, on_delete=models.CASCADE)
+    país = models.ForeignKey(País, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     tipo=models.CharField(max_length=30,blank=True,null=True)
 
     def get_absolute_url(self):
@@ -112,12 +112,12 @@ class ambiente(models.Model):
         return self.tipo
 
 
-class clima(models.Model):
-    amostra = models.ForeignKey(amostra, on_delete=models.CASCADE)
-    continente = models.ForeignKey(continente, on_delete=models.CASCADE)
-    país = models.ForeignKey(país, on_delete=models.CASCADE)
-    estado = models.ForeignKey(estado, on_delete=models.CASCADE)
-    cidade = models.ForeignKey(cidade, on_delete=models.CASCADE)
+class Clima(models.Model):
+    amostra = models.ForeignKey(Amostra, on_delete=models.CASCADE)
+    continente = models.ForeignKey(Continente, on_delete=models.CASCADE)
+    país = models.ForeignKey(País, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     tipo=models.CharField(max_length=40,blank=True,null=True)
     is_destaque = models.BooleanField(default=False)
 

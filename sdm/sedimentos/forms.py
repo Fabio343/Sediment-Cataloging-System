@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import amostra,continente,país,estado,cidade,ambiente,clima
+from .models import Amostra,Continente,País,Estado,Cidade,Ambiente,Clima
 
 
 
@@ -22,42 +22,42 @@ class ContatoForm(forms.Form):
 
 class amostraForm(forms.ModelForm):
     class Meta:
-        model =amostra
+        model =Amostra
         fields = ['codigo','coletador', 'descrição', 'tipo', 'data', 'granulometria','imagem']
 
 
 
 class continenteForm(forms.ModelForm):
     class Meta:
-        model =continente
+        model =Continente
         fields = ['amostra', 'nome', 'sigla']
 
 
 
 class paísForm(forms.ModelForm):
     class Meta:
-        model =país
+        model =País
         fields = ['amostra', 'continente', 'nome', 'região']
 
 
 
 class estadoForm(forms.ModelForm):
     class Meta:
-        model =estado
+        model =Estado
         fields = ['amostra', 'continente', 'país', 'nome']
 
 
 
 class cidadeForm(forms.ModelForm):
     class Meta:
-        model =cidade
+        model =Cidade
         fields = ['amostra', 'continente', 'país', 'estado', 'nome', 'geologia']
 
 
 
 class ambienteForm(forms.ModelForm):
     class Meta:
-        model =ambiente
+        model =Ambiente
         fields = ['amostra', 'continente', 'país', 'estado', 'cidade', 'tipo']
 
 
@@ -65,5 +65,5 @@ class ambienteForm(forms.ModelForm):
 
 class climaForm(forms.ModelForm):
     class Meta:
-        model =clima
+        model =Clima
         fields = ['amostra', 'continente', 'país', 'estado', 'cidade', 'tipo']

@@ -7,11 +7,12 @@
     <!-- amostra -->
     <div class="row">
         <div class="col-sm-12">
-            <h3>Todas as Amostras Disponíveis no Sistema:</h3>
+
         </div>
         {% if amostras %}
             {% for amostra in amostras %}
                 <div class="col-sm-4 col-lg-2">
+                     <h3>Todas as Amostras Registradas no Sistema:</h3>
                     <div class="thumbnail">
                         <a href="{% url 'sedimentos:detail' amostra.id %}">
                             <img src="{{ amostra.imagem.url }}" class="img-responsive">
@@ -47,6 +48,7 @@
                 <h3>Continente</h3>
             </div>
             <div class="col-sm-12">
+                 <h3>Todos os Continentes Registrados no Sistema:</h3>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
@@ -71,6 +73,7 @@
                                         </td>
                                     </tr>
                                 {% endfor %}
+                             {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
                             </tbody>
                         </table>
                     </div>
@@ -86,9 +89,11 @@
     {% if paíss %}
         <div class="row">
             <div class="col-sm-12">
+
                 <h3>países</h3>
             </div>
             <div class="col-sm-12">
+                 <h3>Todos os Países Registrados no Sistema:</h3>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
@@ -131,6 +136,7 @@
                 <h3>estados</h3>
             </div>
             <div class="col-sm-12">
+                 <h3>Todos os Estados Registrados no Sistema:</h3>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
@@ -174,6 +180,7 @@
                 <h3>cidades</h3>
             </div>
             <div class="col-sm-12">
+                 <h3>Todas as Cidades Registrados no Sistema:</h3>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
@@ -217,6 +224,7 @@
                 <h3>climas</h3>
             </div>
             <div class="col-sm-12">
+                 <h3>Todos os Climas Registrados no Sistema:</h3>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
@@ -256,6 +264,7 @@
                 <h3>ambientes</h3>
             </div>
             <div class="col-sm-12">
+                 <h3>Todos os Ambientes Registrados no Sistema:</h3>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
