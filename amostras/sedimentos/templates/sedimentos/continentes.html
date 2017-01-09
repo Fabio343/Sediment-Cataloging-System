@@ -4,39 +4,31 @@
 
 {% block body %}
 <div class="container-fluid continentes-container">
-
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by =='all' %} class="active"{% endif %}><a href="{% url 'sedimentos:continentes' 'all' %}">View All</a></li>
-            </ul>
-        </div>
+       <ul><u><h3>Todos os Continentes Registrados no Sistema:</h3></u></ul>
     </div>
-
     <div class="row">
-
-        <div class="col-sm-12">
-
+        <div class="col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>nome</th>
-                                <th>sigla</th>
-                                <th>amostra</th>
+                                <th>Nome</th>
+                                <th>Amostra</th>
+                                <th>Imagem</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for continente in continente_list %}
                                 <tr>
                                     <td>{{ continente.nome }}</td>
-                                    <td>{{ continente.amostra.codigo }}</td>
+                                      <td>{{continente.amostra.codigo}}</td>
                                     <td>
-                                        <a href="{% url 'sedimentos:detail' continentes.amostra.id %}">
-                                            <img src="{{ continentes.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                        <a href="{% url 'sedimentos:detail' continente.amostra.id %}">
+                                            <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
                                         </a>
-                                        <a href="{% url 'sedimentos:detail' continentes.amostra.id %}">{{ continentes.amostra.nome }}</a>
+
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -44,10 +36,7 @@
                     </table>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
 {% endblock %}

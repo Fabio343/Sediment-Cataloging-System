@@ -1,23 +1,23 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import amostra
-admin.site.register(amostra)
+from .models import Amostra
+admin.site.register(Amostra)
 
-from .models import continente
-admin.site.register(continente)
+from .models import Continente
+admin.site.register(Continente)
 
-from .models import país
-admin.site.register(país)
+from .models import País
+admin.site.register(País)
 
-from .models import estado
-admin.site.register(estado)
+from .models import Estado
+admin.site.register(Estado)
 
-from .models import cidade
-admin.site.register(cidade)
+from .models import Cidade
+admin.site.register(Cidade)
 
-from .models import ambiente
-admin.site.register(ambiente)
+from .models import Ambiente
+admin.site.register(Ambiente)
 
-from .models import clima
-admin.site.register(clima)
+from .models import Clima
+admin.site.register(Clima)

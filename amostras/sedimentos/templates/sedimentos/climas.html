@@ -6,24 +6,21 @@
 <div class="container-fluid climas-container">
 
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by =='all' %}class="active"{% endif %}><a href="{% url 'sedimentos:climas' 'all' %}">View All</a></li>
-            </ul>
-        </div>
+        <ul><u><h3>Todos os Climas Registrados no Sistema:</h3></u></ul>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-12">
+        <div class="col-sm-5">
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>tipo</th>
-                                <th>amostra</th>
+                                <th>Tipo</th>
+                                <th>Amostra</th>
+                                <th>Imagem</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,11 +28,12 @@
                                 <tr>
                                     <td>{{ clima.tipo }}</td>
                                     <td>{{ clima.amostra.codigo }}</td>
+
                                     <td>
-                                        <a href="{% url 'sedimentos:detail' climas.amostra.id %}">
-                                            <img src="{{ climas.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                        <a href="{% url 'sedimentos:detail' clima.amostra.id %}">
+                                            <img src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
                                         </a>
-                                        <a href="{% url 'sedimentos:detail' climas.amostra.id %}">{{ climas.amostra.tipo }}</a>
+
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -43,10 +41,7 @@
                     </table>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
 {% endblock %}

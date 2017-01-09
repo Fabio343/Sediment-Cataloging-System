@@ -7,14 +7,17 @@
     <!-- amostra -->
     <div class="row">
         <div class="col-sm-12">
-            <h3>Todas as Amostras Disponíveis no Sistema:</h3>
+<h3>Todas as Amostras Registradas no Sistema:</h3>
         </div>
         {% if amostras %}
             {% for amostra in amostras %}
-                <div class="col-sm-4 col-lg-2">
+
+                <div class="col-sm-3 col-lg-2">
                     <div class="thumbnail">
+
                         <a href="{% url 'sedimentos:detail' amostra.id %}">
                             <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                            <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 600px; float:left; margin-right: 600px;">
                         </a>
                         <div class="caption">
                             <h3>{{ amostra.codigo }}</h3>
@@ -44,17 +47,18 @@
     {% if continentes %}
         <div class="row">
             <div class="col-sm-12">
-                <h3>continentes</h3>
+                <h3>Continente</h3>
             </div>
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>nome</th>
-                                    <th>sigla</th>
-                                    <th>codigo da amostra</th>
+                                    <th>Nome</th>
+                                    <th>Sigla</th>
+                                    <th>Código da Amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,6 +75,7 @@
                                         </td>
                                     </tr>
                                 {% endfor %}
+                             {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
                             </tbody>
                         </table>
                     </div>
@@ -86,17 +91,19 @@
     {% if paíss %}
         <div class="row">
             <div class="col-sm-12">
-                <h3>países</h3>
+
+                <h3>Países</h3>
             </div>
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>nome</th>
-                                    <th>região</th>
-                                    <th>codigo da amostra</th>
+                                    <th>Nome</th>
+                                    <th>Região</th>
+                                    <th>Código da Amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -128,17 +135,18 @@
     {% if estados %}
         <div class="row">
             <div class="col-sm-12">
-                <h3>estados</h3>
+                <h3>Estados</h3>
             </div>
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>nome</th>
-                                    <th>país</th>
-                                    <th>codigo da amostra</th>
+                                    <th>Nome</th>
+                                    <th>País</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -171,17 +179,18 @@
     {% if cidades %}
         <div class="row">
             <div class="col-sm-12">
-                <h3>cidades</h3>
+                <h3>Cidades</h3>
             </div>
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>nome</th>
-                                    <th>estado</th>
-                                    <th>codigo da amostra</th>
+                                    <th>Nome</th>
+                                    <th>Estado</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,16 +223,17 @@
     {% if climas %}
         <div class="row">
             <div class="col-sm-12">
-                <h3>climas</h3>
+                <h3>Climas</h3>
             </div>
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>tipo</th>
-                                    <th>codigo da amostra</th>
+                                    <th>Tipo</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -253,16 +263,17 @@
     {% if ambientes %}
         <div class="row">
             <div class="col-sm-12">
-                <h3>ambientes</h3>
+                <h3>Ambientes</h3>
             </div>
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>tipo</th>
-                                    <th>codigo da amostra</th>
+                                    <th>Tipo</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -275,7 +286,7 @@
                                             <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">
                                                 <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
-                                            <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">{{ clima.amostra.codigo }}</a>
+                                            <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">{{ ambiente.amostra.codigo }}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

@@ -6,37 +6,32 @@
 <div class="container-fluid cidades-container">
 
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by =='all' %}class="active"{% endif %}><a href="{% url 'sedimentos:cidades' 'all' %}">View All</a></li>
-            </ul>
-        </div>
+      <ul><u><h3>Todas as Cidades Registradas no Sistema:</h3></u></ul>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-12">
+        <div class="col-sm-5">
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>nome</th>
-                                <th>estado</th>
-                                <th>amostra</th>
+                                <th>Nome</th>
+                                <th>Amostra</th>
+                                <th>Imagem</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for cidade in cidade_list %}
                                 <tr>
                                     <td>{{ cidade.nome }}</td>
-                                    <td>{{ cidade.amostra.codigo }}</td>
+                                    <td>{{ cidade.amostra.codigo}}</td>
                                     <td>
-                                        <a href="{% url 'sedimentos:detail' cidades.amostra.id %}">
-                                            <img src="{{ cidades.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                        <a href="{% url 'sedimentos:detail' cidade.amostra.id %}">
+                                            <img src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
                                         </a>
-                                        <a href="{% url 'sedimentos:detail' cidades.amostra.id %}">{{ cidades.amostra.nome }}</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -44,10 +39,7 @@
                     </table>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
 {% endblock %}
