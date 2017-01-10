@@ -1,0 +1,29 @@
+{% extends 'sedimentos/basevisitante.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'sedimentos/../../static/css/agradecimentos.css' %}">
+
+    <title>Créditos</title>
+</head>
+{% block body %}
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Desenvolvimento</h3>
+                    <p>Fabio Carvalho de Souza; Aluno de Graduação IME-USP</p>
+                    <h3>Orientador(a)</h3>
+                    <p>Christine Bourotte;Professora do Departamento de Geologia Sedimentar e Ambiental IGC-USP</p>
+                    <h3>Progama de Bolsas Unificadas USP </h3>
+                    <ul>
+                        <li>Desenvolvimento de um banco de dados sistematizado para a coleção de areias utilizada para fins didáticos e de difusão em Geociências</li>
+                    </ul>
+                </div>
+            </div>
+            <ul>
+               <a href="/inicial">Volte a Página do Sistema</a>
+            </ul>
+        </div>
+
+{% endblock %}

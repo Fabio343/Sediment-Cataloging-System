@@ -50,8 +50,10 @@ urlpatterns = [
     # se refere a uma em especifico/
     url(r'^login_user/$', views.login_user, name='login_user'),
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
+    url(r'^inicial/$', views.inicial, name='inicial'),
     url(r'^contato/$', views.contato, name='contato'),
     url(r'^adicionar/$', views.adicionar, name='adicionar'),
+    url(r'^agradecimentos/$', views.agradecimentos, name='agradecimentos'),
     url(r'^register/$', views.register, name='register'),
     # filtros/
     url(r'^continentes/(?P<filter_by>[a-zA_Z]+)/$', views.continentes, name='continentes'),

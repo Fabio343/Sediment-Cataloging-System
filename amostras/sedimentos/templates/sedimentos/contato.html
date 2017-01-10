@@ -1,3 +1,4 @@
+{% extends 'sedimentos/basevisitante.html' %}
 {% load static %}
 <head>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -6,6 +7,7 @@
 
     <title>Forma de Contato</title>
 </head>
+{% block body %}
 <body>
 <ul>
 <h1 id="contact">Entre em Contato com a Administração</h1>
@@ -23,5 +25,6 @@
 </body>
 <br>
 <ul>
-<a href="/sedimentos">Volte a Página do Sistema</a>
+<a href="/inicial">Volte a Página do Sistema</a>
 </ul>
+{% endblock %}

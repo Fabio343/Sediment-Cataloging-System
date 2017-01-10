@@ -33,7 +33,6 @@ class Amostra(models.Model):
            return "%s, %s, %s, %s, %s" % (self.codigo, self.tipo, self.data, self.granulometria, self.coletador)
 
 
-
 class Continente(models.Model):
     amostra=models.ForeignKey(Amostra,on_delete=models.CASCADE)
     nome=models.CharField(max_length=25)

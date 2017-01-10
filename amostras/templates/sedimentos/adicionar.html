@@ -12,6 +12,24 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse"...>
+   <tr>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www5.usp.br/" target="_blank">
+            <img src="usp.gif" width="200" height="75" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www.igc.usp.br/" target="_blank">
+            <img src="igc.jpg" width="200" height="75" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="https://www.ime.usp.br/" target="_blank">
+            <img src="logo.png" width="200" height="75" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+   </tr>
+
       <div class="container-fluid">
 
         <div class="navbar-header">
@@ -22,54 +40,15 @@
                 <span class="incon-bar"></span>
             </button>
 
-             <a class="navbar-brand" > UNIVERSIDADE DE SÃO PAULO </a>
-             <a class="navbar-brand">   </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" > Instituto de Geociências (IGC-USP)  </a>
-             <a class="navbar-brand">   </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand"  > Instituto de Matemática e Estatística (IME-USP) </a>
-             <a class="navbar-brand">   </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
 
-             <a class="navbar-brand"> Programa de Bolsas Unificadas(PBU) </a>
-             <a class="navbar-brand">   </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand">   </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-             <a class="navbar-brand" >  </a>
-
-             <a class="navbar-brand"> SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS </a>
+    <i>
+    <a class="navbar-brand" href="{% url 'sedimentos:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+    </i>
         </div>
     </div>
 </nav>
 <ul class="nav navbar-nav navbar-left">
-    <ul><h3>Nessa sessão é Possível Acrescentar Novos Exemplares Ao Sitema De catalogação </h3></ul>
-    <ul><h3>Além De Encerrar Sua Sessão, Bem Como Adicionar Um Novo </h3></ul>
+
                 <a class="navbar-brand"> Adicionar: </a>
               <li class="active">
                     <a href="{% url 'sedimentos:create_amostra'%}">
@@ -108,7 +87,7 @@
                     </a>
                 </li>
 </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-center">
                 <li class="">
                     <a href="{% url 'sedimentos:logout_user' %}">
                         <span class="glyphicon glyphicoon-off" aria-hidden="true"></span>&nbsp;Logout
@@ -120,7 +99,51 @@
                     </a>
                  </li>
     </ul>
+<br>
+<br>
+ <ul><h3>Nessa sessão é Possível Acrescentar Novos Exemplares Ao Sitema De catalogação </h3></ul>
+    <ul><h3>Além De Encerrar Sua Sessão, Bem Como Adicionar Um Novo </h3></ul>
 {% block body %}
 {% endblock %}
 </body>
 </html>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+        <tbody>
+          <tr>
+            <td align="left">
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="1">
+                    <nav class="navbar navbar-inverse"...>
+                    <ul>
+                       <i>
+                        <a href="http://www5.usp.br/" target="_self">UNIVERSIDADE DE SÃO PAULO</a>
+                        <br>
+                        <br>
+                        <a href="http://www.igc.usp.br/" target="_self">Instituto de Geociências (IGC-USP)</a>
+                         <br>
+                         <br>
+                        <a href="https://www.ime.usp.br/" target="_self">Instituto de Matemática e Estatística (IME-USP)</a>
+                           <br>
+                           <br>
+                        <a href="http://www.prg.usp.br/?p=21904" target="_self">Programa de Bolsas Unificadas(PBU)</a>
+                      </i>
+                    </ul>
+                   </nav>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font face="Arial,Helvetica,sans-serif" size="1">
+                    <hr size="1">
+                    <a href="/sedimentos/agradecimentos"  target="_self">Creditos</a>
+
+                    <a href="/sedimentos/contato">Fale Conosco</a>
+                    <br>
+                     © 2016 - 2017 - Universidade De São Paulo
+                </font>
+            </td>
+        </tr>
+        </tbody>
+    </table>
