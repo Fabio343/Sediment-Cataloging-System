@@ -1,7 +1,9 @@
 body {
-    background: white url("imagens/background.png");
+     background: white url("imagens/desert.jpg"); repeat;
+     box-sizing: border-box;
+      width: 100%;
+      height: 1080px;
 }
-
 ul.errorlist {
     padding-left: 0;
 }
@@ -26,3 +28,4 @@ ul.errorlist > li {
 .glyphicon-star.active {
     color: #FDB230;
 }
+

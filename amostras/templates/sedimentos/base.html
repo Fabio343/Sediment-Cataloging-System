@@ -2,30 +2,32 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>{% block tutle %}SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS{% endblock %}</title>
+    <title>SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</title>
     {% load staticfiles %}
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" type="text/css" href="{% static 'sedimentos/style.css' %}"/>
       <script src="https://ajax.googleapis.com/ajax/libs/1.5.7/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-inverse"...>
    <tr>
        <td width="180" rowspan="3" align="center">
             <a href="http://www5.usp.br/" target="_blank">
-            <img src="usp.gif" width="200" height="75" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="static/sedimentos/imagens/usp.jpg" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+
             </a>
        </td>
        <td width="180" rowspan="3" align="center">
             <a href="http://www.igc.usp.br/" target="_blank">
-            <img src="igc.jpg" width="200" height="75" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="static/sedimentos/imagens/logo_IGc.png" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
             </a>
        </td>
        <td width="180" rowspan="3" align="center">
             <a href="https://www.ime.usp.br/" target="_blank">
-            <img src="logo.png" width="200" height="75" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="static/sedimentos/imagens/imeusp.png" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
             </a>
        </td>
    </tr>
@@ -38,7 +40,7 @@
     </i>
         <div class="collapse navbar-collapse" id="topNavBar">
               <ul class="nav navbar-nav">
-                   <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'sedimentos:index' %}"><span class="glyphicon glyphicon-ball" aria-hidden="true"></span>&nbsp; Amostras</a></li>
+                   <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'sedimentos:index' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Amostras</a></li>
                    <li class="{% block continentes_active %}{% endblock %}"><a href="{% url 'sedimentos:continentes' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Continentes</a></li>
                    <li class="{% block paíss_active %}{% endblock %}"><a href="{% url 'sedimentos:paíss' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Países</a></li>
                    <li class="{% block estados_active %}{% endblock %}"><a href="{% url 'sedimentos:estados' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Estados</a></li>
@@ -53,7 +55,7 @@
                 <button type="submit" class="btn btn-default">Pesquisar</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                 <li class="active">
+                 <li class="">
                     <a href="{% url 'sedimentos:adicionar'%}">
                         <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Adicionar
                     </a>
@@ -69,41 +71,37 @@
 </body>
 </html>
  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-
-        <tbody>
-        <tr>
-            <td align="left">
-                <font face="Arial,Hevetica,sans-serif" size="2">
-                    <hr size="1">
-                    <nav class="navbar navbar-inverse"...>
-                      <ul>
-                        <i>
-                           <a href="http://www5.usp.br/" target="_self">UNIVERSIDADE DE SÃO PAULO</a>
-                           <br>
-                           <br>
-                           <a href="http://www.igc.usp.br/" target="_self">Instituto de Geociências (IGC-USP)</a>
-                           <br>
-                           <br>
-                           <a href="https://www.ime.usp.br/" target="_self">Instituto de Matemática e Estatística (IME-USP)</a>
-                           <br>
-                           <br>
-                           <a href="http://www.prg.usp.br/?p=21904" target="_self">Programa de Bolsas Unificadas(PBU)</a>
-                        </i>
-                      </ul>
-                    </nav>
-                </font>
-            </td>
-        </tr>
+     <tbody>
         <tr>
             <td align="center">
-                <font face="Arial,Helvetica,sans-serif" size="1">
-                    <hr size="1">
-                    <a href="/sedimentos/agradecimentos"  target="_self">Creditos</a>
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="0">
+
+                      <ul>
+                        <i>
+                            <a href="http://www5.usp.br/" target="_blank">
+                              <img src="static/sedimentos/imagens/usp.jpg" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+                            </a>
+                            <br>
+                            <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
+                            <br>
+                            <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
+                           <br>
+                           <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                        </i>
+                      </ul>
+
+                    <a href="/sedimentos/agradecimentos"  target="_self">Créditos</a>
                     <a href="/sedimentos/contato">Fale Conosco</a>
                     <br>
-                     © 2016 - 2017 - Universidade De São Paulo
+                    <br>
+
+                     © 2016 - 2017  Instituto De Geociências-USP
+                    <br>
+                    Universidade De São Paulo
                 </font>
             </td>
         </tr>
         </tbody>
     </table>
+

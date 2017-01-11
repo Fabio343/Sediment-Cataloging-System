@@ -46,15 +46,15 @@ def create_amostra(request):
 
 
 def delete_amostra(request, amostra_id):
-    amostra = Amostra.objects.get(pk=amostra_id)
-    amostra.delete()
-    amotras = amostra.objects.filter(user=request.user)
-    return render(request, 'sedimentos/index.html', {'amostras': amotras})
-
-def detail(request, amostra_id):
     if not request.user.is_authenticated():
         return render(request, 'sedimentos/login.html')
     else:
+     amostra = Amostra.objects.get(pk=amostra_id)
+     amostra.delete()
+     amotras = amostra.objects.filter(user=request.user)
+     return render(request, 'sedimentos/index.html', {'amostras': amotras})
+
+def detail(request, amostra_id):
         user = request.user
         amostra = get_object_or_404(Amostra, pk=amostra_id)
         return render(request, 'sedimentos/detail.html', {'amostra': amostra, 'user': user})
@@ -82,10 +82,13 @@ def create_continente(request):
 
 
 def delete_continente(request, continente_id):
-    amostra = get_object_or_404(Amostra, pk=amostra_id)
-    continente = Continente.objects.get(pk=continente_id)
-    continente.delete()
-    return render(request, 'sedimentos/index.html', {'amostra':amostra})
+    if not request.user.is_authenticated():
+        return render(request, 'sedimentos/login.html')
+    else:
+     amostra = get_object_or_404(Amostra, pk=amostra_id)
+     continente = Continente.objects.get(pk=continente_id)
+     continente.delete()
+     return render(request, 'sedimentos/index.html', {'amostra':amostra})
 
 
 ########################################################################################################################
@@ -111,10 +114,13 @@ def create_cidade(request):
 
 
 def delete_cidade(request, cidade_id):
-    amostra = get_object_or_404(Amostra, pk=amostra_id)
-    cidade = Cidade.objects.get(pk=cidade_id)
-    cidade.delete()
-    return render(request, 'sedimentos/index.html', {'amostra': amostra})
+    if not request.user.is_authenticated():
+        return render(request, 'sedimentos/login.html')
+    else:
+     amostra = get_object_or_404(Amostra, pk=amostra_id)
+     cidade = Cidade.objects.get(pk=cidade_id)
+     cidade.delete()
+     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
 
 ########################################################################################################################
@@ -139,10 +145,13 @@ def create_estado(request):
 
 
 def delete_estado(request, estado_id):
-    amostra = get_object_or_404(Amostra, pk=amostra_id)
-    estado = Estado.objects.get(pk=estado_id)
-    estado.delete()
-    return render(request, 'sedimentos/index.html', {'amostra': amostra})
+    if not request.user.is_authenticated():
+        return render(request, 'sedimentos/login.html')
+    else:
+     amostra = get_object_or_404(Amostra, pk=amostra_id)
+     estado = Estado.objects.get(pk=estado_id)
+     estado.delete()
+     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
@@ -166,10 +175,13 @@ def create_país(request):
 
 
 def delete_país(request, país_id):
-    amostra = get_object_or_404(Amostra, pk=amostra_id)
-    país = País.objects.get(pk=país_id)
-    país.delete()
-    return render(request, 'sedimentos/index.html', {'amostra': amostra})
+    if not request.user.is_authenticated():
+        return render(request, 'sedimentos/login.html')
+    else:
+     amostra = get_object_or_404(Amostra, pk=amostra_id)
+     país = País.objects.get(pk=país_id)
+     país.delete()
+     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
 ########################################################################################################################
 ########################################################################################################################
@@ -192,10 +204,13 @@ def create_ambiente(request):
 
 
 def delete_ambiente(request, ambiente_id):
-    amostra = get_object_or_404(Amostra, pk=amostra_id)
-    ambiente = Ambiente.objects.get(pk=ambiente_id)
-    ambiente.delete()
-    return render(request, 'sedimentos/index.html', {'amostra': amostra})
+    if not request.user.is_authenticated():
+        return render(request, 'sedimentos/login.html')
+    else:
+     amostra = get_object_or_404(Amostra, pk=amostra_id)
+     ambiente = Ambiente.objects.get(pk=ambiente_id)
+     ambiente.delete()
+     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
 ########################################################################################################################
 ########################################################################################################################
@@ -218,19 +233,19 @@ def create_clima(request):
 
 
 def delete_clima(request, clima_id):
-    amostra = get_object_or_404(Amostra, pk=amostra_id)
-    clima = Clima.objects.get(pk=clima_id)
-    clima.delete()
-    return render(request, 'sedimentos/index.html', {'amostra': amostra})
+    if not request.user.is_authenticated():
+        return render(request, 'sedimentos/login.html')
+    else:
+     amostra = get_object_or_404(Amostra, pk=amostra_id)
+     clima = Clima.objects.get(pk=clima_id)
+     clima.delete()
+     return render(request, 'sedimentos/index.html', {'amostra': amostra})
 
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
 def index(request):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
-        amostras = Amostra.objects.filter(user=request.user)
+        amostras = Amostra.objects.filter()
         país_results = País.objects.all()
         amostra_results = Amostra.objects.all()
         continente_results = Continente.objects.all()
@@ -434,12 +449,9 @@ def agradecimentos(request):
 ########################################################################################################################
 ########################################################################################################################
 def amostras(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             amostra_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for amostra in amostra.amostra_set.all():
                     amostra_ids.append(amostra.pk)
             users_amostras = Amostra.objects.filter(pk__in=amostra_ids)
@@ -455,12 +467,9 @@ def amostras(request, filter_by):
 ########################################################################################################################
 ########################################################################################################################
 def continentes(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             continente_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for continente in amostra.continente_set.all():
                     continente_ids.append(continente.pk)
             users_continentes = Continente.objects.filter(pk__in=continente_ids)
@@ -477,12 +486,9 @@ def continentes(request, filter_by):
 ########################################################################################################################
 ########################################################################################################################
 def paíss(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             país_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for país in amostra.país_set.all():
                     país_ids.append(país.pk)
             users_paíss = País.objects.filter(pk__in=país_ids)
@@ -499,12 +505,9 @@ def paíss(request, filter_by):
 ########################################################################################################################
 ########################################################################################################################
 def estados(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             estado_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for estado in amostra.estado_set.all():
                     estado_ids.append(estado.pk)
             users_estados = Estado.objects.filter(pk__in=estado_ids)
@@ -522,12 +525,9 @@ def estados(request, filter_by):
 ########################################################################################################################
 
 def cidades(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             cidade_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for cidade in amostra.cidade_set.all():
                     cidade_ids.append(cidade.pk)
             users_cidades = Cidade.objects.filter(pk__in=cidade_ids)
@@ -545,12 +545,9 @@ def cidades(request, filter_by):
 ########################################################################################################################
 ########################################################################################################################
 def climas(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             clima_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for clima in amostra.clima_set.all():
                     clima_ids.append(clima.pk)
             users_climas = Clima.objects.filter(pk__in=clima_ids)
@@ -566,12 +563,9 @@ def climas(request, filter_by):
 ########################################################################################################################
 ########################################################################################################################
 def ambientes(request, filter_by):
-    if not request.user.is_authenticated():
-        return render(request, 'sedimentos/login.html')
-    else:
         try:
             ambiente_ids = []
-            for amostra in Amostra.objects.filter(user=request.user):
+            for amostra in Amostra.objects.filter():
                 for ambiente in amostra.ambiente_set.all():
                     ambiente_ids.append(ambiente.pk)
             users_ambientes = Ambiente.objects.filter(pk__in=ambiente_ids)
