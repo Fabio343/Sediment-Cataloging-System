@@ -3,7 +3,7 @@
 {% block amostras_active %}active{% endblock %}
 
 {% block body %}
-<div class="container-fluid songs-container">
+<div class="container-fluid cidades-container">
 
     <div class="row">
 
@@ -26,7 +26,7 @@
                      <h3>Descrição:</h3>
                      <h4>{{amostra.descrição}}</h4>
                      <h3>Granulometria:</h3>
-                     <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 620px; float:left; margin-right: 620px;">
+                     <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 400px; float:left; margin-right: 400px;">
                      <h3>Data de Coleta:</h3>
                      <h4>{{amostra.data}}</h4>
                      <h3>Responsável Pela Coleta:</h3>
@@ -34,35 +34,38 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-2 col-md-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3> AMOSTRA DETALHES</h3>
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Descrição</th>
-                            <th>tipo</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for amostra in amostra.amostra_set.all %}
-                            <tr>
-                                <td>{{ amostra.descrição}}</td>
-                                 <td>{{ amostra.tipo}}</td>
-                                <td>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+          {% if amostra.imagem1 %}
+                <img src="{{ amostra.imagem1.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -3px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem2 %}
+                <img src="{{ amostra.imagem2.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -3px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem3 %}
+                <img src="{{ amostra.imagem3.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -3px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem4 %}
+                <img src="{{ amostra.imagem4.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -1px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem5 %}
+                <img src="{{ amostra.imagem5.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -1px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem6 %}
+                <img src="{{ amostra.imagem6.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -1px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem7 %}
+                <img src="{{ amostra.imagem7.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -1px;">
+          {% else %}
+        {% endif %}
+        {% if amostra.imagem8 %}
+                <img src="{{ amostra.imagem8.url }}"  width="330" height="220" alt="" border="0" style="position: relative; top: -1px;">
+          {% else %}
+        {% endif %}
         <!-- Right continente Info -->
         <div class="col-sm-2 col-md-2">
 

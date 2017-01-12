@@ -21,6 +21,16 @@ class Amostra(models.Model):
     granulometria=models.FileField(null=True,blank=True)
     coletador=models.CharField(max_length=50,blank=True,null=True)
     imagem = models.FileField(null=True,blank=True)
+    imagem1 = models.FileField(null=True, blank=True)
+    imagem2 = models.FileField(null=True, blank=True)
+    imagem3 = models.FileField(null=True, blank=True)
+    imagem4 = models.FileField(null=True, blank=True)
+    imagem5 = models.FileField(null=True, blank=True)
+    imagem6 = models.FileField(null=True, blank=True)
+    imagem7 = models.FileField(null=True, blank=True)
+    imagem8 = models.FileField(null=True, blank=True)
+
+
 
     def get_absolute_url(self):
         return reverse('sedimentos:detail',kwargs={'pk': self.pk})

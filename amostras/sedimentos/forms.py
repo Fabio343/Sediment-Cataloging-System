@@ -23,7 +23,7 @@ class ContatoForm(forms.Form):
 class amostraForm(forms.ModelForm):
     class Meta:
         model =Amostra
-        fields = ['codigo','coletador', 'descrição', 'tipo', 'data', 'granulometria','imagem']
+        fields = ['codigo','coletador', 'descrição', 'tipo', 'data', 'granulometria','imagem','imagem1','imagem2','imagem3','imagem4','imagem5','imagem6','imagem7','imagem8']
 
 
 

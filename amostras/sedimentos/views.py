@@ -28,6 +28,16 @@ def create_amostra(request):
             amostra.user = request.user
             amostra.imagem = request.FILES['imagem']
             file_type = amostra.imagem.url.split('.')[-1]
+            amostra.imagem1 = request.FILES['imagem1']
+            amostra.imagem2 = request.FILES['imagem2']
+            amostra.imagem3 = request.FILES['imagem3']
+            amostra.imagem4 = request.FILES['imagem4']
+            amostra.imagem5 = request.FILES['imagem5']
+            amostra.imagem6 = request.FILES['imagem6']
+            amostra.imagem7 = request.FILES['imagem7']
+            amostra.imagem8 = request.FILES['imagem8']
+
+
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
                 context = {
@@ -284,8 +294,8 @@ def index(request):
             ambiente_results = ambiente_results.filter(
                 Q(tipo__icontains=query)
             ).distinct()
-            return render(request, 'sedimentos/index.html', {
-                'amotras': amostras,
+            return render(request, 'sedimentos/pesquisa.html', {
+                'amostras': amostras,
                 'paíss': país_results,
                 'continentes': continente_results,
                 'estados': estado_results,
