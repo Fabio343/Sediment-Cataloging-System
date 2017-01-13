@@ -2,13 +2,12 @@
 {% block amostras_active %}active{% endblock %}
 
 {% block body %}
-<div class="amostras-container container-fluid">
-
+<div class="inicial-container container-fluid">
     <!-- amostra -->
         {% if amostras %}
          <div class="row">
           <div class="col-sm-12">
-        <h3>Todas as Amostras Registradas no Sistema:</h3>
+        <h3> Amostras :</h3>
         </div>
             {% for amostra in amostras %}
 
@@ -17,8 +16,14 @@
 
                         <a href="{% url 'sedimentos:detail' amostra.id %}">
 
+                   {% if amostra.imagem %}
                             <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                           {% else %}
+                   {% endif %}
+                            {% if amostra.granulometria %}
                             <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 550px; float:left; margin-right: 500px;">
+                           {% else %}
+                   {% endif %}
                         </a>
                         <div class="caption">
                             <h3>{{ amostra.codigo }}</h3>
@@ -59,7 +64,7 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Sigla</th>
-                                    <th>Código da Amostra</th>
+                                    <th> Imagem e Código da Amostra</th>
                                 </tr>
                             </thead>
                             <tbody>

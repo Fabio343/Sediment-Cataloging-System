@@ -18,19 +18,22 @@
                             <h3>No image to display</h3>
                         {% endif %}
                     </a>
-                     <h3>Detalhes Gerais da Amostra</h3>
+                     <h3>Detalhes Gerais da Amostra:</h3>
                      <h3>Código:</h3>
-                     <h4>{{ amostra.codigo }}<small></small></h4>
+                     <h5>{{ amostra.codigo }}<small></small></h5>
                      <h3>Tipo:</h3>
-                     <h4>{{ amostra.tipo }}</h4>
+                     <h5>{{ amostra.tipo }}</h5>
                      <h3>Descrição:</h3>
-                     <h4>{{amostra.descrição}}</h4>
+                     <h5>{{amostra.descrição}}</h5>
                      <h3>Granulometria:</h3>
+                    {% if amostra.granulometria %}
                      <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 400px; float:left; margin-right: 400px;">
+                        {% else %}
+                   {% endif %}
                      <h3>Data de Coleta:</h3>
-                     <h4>{{amostra.data}}</h4>
+                     <h5>{{amostra.data}}</h5>
                      <h3>Responsável Pela Coleta:</h3>
-                     <h4>{{amostra.coletador}}</h4>
+                     <h5>{{amostra.coletador}}</h5>
                 </div>
             </div>
         </div>

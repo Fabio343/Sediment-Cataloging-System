@@ -12,11 +12,10 @@
 
 </head>
 <body>
-<nav class="navbar navbar-inverse"...>
    <tr>
        <td width="180" rowspan="3" align="center">
             <a href="http://www5.usp.br/" target="_blank">
-            <img src="/static/sedimentos/imagens/logo-usp.png" width="450" height="70" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="/static/sedimentos/imagens/usp.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
 
             </a>
        </td>
@@ -31,6 +30,8 @@
             </a>
        </td>
    </tr>
+<nav class="navbar navbar-inverse"...>
+
       <div role="banner" id="top">
       </div>
 
@@ -40,6 +41,7 @@
     </i>
         <div class="collapse navbar-collapse" id="topNavBar">
               <ul class="nav navbar-nav">
+                  <li class="{% block inicial_active %}{% endblock %}"><a href="{% url 'sedimentos:inicial' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Inicio</a></li>
                    <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'sedimentos:index' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Amostras</a></li>
                    <li class="{% block continentes_active %}{% endblock %}"><a href="{% url 'sedimentos:continentes' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Continentes</a></li>
                    <li class="{% block paíss_active %}{% endblock %}"><a href="{% url 'sedimentos:paíss' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Países</a></li>
@@ -48,7 +50,7 @@
                    <li class="{% block climas_active %}{% endblock %}"><a href="{% url 'sedimentos:climas' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Climas</a></li>
                    <li class="{% block ambientes_active %}{% endblock %}"><a href="{% url 'sedimentos:ambientes' 'all' %}"><span class="glyphicon glyphicon-sedimentos" aria-hidden="true"></span>&nbsp; Ambientes</a></li>
             </ul>
-            <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'sedimentos:index' %}">
+            <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'sedimentos:inicial' %}">
                 <div class="form-group">
                     <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
                 </div>
@@ -90,10 +92,9 @@
                            <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
                         </i>
                       </ul>
-
-                    <a href="/sedimentos/agradecimentos"  target="_self">Créditos</a>
-                    <a href="/sedimentos/contato">Fale Conosco</a>
-                    <br>
+                    <a href="/sedimentos/agradecimentos"  target="_self">Créditos |</a>
+                    <a href="/sedimentos/contato">Fale Conosco |</a>
+                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
                     <br>
 
                      © 2016 - 2017  Instituto De Geociências-USP

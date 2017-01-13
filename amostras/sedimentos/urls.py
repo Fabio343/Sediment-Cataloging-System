@@ -7,6 +7,7 @@ urlpatterns = [
 
     # se refere a /resident/
     url(r'^$', views.index, name='index'),
+    url(r'^$', views.amostra, name='amostra'),
     # se refere a uma em especifico/
     url(r'^(?P<amostra_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^create_amostra/$', views.create_amostra, name='create_amostra'),

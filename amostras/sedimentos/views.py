@@ -311,6 +311,61 @@ def index(request):
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
+def amostra(request):
+        amostras = Amostra.objects.filter()
+        país_results = País.objects.all()
+        amostra_results = Amostra.objects.all()
+        continente_results = Continente.objects.all()
+        estado_results = Estado.objects.all()
+        cidade_results = Cidade.objects.all()
+        clima_results = Clima.objects.all()
+        ambiente_results = Ambiente.objects.all()
+
+        query = request.GET.get("q")
+        if query:
+            amostras = amostras.filter(
+                Q(codigo__icontains=query) |
+                Q(tipo__icontains=query) |
+                Q(descrição__icontains=query) |
+                Q(coletador__icontains=query) |
+                Q(granulometria__icontains=query) |
+                Q(data__icontains=query)
+            ).distinct()
+            país_results = país_results.filter(
+                Q(nome__icontains=query)
+            ).distinct()
+            continente_results = continente_results.filter(
+                Q(nome__icontains=query) |
+                Q(sigla__icontains=query)
+            ).distinct()
+            estado_results = estado_results.filter(
+                Q(nome__icontains=query)
+            ).distinct()
+            cidade_results = cidade_results.filter(
+                Q(nome__icontains=query) |
+                Q(geologia__icontains=query)
+            ).distinct()
+            clima_results = clima_results.filter(
+                Q(tipo__icontains=query)
+            ).distinct()
+            ambiente_results = ambiente_results.filter(
+                Q(tipo__icontains=query)
+            ).distinct()
+            return render(request, 'sedimentos/pesquisa.html', {
+                'amostras': amostras,
+                'paíss': país_results,
+                'continentes': continente_results,
+                'estados': estado_results,
+                'cidades': cidade_results,
+                'climas': clima_results,
+                'ambientes': ambiente_results,
+                'amostras': amostra_results,
+
+            })
+        else:
+            return render(request, 'sedimentos/amostra.html', {'amostras': amostras})
+########################################################################################################################
+
 class UserFormView(View):
     form_class=UserForm
     template_name='sedimentos/register_form.html'

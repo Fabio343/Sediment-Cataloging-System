@@ -1,12 +1,55 @@
 {% extends 'sedimentos/base.html' %}
-{% block body %}
+{% block amostras_active %}active{% endblock %}
 
- {% if continentes %}
+{% block body %}
+<div class="amostras-container container-fluid">
+    <!-- amostra -->
+        {% if amostras %}
+         <div class="row">
+          <div class="col-sm-12">
+        <h3> Amostras :</h3>
+        </div>
+            {% for amostra in amostras %}
+
+                <div class="col-sm-3 col-lg-2">
+                    <div class="thumbnail">
+
+                        <a href="{% url 'sedimentos:detail' amostra.id %}">
+
+                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
+                            <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 550px; float:left; margin-right: 500px;">
+                        </a>
+                        <div class="caption">
+                            <h3>{{ amostra.codigo }}</h3>
+                            <h4>{{ amostra.tipo }}</h4>
+
+                            <!-- View Details -->
+                            <a href="{% url 'sedimentos:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+
+                            <!-- Delete amostra -->
+                            <form action="{% url 'sedimentos:delete_amostra' amostra.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- If user searches and there are continentes -->
+    {% if continentes %}
         <div class="row">
-            <div class="col-sm-10">
-              <ul> <h3>Continente</h3></ul>
+            <div class="col-sm-12">
+                <h3>Continente</h3>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -15,7 +58,7 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Sigla</th>
-                                    <th>Imagem        e  Código da Amostra</th>
+                                    <th> Imagem e Código da Amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,7 +69,7 @@
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' continente.amostra.id %}">
-                                                <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
                                             <a href="{% url 'sedimentos:detail' continente.amostra.id %}">{{ continente.amostra.codigo }}</a>
                                         </td>
@@ -39,8 +82,7 @@
                 </div>
             </div>
         </div>
-
-      {% endif %}
+    {% endif %}
 
 
 
@@ -48,11 +90,11 @@
      <!-- If user searches and there are paises -->
     {% if paíss %}
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
-               <ul> <h3>Países</h3></ul>
+                <h3>Países</h3>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -61,7 +103,7 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Região</th>
-                                    <th>Imagem  e Código da Amostra</th>
+                                    <th>Código da Amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,7 +114,7 @@
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' país.amostra.id %}">
-                                                <img src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                <img src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
                                             <a href="{% url 'sedimentos:detail' país.amostra.id %}">{{ país.amostra.codigo }}</a>
                                         </td>
@@ -92,10 +134,10 @@
  <!-- If user searches and there are estados -->
     {% if estados %}
         <div class="row">
-            <div class="col-sm-10">
-               <ul> <h3>Estados</h3></ul>
+            <div class="col-sm-12">
+                <h3>Estados</h3>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -104,7 +146,7 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>País</th>
-                                    <th>Imagem e Código da amostra</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,7 +157,7 @@
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' estado.amostra.id %}">
-                                                <img src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                <img src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
                                             <a href="{% url 'sedimentos:detail' estado.amostra.id %}">{{ estado.amostra.codigo }}</a>
                                         </td>
@@ -136,10 +178,10 @@
  <!-- If user searches and there are cidades -->
     {% if cidades %}
         <div class="row">
-            <div class="col-sm-10">
-                <ul><h3>Cidades</h3></ul>
+            <div class="col-sm-12">
+                <h3>Cidades</h3>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -148,7 +190,7 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Estado</th>
-                                    <th>Imagem e Código da amostra</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,7 +201,7 @@
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' cidade.amostra.id %}">
-                                                <img src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                <img src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
                                             <a href="{% url 'sedimentos:detail' cidade.amostra.id %}">{{ cidade.amostra.codigo }}</a>
                                         </td>
@@ -180,10 +222,10 @@
 
     {% if climas %}
         <div class="row">
-            <div class="col-sm-10">
-                <ul><h3>Climas</h3></ul>
+            <div class="col-sm-12">
+                <h3>Climas</h3>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -191,7 +233,7 @@
                             <thead>
                                 <tr>
                                     <th>Tipo</th>
-                                    <th>Imagem e Código da amostra</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -202,7 +244,7 @@
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' clima.amostra.id %}">
-                                                <img src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                <img src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
                                             <a href="{% url 'sedimentos:detail' clima.amostra.id %}">{{ clima.amostra.codigo }}</a>
                                         </td>
@@ -220,10 +262,10 @@
  <!-- If user searches and there are ambientes -->
     {% if ambientes %}
         <div class="row">
-            <div class="col-sm-10">
-                <ul><h3>Ambientes</h3></ul>
+            <div class="col-sm-12">
+                <h3>Ambientes</h3>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -231,7 +273,7 @@
                             <thead>
                                 <tr>
                                     <th>Tipo</th>
-                                    <th>Imagem e Código da amostra</th>
+                                    <th>Código da amostra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -242,7 +284,7 @@
 
                                         <td>
                                             <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">
-                                                <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
                                             </a>
                                             <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">{{ ambiente.amostra.codigo }}</a>
                                         </td>
@@ -255,4 +297,5 @@
             </div>
         </div>
     {% endif %}
+</div>
 {% endblock %}
