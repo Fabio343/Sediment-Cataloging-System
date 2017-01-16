@@ -31,7 +31,10 @@
 
                                     <td>
                                         <a href="{% url 'sedimentos:detail' clima.amostra.id %}">
+                                             {% if clima.amostra.imagem %}
                                             <img src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {%else%}
+                                            {%endif%}
                                         </a>
 
                                     </td>

@@ -30,8 +30,14 @@
                                     <td>{{ amostra.amostra.codigo }}</td>
                                     <td>
                                         <a href="{% url 'sedimentos:detail' amostra.amostra.id %}">
+                                             {% if amostra.amostra.imagem %}
                                             <img src="{{ amostra.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {% else %}
+                                            {%endif%}
+                                             {% if amostra.granulometria %}
                                             <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 600px; float:left; margin-right: 600px;">
+                                            {%else%}
+                                            {%endif%}
                                         </a>
                                         <a href="{% url 'sedimentos:detail' amostra.amostra.id %}">{{ amostra.amostra.tipo }}</a>
                                     </td>

@@ -8,7 +8,7 @@
     <div class="row">
 
         <!-- Left amostra Info -->
-        <div class="col-sm-4 col-md-3">
+        <div class="col-sm-3 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'sedimentos:detail' amostra.id %}">
@@ -27,7 +27,7 @@
                      <h5>{{amostra.descrição}}</h5>
                      <h3>Granulometria:</h3>
                     {% if amostra.granulometria %}
-                     <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 400px; float:left; margin-right: 400px;">
+                     <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 370px; float:left; margin-right: 370px;">
                         {% else %}
                    {% endif %}
                      <h3>Data de Coleta:</h3>

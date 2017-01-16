@@ -14,7 +14,7 @@ from django.db import models
 # Create your models here.
 class Amostra(models.Model):
     user = models.ForeignKey(User, default=1)
-    codigo=models.CharField(max_length=15)
+    codigo=models.CharField(max_length=15,unique=True)
     tipo = models.CharField(max_length=25)
     descrição=models.TextField(max_length=300,blank=True,null=True)
     data=models.CharField(max_length=15,blank=True,null=True)
@@ -41,6 +41,8 @@ class Amostra(models.Model):
             return "%s, %s, %s, %s, %s, %s" % (self.codigo, self.tipo,self.descrição, self.data, self.granulometria, self.coletador)
         else:
            return "%s, %s, %s, %s, %s" % (self.codigo, self.tipo, self.data, self.granulometria, self.coletador)
+
+
 
 
 class Continente(models.Model):

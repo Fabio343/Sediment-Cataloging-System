@@ -266,7 +266,7 @@ def index(request):
 
         query = request.GET.get("q")
         if query:
-            amostras = amostras.filter(
+            amostra_results = amostra_results.filter(
                 Q(codigo__icontains=query) |
                 Q(tipo__icontains=query) |
                 Q(descrição__icontains=query) |
@@ -463,10 +463,8 @@ def register(request):
 ########################################################################################################################
 def contato(request):
     form_class = ContatoForm
-
     if request.method == 'POST':
         form = form_class(data=request.POST)
-
         if form.is_valid():
             Nome = request.POST.get('Nome', '')
             Email = request.POST.get('Email', '')
@@ -477,9 +475,7 @@ def contato(request):
                 'Email': Email,
                 'Mensagem': Mensagem,
             })
-
             content = template.render(context)
-
             email =EmailMessage (
                 "New contact form submission", content, "Adiministração" + '', ['fabio.carvalho.souza@usp.br'],
                 headers={'Reply-To': Email}

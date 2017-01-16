@@ -30,7 +30,10 @@
                                     <td>{{ estado.amostra.codigo }}</td>
                                     <td>
                                         <a href="{% url 'sedimentos:detail' estado.amostra.id %}">
+                                             {% if estado.amostra.imagem %}
                                             <img src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {%else%}
+                                            {%endif%}
                                         </a>
                                     </td>
                                 </tr>

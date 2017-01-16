@@ -30,7 +30,10 @@
                                      <td>{{ ambiente.amostra.codigo }}</td>
                                     <td>
                                         <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">
+                                            {% if ambiente.amostra.imagem %}
                                             <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {% else%}
+                                            {%endif%}
                                         </a>
                                     </td>
                                 </tr>
