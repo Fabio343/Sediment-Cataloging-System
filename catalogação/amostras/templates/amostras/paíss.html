@@ -1,0 +1,65 @@
+{% extends 'amostras/base.html' %}
+{% block title %}All paíss{% endblock %}
+{% block paíss_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid paíss-container">
+
+    <div class="row">
+        <ul><u><h3>Todos os Países Registrados no Sistema:</h3></u></ul>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome do País</th>
+                                <th>Amostra</th>
+                                <th>Imagem</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for país in país_list %}
+                                <tr>
+                                    <td>{{ país.nome }}</td>
+                                    <td>{{ país.amostra.codigo }}</td>
+                                    <td>
+                                        <a href="{% url 'amostras:detail' país.amostra.id %}">
+                                             {% if país.amostra.imagem %}
+                                            <img class="expa" src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {%else%}
+                                            {%endif%}
+                                            <form action="{% url 'amostras:updatepaís' país.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="país_id" value="{{ país.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                   <span class="glyphicon glyphicon-pencil"></span></a>
+                                </button>
+                            </form>
+                                 <form action="{% url 'amostras:delete_país' país.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="país_id" value="{{ país.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

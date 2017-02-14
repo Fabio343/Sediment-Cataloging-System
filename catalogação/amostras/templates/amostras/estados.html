@@ -1,0 +1,65 @@
+{% extends 'amostras/base.html' %}
+{% block title %}All estados{% endblock %}
+{% block estados_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid estados-container">
+
+    <div class="row">
+      <ul><u><h3>Todos os Estados Registrados no Sistema:</h3></u></ul>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Amostra</th>
+                                <th>Imagem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for estado in estado_list %}
+                                <tr>
+                                    <td>{{ estado.nome }}</td>
+                                    <td>{{ estado.amostra.codigo }}</td>
+                                    <td>
+                                        <a href="{% url 'amostras:detail' estado.amostra.id %}">
+                                             {% if estado.amostra.imagem %}
+                                            <img class="expa" src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {%else%}
+                                            {%endif%}
+                                            <form action="{% url 'amostras:updateestado' estado.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                   <span class="glyphicon glyphicon-pencil"></span></a>
+                                </button>
+                            </form>
+                                   <form action="{% url 'amostras:delete_estado' estado.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

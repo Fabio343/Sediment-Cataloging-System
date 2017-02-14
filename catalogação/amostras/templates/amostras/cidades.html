@@ -1,0 +1,62 @@
+{% extends 'amostras/base.html' %}
+{% block title %}All cidades{% endblock %}
+{% block cidades_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid cidades-container">
+
+    <div class="row">
+      <ul><u><h3>Todas as Cidades Registradas no Sistema:</h3></u></ul>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Amostra</th>
+                                <th>Imagem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cidade in cidade_list %}
+                                <tr>
+                                    <td>{{ cidade.nome }}</td>
+                                    <td>{{ cidade.amostra.codigo}}</td>
+                                    <td>
+                                        <a href="{% url 'amostras:detail' cidade.amostra.id %}">
+                                             {% if cidade.amostra.imagem %}
+                                            <img class="expa" src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                         {%else%}
+                                            {%endif%}
+                                        </a>
+                                        <form action="{% url 'amostras:updatecidade' cidade.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="cidade_id" value="{{ cidade.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                   <span class="glyphicon glyphicon-pencil"></span></a>
+                                </button>
+                            </form>
+                                <form action="{% url 'amostras:delete_cidade' cidade.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="cidade_id" value="{{ cidade.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

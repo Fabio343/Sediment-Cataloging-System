@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block tutle %}SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS{% endblock %}</title>
+    {% load staticfiles %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'amostras/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<ul>
+   <tr>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www5.usp.br/" target="_blank">
+            <img src="/static/amostras/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: -3px;">
+
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www.igc.usp.br/" target="_blank">
+            <img src="/static/amostras/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="https://www.ime.usp.br/" target="_blank">
+             <img src="/static/amostras/imagens/logoime.png" width="250" height="65" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+   </tr>
+</ul>
+<nav class="navbar navbar-inverse"...>
+
+
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button
+                type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="incon-bar"></span>
+                <span class="incon-bar"></span>
+                <span class="incon-bar"></span>
+            </button>
+
+
+    <i>
+    <a class="navbar-brand" href="{% url 'amostras:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+    </i>
+        </div>
+    </div>
+</nav>
+<ul class="nav navbar-nav navbar-left">
+
+                <ul><h4> Adicionar: </h4></ul>
+
+              <li class="active">
+                    <a href="{% url 'amostras:create_amostra'%}">
+                         <button type="submit">&nbsp; Amostra </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostras:create_cidade'%}">
+                         <button type="submit">&nbsp;  Cidade </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostras:create_estado'%}">
+                         <button type="submit">&nbsp;Estado </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostras:create_país'%}">
+                         <button type="submit">&nbsp;País </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostras:create_continente'%}">
+                         <button type="submit">&nbsp;Continente </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostras:create_ambiente'%}">
+                         <button type="submit">&nbsp;Ambiente </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'amostras:create_clima'%}">
+                         <button type="submit">&nbsp;Clima </button>
+                    </a>
+                </li>
+          <br>
+         <ul><h4>Registrar Usuario </h4></ul>
+          <ul class="nav navbar-nav navbar-center">
+                 <li class="">
+                    <a href="{%url 'amostras:register' %}">
+                         <button type="submit">&nbsp;Registrar </button>
+                    </a>
+                 </li>
+          </ul>
+         <br>
+         <br>
+         <br>
+         <ul><h4>Alterar Suas Informações</h4></ul>
+         <ul class="nav navbar-nav navbar-center">
+                    <li><a href="{% url 'amostras:view_profile' %}">
+                         <button type="submit">Perfil</button></a></li>
+                    <li><a href="{% url 'amostras:edit_profile' %}">
+                         <button type="submit">Editar Pefil</button></a></li>
+                    <li><a href="{% url 'amostras:change_password' %}">
+                         <button type="submit">Alterar Senha</button></a></li>
+         </ul>
+
+
+
+
+
+
+</ul>
+<br>
+<br>
+<br>
+{% block body %}
+{% endblock %}
+</body>
+
+</html>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+      <tbody>
+        <tr>
+            <td align="center">
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="0">
+
+                      <ul>
+                        <i>
+                            <a href="http://www5.usp.br/" target="_blank">
+                              <img src="/static/amostras/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+                            </a>
+                            <br>
+                            <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
+                            <br>
+                            <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
+                           <br>
+                           <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                        </i>
+                      </ul>
+                    <a href="/amostras/agradecimentos"  target="_self">Créditos |</a>
+                    <a href="/amostras/contato">Fale Conosco |</a>
+                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
+                    <br>
+
+                     © 2016 - 2017  Instituto De Geociências-USP
+                    <br>
+                    Universidade De São Paulo
+                </font>
+            </td>
+        </tr>
+        </tbody>
+    </table>

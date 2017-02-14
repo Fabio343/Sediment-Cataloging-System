@@ -1,0 +1,58 @@
+{% extends 'amostras/base.html' %}
+{% block title %}All ambientes{% endblock %}
+{% block ambientes_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid ambientes-container">
+
+    <div class="row">
+        <ul><u><h3>Todos os Ambientes Registrados no Sistema:</h3></u></ul>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Amostra</th>
+                                 <th>Imagem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ambiente in ambiente_list %}
+                                <tr>
+                                    <td>{{ ambiente.tipo }}</td>
+                                     <td>{{ ambiente.amostra.codigo }}</td>
+                                    <td>
+                                        <a href="{% url 'amostras:detail' ambiente.amostra.id %}">
+                                            {% if ambiente.amostra.imagem %}
+                                            <img class="expa" src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {% else%}
+                                            {%endif%}
+                                            <form action="{% url 'amostras:updateambiente' ambiente.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="ambiente_id" value="{{ ambiente.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                   <span class="glyphicon glyphicon-pencil"></span></a>
+                                </button>
+                            </form>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
