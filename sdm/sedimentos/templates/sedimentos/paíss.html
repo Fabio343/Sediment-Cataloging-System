@@ -6,16 +6,12 @@
 <div class="container-fluid paíss-container">
 
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by == 'all' %}class="active"{% endif %}><a href="{% url 'sedimentos:paíss' 'all' %}">View All</a></li>
-            </ul>
-        </div>
+        <ul><u><h3>Todos os Países Registrados no Sistema:</h3></u></ul>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-5">
+        <div class="col-sm-8">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -24,7 +20,8 @@
                             <tr>
                                 <th>Nome do País</th>
                                 <th>Amostra</th>
-                                <th>Imagem e Codigo</th>
+                                <th>Imagem</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -34,8 +31,19 @@
                                     <td>{{ país.amostra.codigo }}</td>
                                     <td>
                                         <a href="{% url 'sedimentos:detail' país.amostra.id %}">
-                                            <img src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                          <a href="{% url 'sedimentos:detail' país.amostra.id %}">{{ país.amostra.codigo }}</a>
+                                             {% if país.amostra.imagem %}
+                                            <img class="expa" src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {%else%}
+                                            {%endif%}
+
+                            <a class="btn btn-default" href="{% url 'sedimentos:país_edit' país.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                 <form action="{% url 'sedimentos:delete_país' país.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="país_id" value="{{ país.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
                                     </td>
                                 </tr>
                             {% endfor %}

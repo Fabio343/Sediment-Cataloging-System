@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block tutle %}SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS{% endblock %}</title>
-
     {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=arial' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'sedimentos/style.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
+  <tr>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www5.usp.br/" target="_blank">
+            <img src="/static/sedimentos/imagens/usp.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
+
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www.igc.usp.br/" target="_blank">
+            <img src="/static/sedimentos/imagens/logoigc.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="https://www.ime.usp.br/" target="_blank">
+            <img src="/static/sedimentos/imagens/logoime.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+   </tr>
 <nav class="navbar navbar-inverse"...>
       <div class="container-fluid">
-
         <div class="navbar-header">
             <button
                 type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
@@ -24,56 +38,15 @@
                 <span class="incon-bar"></span>
                 <span class="incon-bar"></span>
             </button>
-             <a class="navbar-brand" href=""> UNIVERSIDADE DE SÃO PAULO </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href=""> Instituto de Geociências (IGC-USP)  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href=""> Instituto de Matemática e Estatística (IME-USP) </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href=""> Programa de Bolsas Unificadas(PBU) </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
-             <a class="navbar-brand" href="{% url 'sedimentos:index' %}">  </a>
+           <nav class="navbar navbar-inverse"...>
+
         </div>
       </div>
 </nav>
-
-
 <nav class="navbar navbar-inverse">
-    <a class="navbar-brand" href="{% url 'sedimentos:index' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+    <i>
+    <a class="navbar-brand" href="{% url 'sedimentos:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+    </i>
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
@@ -88,3 +61,37 @@
 {% endblock %}
 </body>
 </html>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+     <tbody>
+   <tbody>
+        <tr>
+            <td align="center">
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="0">
+
+                      <ul>
+                        <i>
+                            <a href="http://www5.usp.br/" target="_blank">
+                              <img src="/static/sedimentos/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+                            </a>
+                            <br>
+                            <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
+                            <br>
+                            <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
+                           <br>
+                           <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                        </i>
+                      </ul>
+                    <a href="/sedimentos/agradecimentos"  target="_self">Créditos |</a>
+                    <a href="/sedimentos/contato">Fale Conosco |</a>
+                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
+                    <br>
+
+                     © 2016 - 2017  Instituto De Geociências-USP
+                    <br>
+                    Universidade De São Paulo
+                </font>
+            </td>
+        </tr>
+        </tbody>
+    </table>

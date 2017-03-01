@@ -1,18 +1,16 @@
+{% extends 'sedimentos/basevisitante.html' %}
 {% load static %}
 <head>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'sedimentos/../../static/css/contato.css' %}">
 
-
     <title>Forma de Contato</title>
-
 </head>
-
+{% block body %}
 <body>
 <ul>
-<h1 id="contact">Entre em Contato com a Administração</h1>
-
+<h1 id="contact">Entre em Contato Com a Administração</h1>
 <form action="/sedimentos/contato/" method="post">
     <label for="your_name">Nome </label> <br>
     <input id="your_name" type="text" name="your_name" value="{{ contact_name }}"> <br>
@@ -24,13 +22,9 @@
     {% csrf_token %}
 </form>
 </ul>
-
-
-
-
 </body>
-
 <br>
 <ul>
-<a href="/sedimentos">Volte a Página do Sistema</a>
+<a href="/inicial">Volte a Página do Sistema</a>
 </ul>
+{% endblock %}

@@ -26,7 +26,6 @@
                                     <th> tipo</th>
                                     <th> descrição</th>
                                     <th> coletador</th>
-                                    <th>granulometria</th>
                                     <th>data</th>
 
                             </tr>
@@ -39,6 +38,7 @@
                                     <td>
                                         <a href="{% url 'sedimentos:detail' amostra.amostra.id %}">
                                             <img src="{{ amostra.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                            <img src="{{ amostra.amostra.granulometria.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
                                         </a>
                                         <a href="{% url 'sedimentos:detail' amostra.amostra.id %}">{{ amostra.amostra.tipo }}</a>
                                     </td>

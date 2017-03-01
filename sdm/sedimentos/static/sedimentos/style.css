@@ -1,5 +1,8 @@
 body {
-    background: white url("imagens/background.png");
+     background: white url("imagens/fundo.JPG"); repeat;
+     box-sizing: border-box;
+      width: 100%;
+      height: 1080px;
 }
 
 ul.errorlist {

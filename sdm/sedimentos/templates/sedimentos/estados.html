@@ -1,4 +1,4 @@
-{% extends 'sedimentos/base.html' %}
+{{% extends 'sedimentos/base.html' %}
 {% block title %}All estados{% endblock %}
 {% block estados_active %}active{% endblock %}
 
@@ -6,16 +6,12 @@
 <div class="container-fluid estados-container">
 
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by == 'all' %}class="active"{% endif %}><a href="{% url 'sedimentos:estados' 'all' %}">View All</a></li>
-            </ul>
-        </div>
+      <ul><u><h3>Todos os Estados Registrados no Sistema:</h3></u></ul>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-5">
+        <div class="col-sm-8">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -24,17 +20,30 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Amostra</th>
+                                <th>Imagem</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for estado in estado_list %}
                                 <tr>
                                     <td>{{ estado.nome }}</td>
+                                    <td>{{ estado.amostra.codigo }}</td>
                                     <td>
                                         <a href="{% url 'sedimentos:detail' estado.amostra.id %}">
-                                            <img src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                             {% if estado.amostra.imagem %}
+                                            <img class="expa" src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {%else%}
+                                            {%endif%}
+
+                            <a class="btn btn-default" href="{% url 'sedimentos:estado_edit' estado.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                   <form action="{% url 'sedimentos:delete_estado' estado.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
                                         </a>
-                                        <a href="{% url 'sedimentos:detail' estado.amostra.id %}">{{ estado.amostra.codigo }}</a>
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -6,16 +6,12 @@
 <div class="container-fluid ambientes-container">
 
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-pills" style="margin-bottom: 100px;">
-                <li role="presentation" {% if filter_by == 'all' %}class="active"{% endif %}><a href="{% url 'sedimentos:ambientes' 'all' %}">View All</a></li>
-            </ul>
-        </div>
+        <ul><u><h3>Todos os Ambientes Registrados no Sistema:</h3></u></ul>
     </div>
 
     <div class="row">
 
-        <div class="col-sm-5">
+        <div class="col-sm-8">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -24,17 +20,22 @@
                             <tr>
                                 <th>Tipo</th>
                                 <th>Amostra</th>
+                                 <th>Imagem</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for ambiente in ambiente_list %}
                                 <tr>
                                     <td>{{ ambiente.tipo }}</td>
+                                     <td>{{ ambiente.amostra.codigo }}</td>
                                     <td>
                                         <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">
-                                            <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                            {% if ambiente.amostra.imagem %}
+                                            <img class="expa" src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {% else%}
+                                            {%endif%}
+                                            <a class="btn btn-default" href="{% url 'sedimentos:ambiente_edit' ambiente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </a>
-                                        <a href="{% url 'sedimentos:detail' ambiente.amostra.id %}">{{ ambiente.amostra.codigo }}</a>
                                     </td>
                                 </tr>
                             {% endfor %}

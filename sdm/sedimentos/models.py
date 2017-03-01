@@ -16,9 +16,17 @@ class Amostra(models.Model):
     tipo = models.CharField(max_length=25)
     descrição=models.TextField(max_length=300,blank=True,null=True)
     data=models.CharField(max_length=15,blank=True,null=True)
-    granulometria=models.CharField(max_length=15)
+    granulometria=models.FileField(null=True,blank=True)
     coletador=models.CharField(max_length=50,blank=True,null=True)
     imagem = models.FileField(null=True,blank=True)
+    imagem1 = models.FileField(null=True, blank=True)
+    imagem2 = models.FileField(null=True, blank=True)
+    imagem3 = models.FileField(null=True, blank=True)
+    imagem4 = models.FileField(null=True, blank=True)
+    imagem5 = models.FileField(null=True, blank=True)
+    imagem6 = models.FileField(null=True, blank=True)
+    imagem7 = models.FileField(null=True, blank=True)
+    imagem8 = models.FileField(null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('sedimentos:detail',kwargs={'pk': self.pk})

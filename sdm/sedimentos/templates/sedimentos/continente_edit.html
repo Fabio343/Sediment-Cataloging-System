@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,31 +12,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<ul>
-   <tr>
+  <tr>
        <td width="180" rowspan="3" align="center">
             <a href="http://www5.usp.br/" target="_blank">
-            <img src="/static/sedimentos/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="/static/sedimentos/imagens/usp.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
 
             </a>
        </td>
        <td width="180" rowspan="3" align="center">
             <a href="http://www.igc.usp.br/" target="_blank">
-            <img src="/static/sedimentos/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="/static/sedimentos/imagens/logoigc.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
             </a>
        </td>
        <td width="180" rowspan="3" align="center">
             <a href="https://www.ime.usp.br/" target="_blank">
-             <img src="/static/sedimentos/imagens/logoime.png" width="250" height="65" alt="" border="0" style="position: relative; top: -3px;">
+            <img src="/static/sedimentos/imagens/logoime.png" width="150" height="70" alt="" border="0" style="position: relative; top: -3px;">
             </a>
        </td>
    </tr>
-</ul>
 <nav class="navbar navbar-inverse"...>
-
-
       <div class="container-fluid">
-
         <div class="navbar-header">
             <button
                 type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
@@ -43,91 +39,37 @@
                 <span class="incon-bar"></span>
                 <span class="incon-bar"></span>
             </button>
+           <nav class="navbar navbar-inverse"...>
 
-
+        </div>
+      </div>
+</nav>
+<nav class="navbar navbar-inverse">
     <i>
     <a class="navbar-brand" href="{% url 'sedimentos:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
     </i>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
     </div>
 </nav>
-<ul class="nav navbar-nav navbar-left">
-
-                <ul><h4> Adicionar: </h4></ul>
-
-              <li class="active">
-                    <a href="{% url 'sedimentos:create_amostra'%}">
-                         <button type="submit">&nbsp; Amostra </button>
-                    </a>
-                </li>
-                 <li class="active">
-                    <a href="{% url 'sedimentos:create_cidade'%}">
-                         <button type="submit">&nbsp;  Cidade </button>
-                    </a>
-                </li>
-                 <li class="active">
-                    <a href="{% url 'sedimentos:create_estado'%}">
-                         <button type="submit">&nbsp;Estado </button>
-                    </a>
-                </li>
-                 <li class="active">
-                    <a href="{% url 'sedimentos:create_país'%}">
-                         <button type="submit">&nbsp;País </button>
-                    </a>
-                </li>
-                 <li class="active">
-                    <a href="{% url 'sedimentos:create_continente'%}">
-                         <button type="submit">&nbsp;Continente </button>
-                    </a>
-                </li>
-                 <li class="active">
-                    <a href="{% url 'sedimentos:create_ambiente'%}">
-                         <button type="submit">&nbsp;Ambiente </button>
-                    </a>
-                </li>
-                 <li class="active">
-                    <a href="{% url 'sedimentos:create_clima'%}">
-                         <button type="submit">&nbsp;Clima </button>
-                    </a>
-                </li>
-          <br>
-         <ul><h4>Registrar Usuario </h4></ul>
-          <ul class="nav navbar-nav navbar-center">
-                 <li class="">
-                    <a href="{%url 'sedimentos:register' %}">
-                         <button type="submit">&nbsp;Registrar </button>
-                    </a>
-                 </li>
-          </ul>
-         <br>
-         <br>
-         <br>
-         <ul><h4>Alterar Suas Informações</h4></ul>
-         <ul class="nav navbar-nav navbar-center">
-                    <li><a href="{% url 'sedimentos:view_profile' %}">
-                         <button type="submit">Perfil</button></a></li>
-                    <li><a href="{% url 'sedimentos:edit_profile' %}">
-                         <button type="submit">Editar Pefil</button></a></li>
-                    <li><a href="{% url 'sedimentos:change_password' %}">
-                         <button type="submit">Alterar Senha</button></a></li>
-         </ul>
-
-
-
-
-
-
-</ul>
-<br>
-<br>
-<br>
-{% block body %}
-{% endblock %}
+  <ul>
+      <h2>Edição de Continente</h2>
+     <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Guardar</button>
+    </form>
+  </ul>
 </body>
-
 </html>
  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-      <tbody>
+     <tbody>
+   <tbody>
         <tr>
             <td align="center">
                 <font face="Arial,Hevetica,sans-serif" size="2">
