@@ -1,0 +1,10 @@
+{% extends 'sedimentos/base.html' %}
+{% block body %}
+<ul><h3>Contato com a administração</h3></ul>
+<ul><form role="form" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Concluir</button>
+</form>
+</ul>
+{% endblock %}

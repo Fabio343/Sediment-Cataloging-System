@@ -87,3 +87,11 @@ class climaForm(forms.ModelForm):
     class Meta:
         model =Clima
         fields = ['amostra', 'continente', 'país', 'estado', 'cidade', 'tipo']
+
+
+
+
+class ContactForm(forms.Form):
+    Nome=forms.CharField(required=True)
+    Email=forms.EmailField(required=True)
+    Mensagem=forms.CharField(required=True,widget=forms.Textarea)
