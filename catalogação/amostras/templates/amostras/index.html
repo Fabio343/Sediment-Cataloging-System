@@ -1,9 +1,8 @@
-{% extends 'amostras/base.html' %}
+{% extends 'amostras/base2.html' %}
 {% block amostras_active %}active{% endblock %}
 
 {% block body %}
-
-<div class="inicial-container container-fluid">
+     <ul><h3>Amostras</h3></ul>
    {% if amostras %}
          <div class="row">
           <div class="col-sm-12">
@@ -29,18 +28,11 @@
                             <h3>{{ amostra.codigo }}</h3>
                             <h4>{{ amostra.tipo }}</h4>
 
-                            <!-- View Details -->
+
                             <a href="{% url 'amostras:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+                           {% if user.is_authenticated %}
+                             <a class="btn btn-default" href="{% url 'amostras:amostra_edit' amostra.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
-                               <form action="{% url 'amostras:updateamostra' amostra.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
-
-                            <!-- Delete amostra -->
                             <form action="{% url 'amostras:delete_amostra' amostra.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}
                                 <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
@@ -48,7 +40,8 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </form>
-
+                            {% else %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -58,7 +51,103 @@
     </div>
 
 
- {% if continentes %}
+         <div class="row">
+               <div class="col-md-6 col-md-offset-3">
+               <form class="form-horizontal" role="form">
+              <fieldset>
+
+              <!-- Form Name -->
+              <legend>Pesquisa Avançada</legend>
+
+          <!-- Text input-->
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textimput">Amostra</label>
+            <div class="col-sm-3">
+              <input type="text" placeholder="Ex:BR000SP" class="form-control">
+            </div>
+        </div>
+              <div class="form-group">
+               <label class="col-sm-2 control-label" for="ddlContinente">Continente</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <select class="form-control col-sm-2" name="Continente" id="ddlContinente">
+                                <option>Continentes</option>
+                                <option value="01">Americano </option>
+                                <option value="02">Asiatico</option>
+                                <option value="03">Africano</option>
+                                <option value="04">Europeu</option>
+                                <option value="05">Oceania</option>
+                                <option value="06">Antartida</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </DIV>
+            <div class="form-group">
+               <label class="col-sm-2 control-label">País</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Brasil" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+            <div class="form-group">
+               <label class="col-sm-2 control-label">Estado</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-4">
+              <input type="text" placeholder="Ex:São Paulo" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+            <div class="form-group">
+               <label class="col-sm-2 control-label" >Cidade</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Santos" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+              <div class="form-group">
+               <label class="col-sm-2 control-label">Clima</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Tropical de Altitude" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+              <div class="form-group">
+               <label class="col-sm-2 control-label">Ambiente</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Lacrustes" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+
+               <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-9">
+
+
+                <button  class="btn btn-default" name="q" value="{{ request.GET.q }}">Pesquisar</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      </div><!-- /.col-lg-12 -->
+       </div><!-- /.row -->
+
+     {% if continentes %}
         <div class="row">
             <div class="col-sm-10">
               <ul> <h3>Continente</h3></ul>
@@ -68,8 +157,10 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table">
+
                             <thead>
                                 <tr>
+
                                     <th>Nome</th>
                                     <th>Sigla</th>
                                     <th>Imagem e Código da Amostra</th>
@@ -99,7 +190,7 @@
                 </div>
             </div>
         </div>
-      {% endif %}
+     {% endif %}
 
 
 
@@ -334,7 +425,7 @@
         </div>
     {% endif %}
 
-    {% if amostras.has_other_pages %}
+   <!-- {% if amostras.has_other_pages %}
   <ul class="pagination">
     {% if amostras.has_previous %}
       <li><a href="?page={{ amostras.previous_page_number }}">&laquo;</a></li>
@@ -355,7 +446,5 @@
     {% endif %}
   </ul>
 {% endif %}
-</div>
-
-
+-->
 {% endblock %}

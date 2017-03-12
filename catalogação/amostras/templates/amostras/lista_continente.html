@@ -1,0 +1,40 @@
+{% extends 'amostras/base2.html' %}
+{%block body%}
+ <div class="row">
+ <ul>
+  <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Continente</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                     <tbody>
+
+                       {% for amostra in amostras %}
+     <tr>
+                       {% for continente in amostra.Continentes.all %}
+                       {% if continente.nome %}
+                       <td>{{continente.nome}}</td>
+                       {%else%}
+                       {%endif%}
+                       {% if amostra.codigo %}
+                       <td>{{amostra.codigo}}</td>
+                       {%else%}
+                       {%endif%}
+                       {% endfor %}
+                       {%endfor%}
+     </tr>
+                     </tbody>
+                    </table>
+                </div>
+            </div>
+      </div>
+   </ul>
+</div>
+
+
+{% endblock %}

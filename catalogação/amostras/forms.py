@@ -2,7 +2,7 @@ from .models import Amostra,Continente,País,Estado,Cidade,Ambiente,Clima
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
-from django.forms import Textarea
+
 
 
 class EditProfileForm(UserChangeForm):
@@ -50,40 +50,47 @@ class EditamostraForm(UserChangeForm):
 class continenteForm(forms.ModelForm):
     class Meta:
         model =Continente
-        fields = ['amostra', 'nome', 'sigla']
+        fields = [ 'nome']
 
 
 
 class paísForm(forms.ModelForm):
     class Meta:
         model =País
-        fields = ['amostra', 'continente', 'nome', 'região']
+        fields = [  'nome', 'região']
 
 
 
 class estadoForm(forms.ModelForm):
     class Meta:
         model =Estado
-        fields = ['amostra', 'continente', 'país', 'nome']
+        fields = [  'nome']
 
 
 
 class cidadeForm(forms.ModelForm):
     class Meta:
         model =Cidade
-        fields = ['amostra', 'continente', 'país', 'estado', 'nome', 'geologia']
+        fields = [ 'nome', 'geologia']
 
 
 
 class ambienteForm(forms.ModelForm):
     class Meta:
         model =Ambiente
-        fields = ['amostra', 'continente', 'país', 'estado', 'cidade', 'tipo']
-
+        fields = [ 'tipo']
 
 
 
 class climaForm(forms.ModelForm):
     class Meta:
         model =Clima
-        fields = ['amostra', 'continente', 'país', 'estado', 'cidade', 'tipo']
+        fields = [ 'tipo']
+
+
+
+
+class ContactForm(forms.Form):
+    Nome=forms.CharField(required=True)
+    Email=forms.EmailField(required=True)
+    Mensagem=forms.CharField(required=True,widget=forms.Textarea)

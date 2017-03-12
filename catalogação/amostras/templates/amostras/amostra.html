@@ -1,4 +1,4 @@
-{% extends 'amostras/base.html' %}
+{% extends 'amostras/base2.html' %}
 {% block amostras_active %}active{% endblock %}
 
 {% block body %}
@@ -24,7 +24,7 @@
                             <h4>{{ amostra.tipo }}</h4>
 
                             <!-- View Details -->
-                            <a href="{% url 'amostras:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+                            <a href="{% url 'amostras:detail' %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
 
                             <!-- Delete amostra -->
                             <form action="{% url 'amostras:delete_amostra' amostra.id %}" method="post" style="display: inline;">

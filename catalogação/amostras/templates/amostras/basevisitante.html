@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block tutle %}SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS{% endblock %}</title>
-    {% load staticfiles %}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{% static 'amostras/style.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-<ul>
-   <tr>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         {% load staticfiles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'amostras/style.css' %}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=0.65">
+        {% block head %}
+        <title>Sistema de Catalogação</title>
+        {% endblock %}
+    </head>
+    <body>
+        <br>
+        <div class="container">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                                          <tr>
        <td width="180" rowspan="3" align="center">
             <a href="http://www5.usp.br/" target="_blank">
             <img src="/static/amostras/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: -3px;">
@@ -30,43 +43,54 @@
             </a>
        </td>
    </tr>
-</ul>
-<nav class="navbar navbar-inverse"...>
-      <div class="container-fluid">
-        <div class="navbar-header">
-            <button
-                type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="incon-bar"></span>
-                <span class="incon-bar"></span>
-                <span class="incon-bar"></span>
-            </button>
-           <nav class="navbar navbar-inverse"...>
-
-        </div>
-      </div>
-</nav>
-<nav class="navbar navbar-inverse">
-    <i>
+                  <br>
+           <i>
     <a class="navbar-brand" href="{% url 'amostras:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+        <br>
     </i>
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-    </div>
-</nav>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                   <ul class="nav navbar-nav">
+                  <li class="{% block inicial_active %}{% endblock %}"><a href="{% url 'amostras:inicial' %}"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Inicio</a></li>
+                   <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'amostras:index' %}"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Amostras</a></li>
+                   <li> <a href="/lista_continente"><span aria-hidden="true"></span>&nbsp; Continentes</a></li>
+                   <li class="{% block paíss_active %}{% endblock %}"> <a href="/lista_país"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Países</a></li>
+                   <li class="{% block estados_active %}{% endblock %}"><a href="/lista_estado"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Estados</a></li>
+                   <li class="{% block cidades_active %}{% endblock %}"> <a href="/lista_cidade"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Cidades</a></li>
+                   <li class="{% block climas_active %}{% endblock %}"><a href="/lista_clima"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Climas</a></li>
+                   <li class="{% block ambientes_active %}{% endblock %}"><a href="/lista_ambiente"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Ambientes</a></li>
+                  </ul>
+                   <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                 <li class="">
+                    <a href="{% url 'amostras:adicionar'%}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Informações da Administração
+                    </a>
+                </li>
+                {% else %}
+                <ul class="nav navbar-nav">
+                <li class="{% block login_active %}{% endblock %}"><a href="{% url 'amostras:login_user' %}">Login</a></li>
+                </ul>
+                 {% endif %}
 
-{% block body %}
-{% endblock %}
-</body>
+            </ul>
+              </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </div>
+        {% block body %}
+            <h1>Sitema de Catalogação</h1>
+        {% endblock %}
+    </body>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>
- <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
      <tbody>
-   <tbody>
         <tr>
             <td align="center">
                 <font face="Arial,Hevetica,sans-serif" size="2">
@@ -74,6 +98,7 @@
 
                       <ul>
                         <i>
+
                             <a href="http://www5.usp.br/" target="_blank">
                               <img src="/static/amostras/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
                             </a>
@@ -86,10 +111,9 @@
                         </i>
                       </ul>
                     <a href="/amostras/agradecimentos"  target="_self">Créditos |</a>
-                    <a href="/amostras/contato">Fale Conosco |</a>
+                    <a href="/amostras/contact">Fale Conosco |</a>
                      <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
                     <br>
-
                      © 2016 - 2017  Instituto De Geociências-USP
                     <br>
                     Universidade De São Paulo
@@ -97,4 +121,5 @@
             </td>
         </tr>
         </tbody>
+
     </table>

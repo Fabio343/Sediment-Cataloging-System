@@ -1,0 +1,13 @@
+{% extends 'amostras/base2.html' %}
+
+{% block content %}
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for amostra in filter.qs %}
+    <li>{{ amostra.codigo }} - {{ amostra.Continente }}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

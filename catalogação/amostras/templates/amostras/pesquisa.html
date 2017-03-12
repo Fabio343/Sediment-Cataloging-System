@@ -1,4 +1,4 @@
-{% extends 'amostras/base.html' %}
+{% extends 'amostras/base2.html' %}
 {% block body %}
    {% if amostras %}
          <div class="row">
@@ -31,13 +31,7 @@
                             <!-- View Details -->
                             <a href="{% url 'amostras:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
 
-                                  <form action="{% url 'amostras:updateamostra' amostra.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
+                                <a class="btn btn-default" href="{% url 'amostras:amostra_edit' amostra.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
                             <!-- Delete amostra -->
                             <form action="{% url 'amostras:delete_amostra' amostra.id %}" method="post" style="display: inline;">
@@ -76,12 +70,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for continente in continentes %}
-                                    <tr>
-                                        <td>{{ continente.nome }}</td>
-                                        <td>{{ continente.sigla}}</td>
+                            {% for amostra in amostras %}
+                            {% for continente in amostra.Continentes.all %}
+                            {{continente.nome}}
+                            {% endfor %}
+                            {%endfor%}
 
-                                        <td>
                                             <a href="{% url 'amostras:detail' continente.amostra.id %}">
                                                  {% if continente.amostra.imagem %}
                                                 <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
@@ -89,13 +83,7 @@
                                                 {%endif%}
                                             </a>
                                             <a href="{% url 'amostras:detail' continente.amostra.id %}">{{ continente.amostra.codigo }}</a>
-                                              <form action="{% url 'amostras:updatecontinente' continente.id %}" method="post" style="display: inline;">
-                                               {% csrf_token %}
-                                              <input type="hidden" name="continente_id" value="{{ continente.id }}" />
-                                              <button type="submit" class="btn btn-default btn-sm">
-                                             <span class="glyphicon glyphicon-pencil"></span></a>
-                                            </button>
-                                            </form>
+                                             <a class="btn btn-default" href="{% url 'amostras:continente_edit' continente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </td>
 
                                     </tr>
@@ -134,11 +122,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for país in paíss %}
-                                    <tr>
-                                        <td>{{ país.nome }}</td>
-                                        <td>{{ país.região}}</td>
+                                   {% for amostra in amostras %}
+                                   {{amostra.codigo}}
+                                  {% for país in amostra.Países.all %}
+                                   {{país.nome}}
+                                   {% endfor %}
 
+
+            {%endfor%}
                                         <td>
                                             <a href="{% url 'amostras:detail' país.amostra.id %}">
                                                  {% if país.amostra.imagem %}
@@ -147,13 +138,7 @@
                                                 {%endif%}
                                             </a>
                                             <a href="{% url 'amostras:detail' país.amostra.id %}">{{ país.amostra.codigo }}</a>
-                                            <form action="{% url 'amostras:updatepaís' país.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="país_id" value="{{ país.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
+                                              <a class="btn btn-default" href="{% url 'amostras:país_edit' país.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </td>
 
                                     </tr>
@@ -189,11 +174,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for estado in estados %}
-                                    <tr>
-                                        <td>{{ estado.nome }}</td>
-                                        <td>{{ estado.país}}</td>
+                                    {% for amostra in amostras %}
+                 {{amostra.codigo}}
 
+                   {% for estado in amostra.Estados.all %}
+                  {{estado.nome}}
+                 {% endfor %}
+
+
+            {%endfor%}
                                         <td>
                                             <a href="{% url 'amostras:detail' estado.amostra.id %}">
                                                  {% if estado.amostra.imagem %}
@@ -202,13 +191,7 @@
                                                 {%endif%}
                                             </a>
                                             <a href="{% url 'amostras:detail' estado.amostra.id %}">{{ estado.amostra.codigo }}</a>
-                                            <form action="{% url 'amostras:updateestado' estado.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="estado_id" value="{{ estado.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
+                                    <a class="btn btn-default" href="{% url 'amostras:estado_edit' estado.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </td>
 
                                     </tr>
@@ -245,10 +228,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for cidade in cidades %}
-                                    <tr>
-                                        <td>{{ cidade.nome }}</td>
-                                        <td>{{ cidade.estado}}</td>
+                                    {% for amostra in amostras %}
+                 {{amostra.codigo}}
+
+                   {% for cidade in amostra.Cidades.all %}
+                  {{cidade.nome}}
+                 {% endfor %}
+
+
+            {%endfor%}
 
                                         <td>
                                             <a href="{% url 'amostras:detail' cidade.amostra.id %}">
@@ -258,13 +246,7 @@
                                                 {%endif%}
                                             </a>
                                             <a href="{% url 'amostras:detail' cidade.amostra.id %}">{{ cidade.amostra.codigo }}</a>
-                                            <form action="{% url 'amostras:updatecidade' cidade.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="cidade_id" value="{{ cidade.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
+                                  <a class="btn btn-default" href="{% url 'amostras:cidade_edit' cidade.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -299,11 +281,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for clima in climas %}
-                                    <tr>
-                                        <td>{{ clima.tipo }}</td>
+                                    {% for amostra in amostras %}
+                 {{amostra.codigo}}
 
+                  {% for clima in amostra.Climas.all %}
+                  {{clima.tipo}}
+                 {% endfor %}
 
+            {%endfor%}
                                         <td>
                                             <a href="{% url 'amostras:detail' clima.amostra.id %}">
                                                  {% if clima.amostra.imagem %}
@@ -312,13 +297,7 @@
                                                 {%endif%}
                                             </a>
                                             <a href="{% url 'amostras:detail' clima.amostra.id %}">{{ clima.amostra.codigo }}</a>
-                                            <form action="{% url 'amostras:updateclima' clima.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="clima_id" value="{{ clima.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
+                                    <a class="btn btn-default" href="{% url 'amostras:clima_edit' clima.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </td>
 
                                     </tr>
@@ -351,11 +330,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for ambiente in ambientes %}
-                                    <tr>
-                                        <td>{{ ambiente.tipo }}</td>
+                                     {% for amostra in amostras %}
+                 {{amostra.codigo}}
+
+                  {% for ambiente in amostra.Ambientes.all %}
+                  {{ambiente.tipo}}
+                 {% endfor %}
 
 
+            {%endfor%}
                                         <td>
                                             <a href="{% url 'amostras:detail' ambiente.amostra.id %}">
                                                  {% if ambiente.amostra.imagem %}
@@ -364,13 +347,7 @@
                                                 {%endif%}
                                             </a>
                                             <a href="{% url 'amostras:detail' ambiente.amostra.id %}">{{ ambiente.amostra.codigo }}</a>
-                                            <form action="{% url 'amostras:updateambiente' ambiente.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="ambiente_id" value="{{ ambiente.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                   <span class="glyphicon glyphicon-pencil"></span></a>
-                                </button>
-                            </form>
+                                 <a class="btn btn-default" href="{% url 'amostras:ambiente_edit' ambiente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </td>
 
 
