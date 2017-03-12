@@ -1,0 +1,42 @@
+{% extends 'sedimento/base2.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+{%block body%}
+ <div class="row">
+  <ul>
+  <div class="col-sm-5">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                 <th>Clima</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                     <tbody>
+                {% for amostra in amostras %}
+     <tr>
+                   {% for clima in amostra.Climas.all %}
+                   {% if clima.tipo %}
+                   <td>{{clima.tipo}}</td>
+                   {%else%}
+                   {%endif%}
+                   {% endfor %}
+                   {% if amostra.codigo %}
+                   <td>{{amostra.codigo}}</td>
+                   {%else%}
+                   {%endif%}
+     </tr>
+                {%endfor%}
+                   </tbody>
+                   </table>
+                </div>
+            </div>
+      </div>
+  </ul>
+</div>
+
+{% endblock %}

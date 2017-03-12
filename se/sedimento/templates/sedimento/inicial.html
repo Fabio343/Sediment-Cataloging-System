@@ -1,0 +1,338 @@
+{% extends 'sedimento/base2.html' %}
+{% block body %}
+<ul>
+        <div class="col-sm-14 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Em Que Consiste o Sistema?</h4>
+                    <p> É um acervo de exemplares de amostras de sedimentos de diversas regiões do mundo que podem ser usados para estudos,
+                        de forma geral sendo principalmente focado em atividades didáticas da área de Geociências. </p>
+                    <h4>Quem Pode Acessar?</h4>
+                    <p>O acesso é livre a todos, sendo que as funções de alterações de qualquer informação são exclusivas aos administradores do sistema.</p>
+                    <h4>Como Realizar Pesquisas?</h4>
+                    <ul>
+                        <li>Pode realizar a pesquisa por código da amostra, país, cidade, estado, ambiente, clima, entre outros.</li>
+                        <li>Ou pode clicar na listagem geral de exemplares</li>
+                    </ul>
+                    <h4> Quais são as informações apresentadas na lista geral de Exemplares?</h4>
+                    <p>Para cada amostra, é fornecida uma descrição geral com informações  como origem, tipo e granulometria</p>
+                </div>
+                 <a href="sedimento/download/projeto.pdf" target=_blank" download> Clique Aqui Para Matérial De Apoio </a>
+            </div>
+
+        </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="js/html5.js"></script>
+    <link rel="stylesheet" href="css/ie.css">
+
+    <meta charset="utf-8">
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your keywords">
+    <meta name="author" content="Your name">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="/static/js/jquery-1.7.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/static/js/superfish.js"></script>
+    <script src="/static/js/jquery.easing.1.3.js"></script>
+    <script src="/static/js/tms-0.4.1.js"></script>
+    <script src="/static/js/slider.js"></script>
+    <script type="text/javascript">
+                $(function(){
+                        function equalHeight(group) {
+                                var tallest = 0;
+                                group.each(function() {
+                                        var thisHeight = $(this).height();
+                                        if(thisHeight > tallest) {
+                                                tallest = thisHeight;
+                                        }
+                                });
+                                group.height(tallest);
+                        }
+                        equalHeight($(".box-1 .inner"));
+
+                        $("#tags2").autocomplete({
+                                minLength:2,
+                                source:[{'label':"Americano"},{"label":'Asiatico'},{"label":"Africano"},
+                                {'label':"Europeu"},{"label":'Oceania'},{"label":"Antartida"}]
+                        });
+
+                        $("#tags4").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags4").val();
+                                        $.ajax({
+                                                url:'/autoamostras/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'GET',
+                                                data:{ 'start': search,},
+                                                success: function(data){
+                                                        var suggestions=[];
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto.codigo);
+                                                        });
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+                        $("#tags5").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags5").val();
+                                        $.ajax({
+                                                url:'/autopaís/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'GET',
+                                                data:{ 'start': search,},
+                                                success: function(data){
+                                                        var suggestions=[];
+
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto);
+                                                        });
+
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+
+                        $("#tags6").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags6").val();
+                                        $.ajax({
+                                                url:'/autoestado/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'POST',
+                                                data:{
+                                                        'start': search,
+                                                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                                                        },
+                                                success: function(data){
+                                                        var suggestions=[];
+
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto);
+                                                        });
+
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+
+
+                         $("#tags7").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags6").val();
+                                        $.ajax({
+                                                url:'/autocidade/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'POST',
+                                                data:{
+                                                        'start': search,
+                                                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                                                        },
+                                                success: function(data){
+                                                        var suggestions=[];
+
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto);
+                                                        });
+
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+
+                         $("#tags8").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags6").val();
+                                        $.ajax({
+                                                url:'/autoambiente/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'POST',
+                                                data:{
+                                                        'start': search,
+                                                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                                                        },
+                                                success: function(data){
+                                                        var suggestions=[];
+
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto);
+                                                        });
+
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+
+                });
+        </script>
+<![endif]-->
+
+
+
+</head>
+<body id="page1">
+<!-- Header -->
+<header>
+    <h3>Pesquisa Avançada</h3>
+    <div class="inner">
+        <div class="fright">
+            <div class="header-meta">
+                    <div class="ui-widget">
+                                  <label for="tags2">Continente </label>
+                                  <ul><input id="tags2"></ul>
+                                </div>
+                                <div class="ui-widget">
+                                  <label for="tags4">Amostra </label>
+                                  <ul> <input id="tags4"></ul>
+                                </div>
+                                <div class="ui-widget">
+                                  <label for="tags5">País </label>
+                                  <ul><input id="tags5"></ul>
+                                </div>
+                                <div class="ui-widget">
+                                  <label for="tags6">Estado </label>
+                                  <ul><input id="tags6"></ul>
+                                </div>
+                                 <div class="ui-widget">
+                                  <label for="tags7">Cidade </label>
+                                 <ul> <input id="tags7"></ul>
+                                </div>
+                                  <div class="ui-widget">
+                                  <label for="tags8">Ambiente </label>
+                                  <ul><input id="tags8"></ul>
+                                </div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form class="form-horizontal" role="form">
+        <fieldset>
+
+          <!-- Form Name -->
+          <h4>Pesquisa Avançada</h4>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Amostra</label>
+            <div class="col-sm-3">
+              <input type="text" placeholder="Ex:BR000SP" class="form-control">
+            </div>
+        </div>
+              <div class="form-group">
+               <label class="col-sm-2 control-label" for="ddlContinente">Continente</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <select class="form-control col-sm-2" name="Continente" id="ddlContinente">
+                                <option>Continentes</option>
+                                <option value="01">Americano </option>
+                                <option value="02">Asiatico</option>
+                                <option value="03">Africano</option>
+                                <option value="04">Europeu</option>
+                                <option value="05">Oceania</option>
+                                <option value="06">Antartida</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </DIV>
+
+            <div class="form-group">
+               <label class="col-sm-2 control-label">País</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Brasil" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+            <div class="form-group">
+               <label class="col-sm-2 control-label">Estado</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-4">
+              <input type="text" placeholder="Ex:São Paulo" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+            <div class="form-group">
+               <label class="col-sm-2 control-label" >Cidade</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Santos" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+              <div class="form-group">
+               <label class="col-sm-2 control-label">Clima</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Tropical de Altitude" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+              <div class="form-group">
+               <label class="col-sm-2 control-label">Ambiente</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                       <div class="col-sm-4">
+              <input type="text" placeholder="Ex:Lacrustes" class="form-control">
+            </div>
+                    </div>
+                </div>
+            </DIV>
+               <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-9">
+                <button  class="btn btn-default" name="q" value="{{ request.GET.q }}">Pesquisar</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
+            </div>
+        </div>
+
+    </div>
+</header>
+</body>
+</ul>
+{% endblock %}

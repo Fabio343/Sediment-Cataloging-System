@@ -1,0 +1,166 @@
+
+{% extends 'sedimento/basevisitante.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'sedimento/../../static/css/agradecimentos.css' %}">
+
+    <title>Créditos</title>
+</head>
+{% block body %}
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Desenvolvimento:</h4>
+                       <li>Aluno Fabio Carvalho de Souza IME-USP</li>
+                    <h4>Professor(a) Orientador(a)do Projeto:</h4>
+                       <li>Christine Laure Marie Bourotte;
+                           Professora do Departamento de Geologia Sedimentar e Ambiental IGC-USP</li>
+                    <h4>Professor(a) Orientador(a)do Projeto:</h4>
+                       <li>Kelly Rosa Braghetto;
+                           Professora Doutora Do Departamento de Ciência Da Computação IME-USP</li>
+                    <h4>Progama de Bolsas Unificadas USP: </h4>
+
+                        <li>Projeto: Desenvolvimento De Um Banco De Dados Sistematizado Para A Coleção De Areias Utilizada Para Fins Didáticos E De Difusão Em Geociências</li>
+
+                </div>
+            </div>
+            <ul>
+               <a href="/inicial">Volte a Página do Sistema</a>
+            </ul>
+        </div>
+
+{% endblock %}
+
+
+<html>
+    <head>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+         <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+         <script src="https://ajax.googleapis.com/ajax/libs/1.5.7/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <br>
+        <div class="container">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                  <tr>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www5.usp.br/" target="_blank">
+            <img src="/static/sedimentos/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: -3px;">
+
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="http://www.igc.usp.br/" target="_blank">
+            <img src="/static/sedimentos/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+       <td width="180" rowspan="3" align="center">
+            <a href="https://www.ime.usp.br/" target="_blank">
+             <img src="/static/sedimentos/imagens/logoime.png" width="250" height="65" alt="" border="0" style="position: relative; top: -3px;">
+            </a>
+       </td>
+   </tr>
+           <i>
+    <a class="navbar-brand" href="{% url 'sedimentos:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+        <br>
+    </i>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                {% if user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <ul>
+</ul>
+
+
+      <div role="banner" id="top">
+      </div>
+
+        <div class="collapse navbar-collapse" id="topNavBar">
+              <ul class="nav navbar-nav">
+                   <li><a href="{% url 'sedimentos:inicial' %}"><span  aria-hidden="true"></span>&nbsp; Inicio</a></li>
+                   <li><a href="{% url 'sedimentos:index' %}"><span  aria-hidden="true"></span>&nbsp; Amostras</a></li>
+                   <li><a href="/lista_continente"><span aria-hidden="true"></span>&nbsp; Continentes</a></li>
+                   <li><a href="/lista_país"><span aria-hidden="true"></span>&nbsp; Países</a></li>
+                   <li><a href="/lista_estado"><span aria-hidden="true"></span>&nbsp; Estados</a></li>
+                   <li> <a href="/lista_cidade"><span  aria-hidden="true"></span>&nbsp; Cidades</a></li>
+                   <li><a href="/lista_clima"><span aria-hidden="true"></span>&nbsp; Climas</a></li>
+                   <li><a href="/lista_ambiente"><span aria-hidden="true"></span>&nbsp; Ambientes</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                 <li class="">
+                    <a href="{% url 'sedimentos:adicionar'%}">
+                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Informações da Administração
+                    </a>
+                </li>
+                {% else %}
+                <ul class="nav navbar-nav">
+                <li class="{% block login_active %}{% endblock %}"><a href="{% url 'sedimentos:login_user' %}">Login</a></li>
+                </ul>
+                 {% endif %}
+
+            </ul>
+        </div>
+
+                </ul>
+                {% endif %}
+              </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </div>
+        {% block body %}
+            <h1>Base</h1>
+        {% endblock %}
+    </body>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+     <tbody>
+        <tr>
+            <td align="center">
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="0">
+
+                      <ul>
+                        <i>
+
+                            <a href="http://www5.usp.br/" target="_blank">
+                              <img src="/static/sedimentos/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+                            </a>
+                            <br>
+                            <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
+                            <br>
+                            <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
+                           <br>
+                           <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                        </i>
+                      </ul>
+                    <a href="/sedimentos/agradecimentos"  target="_self">Créditos |</a>
+                    <a href="/sedimentos/contact">Fale Conosco |</a>
+                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
+                    <br>
+
+                     © 2016 - 2017  Instituto De Geociências-USP
+                    <br>
+                    Universidade De São Paulo
+                </font>
+            </td>
+        </tr>
+        </tbody>
+    </table>
