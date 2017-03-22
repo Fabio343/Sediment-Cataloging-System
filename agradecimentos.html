@@ -1,0 +1,31 @@
+{% extends 'amostras/basevisitante.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'amostras/../../static/css/agradecimentos.css' %}">
+
+    <title>Créditos</title>
+</head>
+{% block body %}
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Desenvolvimento:</h4>
+                       <li>Fabio Carvalho de Souza; Aluno de Graduação, Matemática Aplicada e Computacional IME-USP</li>
+                    <h4>Professor(a) Orientador(a)do Projeto:</h4>
+                       <li>Christine Laure Marie Bourotte; Professora do Departamento de Geologia Sedimentar e Ambiental IGC-USP</li>
+                    <h4>Professor(a) Orientador(a)do Projeto:</h4>
+                       <li>Kelly Rosa Braghetto; Professora Doutora Do Departamento de Ciência Da Computação IME-USP</li>
+                    <h4>Progama de Bolsas Unificadas USP: </h4>
+
+                        <li>Projeto: Desenvolvimento De Um Banco De Dados Sistematizado Para A Coleção De Areias Utilizada Para Fins Didáticos E De Difusão Em Geociências</li>
+
+                </div>
+            </div>
+            <ul>
+               <a href="/inicial">Volte a Página do Sistema</a>
+            </ul>
+        </div>
+
+{% endblock %}

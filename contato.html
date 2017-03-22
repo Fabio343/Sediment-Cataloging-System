@@ -1,0 +1,30 @@
+{% extends 'amostras/basevisitante.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'amostras/../../static/css/contato.css' %}">
+
+    <title>Forma de Contato</title>
+</head>
+{% block body %}
+<body>
+<ul>
+<h2 id="contact">Entre em Contato Com a Administração</h2>
+<form action="/amostras/contato/" method="post">
+    <label for="your_name">Nome </label> <br>
+    <input id="your_name" type="text" name="your_name" value="{{ contact_name }}"> <br>
+    <label for="your_email"> Email </label> <br>
+    <input id="your_email" type="email" name="your_email" value="{{ contact_email }}"> <br>
+    <label for="your_message">Mensagem</label><br>
+    <input id="your_message" type="text" name="your_message" value="{{ form_content|safe|striptags }}"><br><br>
+    <button type="submit">Concluir</button>
+    {% csrf_token %}
+</form>
+</ul>
+</body>
+<br>
+<ul>
+<a href="/inicial">Volte a Página do Sistema</a>
+</ul>
+{% endblock %}
