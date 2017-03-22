@@ -1,0 +1,223 @@
+{% extends 'amostras/base.html' %}
+{% load widget_tweaks %}
+{%block body%}
+<!--
+  <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filter</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ form.username.label_tag }}
+          {% render_field form.username class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ form.first_name.label_tag }}
+          {% render_field form.first_name class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ form.last_name.label_tag }}
+          {% render_field form.last_name class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ form.year_joined.label_tag }}
+          {% render_field form.year_joined class="form-control" %}
+        </div>
+        <div class="form-group col-sm-8 col-md-6">
+          {{ form.groups.label_tag }}
+          <div>
+            {% for choice in form.groups %}
+              <label class="checkbox-inline">
+                {{ choice.tag }} {{ choice.choice_label }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Date joined</th>
+        <th>Groups</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in filter.qs %}
+        <tr>
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.date_joined }}</td>
+          <td>
+            {% for group in user.groups.all %}
+              {{ group }}
+            {% empty %}
+              <em class="text-muted">No group</em>
+            {% endfor %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+-->
+<div class="col-sm-10">
+  <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filtro</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.codigo.label_tag }}
+          {% render_field filter.form.codigo class="filter-control" %}
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{filter.form.tipo.label_tag }}
+          {% render_field filter.form.tipo class="filter-control" %}
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{filter.form.data.label_tag }}
+          {% render_field filter.form.data class="filter-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+          {{filter.form.Continentes.label_tag }}
+          <div>
+            {% for continente in filter.form.Continentes %}
+              <label class="checkbox-inline">
+                {{ continente}}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+       <div class="form-group col-sm-4 col-md-4">
+          {{filter.form.Paíss.label_tag }}
+          <div>
+            {% for país in filter.form.Paíss %}
+              <label class="checkbox-inline">
+                {{ país}}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+       <div class="form-group col-sm-4 col-md-4">
+          {{filter.form.Estados.label_tag }}
+          <div>
+            {% for estado in filter.form.Estados %}
+              <label class="checkbox-inline">
+                {{ estado }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+       <div class="form-group col-sm-4 col-md-4">
+          {{filter.Cidades.label_tag }}
+          <div>
+            {% for cidade in filter.Cidades %}
+              <label class="checkbox-inline">
+                {{ cidade }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+          {{filter.form.Climas.label_tag }}
+          <div>
+            {% for clima in filter.form.Climas %}
+              <label class="checkbox-inline">
+                {{ clima }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+       <div class="form-group col-sm-4 col-md-4">
+          {{filter.form.Ambientes.label_tag }}
+          <div>
+            {% for ambiente in filter.form.Ambientes %}
+              <label class="checkbox-inline">
+                {{ ambiente }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Pesquisar
+      </button>
+    </div>
+  </form>
+
+ <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Tipo</th>
+        <th>Data</th>
+        <th>Continente</th>
+        <th>País</th>
+        <th>Estado</th>
+        <th>Cidade</th>
+        <th>Clima</th>
+        <th>Ambiente</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for amostra in filter.qs %}
+        <tr>
+          <td>{{ amostra.codigo }}</td>
+          <td>{{ amostra.tipo }}</td>
+          <td>{{ amostra.data }}</td>
+
+          <td>
+            {% for continente in amostra.continentes.all %}
+              {{ continente.nome}}
+            {% endfor %}
+          </td>
+
+          <td>
+            {% for país in amostra.paíss.all %}
+              {{ país.nome}}
+            {% endfor %}
+          </td>
+
+          <td>
+            {% for estado in amostra.estados.all %}
+              {{ estado.nome}}
+            {% endfor %}
+          </td>
+
+          <td>
+            {% for cidade in amostra.cidades.all %}
+              {{ cidade.nome}}
+            {% endfor %}
+          </td>
+
+          <td>
+            {% for clima in amostra.climas.all %}
+              {{ clima.tipo}}
+            {% endfor %}
+          </td>
+
+
+            <td>
+            {% for ambiente in amostra.ambientes.all %}
+              {{ ambiente.tipo}}
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}

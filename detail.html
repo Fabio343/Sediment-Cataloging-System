@@ -1,0 +1,317 @@
+{% extends 'amostras/base2.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+
+
+{% block body %}
+<div class="container-fluid cidades-container">
+
+    <div class="row">
+        <!-- Left amostra Info -->
+        <div class="col-sm-2 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                        {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }} " class="img-responsive" style="width: 250px; float:left; margin-right: 250px;">
+                        {% else %}
+                        {% endif %}
+                     <h4>Detalhes Gerais da Amostra:</h4>
+                     <h5>Código:</h5>
+                    <h4>{{ amostra.codigo }}<small></small></h4>
+                     {% if amostra.tipo %}
+                     <h5>Tipo:</h5>
+                     <h4>{{ amostra.tipo }}</h4>
+                     {% else %}
+                     {% endif %}
+                      {% if amostra.descrição %}
+                     <h5>Descrição:</h5>
+                     <h4>{{amostra.descrição}}</h4>
+                    {% else %}
+                    {% endif %}
+                    {% if amostra.granulometria %}
+                     <h5>Granulometria:</h5>
+                     <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 250px; float:left; margin-right: 250px;">
+                    {% else %}
+                   {% endif %}
+                     {% if amostra.data %}
+                     <h5>Data de Coleta:</h5>
+                     <h4>{{amostra.data}}</h4>
+                    {% else %}
+                   {% endif %}
+                    {% if amostra.coletador %}
+                     <h5>Responsável Pela Coleta:</h5>
+                     <h4>{{amostra.coletador}}</h4>
+                    {% else %}
+                   {% endif %}
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> Continente</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                       {%for amostra in amostras%}
+                        {% for continente in amostra.Continentes_set.all %}
+                            <tr>
+                                <td>{{ continente.nome}}</td>
+
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> País</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for país in amostra.paíss_set.all %}
+                            <tr>
+                                <td>{{ país.nome}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> Estado</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for estado in amostra.estado_set.all %}
+                            <tr>
+                                <td>{{ estado.nome}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>Cidade</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cidade in amostra.cidade_set.all %}
+                            <tr>
+                                <td>{{ cidade.nome}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> Clima</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for clima in amostra.clima_set.all %}
+                            <tr>
+                                <td>{{ clima.tipo}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>Ambiente</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ambiente in amostra.ambiente_set.all %}
+                            <tr>
+                                <td>{{ ambiente.tipo}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <div class="aumentaIMG">
+        <span>
+        <div class="col-sm-2 col-md-2">
+            {% if amostra.imagem1 %}
+        <div class="panel panel-default">
+                <div class="panel-body">
+                <img src="{{ amostra.imagem1.url }}"  width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+          {% else %}
+          {% endif %}
+        </div>
+        </div>
+        </div>
+       <div class="col-sm-3 col-md-2">
+            {% if amostra.imagem2 %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa" src="{{ amostra.imagem2.url }}"   width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+             {% else %}
+             {% endif %}
+        </div>
+            </div>
+         </div>
+         <div class="col-sm-3 col-md-2">
+             {% if amostra.imagem3 %}
+             <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa" src="{{ amostra.imagem3.url }}"   width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+                 {% else %}
+                 {% endif %}
+             </div>
+             </div>
+             </div>
+              <div class="col-sm-3 col-md-2">
+                  {% if amostra.imagem4 %}
+                  <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa"  src="{{ amostra.imagem4.url }}"  width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+                 {% else %}
+                 {% endif %}
+                  </div>
+                  </div>
+              </div>
+             <div class="col-sm-3 col-md-2">
+                 {% if amostra.imagem5 %}
+                 <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa" src="{{ amostra.imagem5.url }}"   width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+                 {% else %}
+                 {% endif %}
+                 </div>
+                 </div>
+             </div>
+            <div class="col-sm-3 col-md-2">
+                {% if amostra.imagem6 %}
+                <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa" src="{{ amostra.imagem6.url }}"   width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+               {% else %}
+               {% endif %}
+                </div>
+                </div>
+            </div>
+           <div class="col-sm-3 col-md-2">
+               {% if amostra.imagem7 %}
+               <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa" src="{{ amostra.imagem7.url }}"   width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+               {% else %}
+               {% endif %}
+               </div>
+               </div>
+           </div>
+          <div class="col-sm-3 col-md-2">
+                {% if amostra.imagem8 %}
+              <div class="panel panel-default">
+                <div class="panel-body">
+                <img class="expa"  src="{{ amostra.imagem8.url }}"   width="240" height="170" alt="" border="" style="position: relative; top: -3px;">
+               {% else %}
+                    {% endif %}
+              </div>
+              </div>
+           </div>
+        </span>
+     </div>
+</div>
+
+{% endblock %}
+

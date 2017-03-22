@@ -1,0 +1,16 @@
+{% extends 'amostras/base2.html' %}
+{%block body%}
+{% regroup paíss by continentes as continente_list %}
+
+                    <ul>
+                    {% for continentes in contiente_list %}
+                     <li>{{ continente.grouper }}
+                     <ul>
+                    {% for paíss in continente_list.list %}
+                    <li>{{ país.nome }}</li>
+                   {% endfor %}
+                     </ul>
+                   </li>
+                   {% endfor %}
+</ul>
+{% endblock %}

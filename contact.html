@@ -1,0 +1,95 @@
+{% extends 'amostras/base2.html' %}
+{% block body %}
+<ul><h3>Contato com a administração</h3></ul>
+<ul><form role="form" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Concluir</button>
+</form>
+</ul>
+
+
+
+
+
+<div class="col-sm-10 col-md-6">
+  <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filtro</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ form.codigo.label_tag }}
+
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{ form.Contato.label_tag }}
+
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{ form.tipo.label_tag }}
+
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{ form.descrição.label_tag }}
+
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{ form.data.label_tag }}
+
+        </div>
+         <div class="form-group col-sm-4 col-md-3">
+          {{ form.coletador.label_tag }}
+
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+          {{ filter.form.continentes.label_tag }}
+          <div>
+            {% for continente in form.continentes %}
+              <label class="checkbox-inline">
+                {{ continente.nome }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Pesquisar
+      </button>
+    </div>
+  </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Código</th>
+
+        <th>Continente</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for amostra in filter.qs %}
+        <tr>
+          <td>{{ amostra.codigo }}</td>
+
+          <td>
+            {% for continente in amostra.continentes.all %}
+              {{ continente.nome }}
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for amostra in filter.qs %}
+    <li>{{ amostra.codigo }}</li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}
