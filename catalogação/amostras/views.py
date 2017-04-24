@@ -9,10 +9,7 @@ from .models import Estado
 from .models import País
 from .models import Ambiente
 from .models import Clima
-from .forms import UserForm,ContactForm, ContatoForm, amostraForm, continenteForm, paísForm, estadoForm, cidadeForm,climaForm,ambienteForm,EditProfileForm
-from django.template.loader import get_template
-from django.core.mail import EmailMessage
-from django.template import Context
+from .forms import UserForm,amostraForm, continenteForm, paísForm, estadoForm, cidadeForm,climaForm,ambienteForm,EditProfileForm,FormContato
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import redirect
@@ -21,151 +18,92 @@ from django.contrib.auth import update_session_auth_hash
 from django.urls import reverse
 import json
 from django.http import HttpResponse
+from .filters import amostraFilter
 from django.shortcuts import render
-from django.shortcuts import render_to_response
-#from .filters import amostraFilter
-
-#def filtro(request):
-#    amostra_list=Amostra.objects.all()
- #   amostra_filter=amostraFilter(request.GET,queryset=amostra_list)
-  #  return render(request,'sedimentos/amostra_list.html',{' filter':amostra_filter})
-
-def lista_continente(request):
-    user = request.user
-    amostras=Amostra.objects.all()
-    return render_to_response(
-        "amostras/lista_continente.html",{'amostras':amostras, 'user': user} )
-
-def lista_país(request):
-    user = request.user
-    amostras=Amostra.objects.all()
-    return render_to_response(
-        "amostras/lista_país.html",{'amostras':amostras, 'user': user} )
-
-def lista_estado(request):
-    user = request.user
-    amostras=Amostra.objects.all()
-    return render_to_response(
-        "amostras/lista_estado.html",{'amostras':amostras, 'user': user} )
-
-def lista_cidade(request):
-    user = request.user
-    amostras=Amostra.objects.all()
-    return render_to_response(
-        "amostras/lista_cidade.html",{'amostras':amostras, 'user': user} )
-
-def lista_ambiente(request):
-    user = request.user
-    amostras=Amostra.objects.all()
-    return render_to_response(
-        "amostras/lista_ambiente.html",{'amostras':amostras, 'user': user} )
-
-def lista_clima(request):
-    user = request.user
-    amostras=Amostra.objects.all()
-    return render_to_response(
-        "amostras/lista_clima.html",{'amostras':amostras, 'user': user} )
-########################################################################################################################
+from django.views.generic.edit import UpdateView
 
 
-########################################################################################################################
-def autoamostras(request):
-    if request.is_ajax:
-        search = request.GET.get('start', '')
-        amostras = Amostra.objects.filter(codigo__icontains=search)
-        results = []
-        for amostra in amostras:
-            amostra_json = {}
-            amostra_json['id'] = amostra.id
-            amostra_json['codigo'] = amostra.codigo
-            results.append(amostra_json)
-        data_json = json.dumps(results)
+
+#função para contato com administração
+def contato(request):
+    if request.method == 'POST':
+        form = FormContato(request.POST)
+
+        if form.is_valid():
+            form.enviar()
+            mostrar = 'Contato enviado!'
+            form = FormContato()
     else:
-        data_json = 'fail'
-    mimetype = "application/json"
-    return HttpResponse(data_json, mimetype)
+        form = FormContato()
+    return render(request,'amostras/contato.html', locals())
 
 ########################################################################################################################
-def autopais(request):
-    if request.is_ajax:
-        search = request.GET.get('start', '')
-        paíss = País.objects.filter(nome__icontains=search)
-        results = []
-        for país in paíss:
-            país_json = {}
-            país_json['label'] = país.nome
-            país_json['value'] = país.nome
-            results.append(país_json)
-        data_json = json.dumps(results)
-    else:
-        data_json = 'fail'
-    mimetype = "amostras/json"
-    return HttpResponse(data_json, mimetype)
+# todas a funções abaixo com o termo update são para e edição dos exemplares do sistema
+class amostraupdate(UpdateView):
+     model = Amostra
+     fields = ['codigo', 'coletador', 'Contato', 'descrição', 'tipo', 'data', 'granulometria', 'imagem', 'imagem1',
+          'imagem2', 'imagem3',
+          'imagem4', 'imagem5', 'imagem6', 'imagem7', 'imagem8', 'Continentes', 'Paíss', 'Estados', 'Cidades',
+          'Ambientes', 'Climas']
 
 ########################################################################################################################
-def autoestado(request):
-    if request.is_ajax:
-        search = request.POST.get('start', '')
-
-        estados = Estado.objects.filter(nome__icontains=search)
-
-        results = []
-        for estado in estados:
-            estado_json = {}
-            estado_json['label'] = estado.nome
-            estado_json['value'] = estado.nome
-            results.append(estado_json)
-
-        data_json = json.dumps(results)
-
-    else:
-        data_json = 'fail'
-    mimetype = "application/json"
-    return HttpResponse(data_json, mimetype)
+class continenteupdate(UpdateView):
+        model =Continente
+        fields = [ 'nome', 'sigla']
 
 ########################################################################################################################
-def autocidade(request):
-    if request.is_ajax:
-        search = request.POST.get('start', '')
-
-        cidades = Cidade.objects.filter(nome__icontains=search)
-
-        results = []
-        for cidade in cidades:
-            cidade_json = {}
-            cidade_json['label'] = cidade.nome
-            cidade_json['value'] = cidade.nome
-            results.append(cidade_json)
-
-        data_json = json.dumps(results)
-
-    else:
-        data_json = 'fail'
-    mimetype = "application/json"
-    return HttpResponse(data_json, mimetype)
+class paísupdate(UpdateView):
+        model =País
+        fields = [ 'nome', 'região','Continentes']
 
 ########################################################################################################################
-def autoambiente(request):
-    if request.is_ajax:
-        search = request.POST.get('start', '')
-        ambientes = Ambiente.objects.filter(tipo__icontains=search)
-        results = []
-        for ambiente in ambientes:
-            ambiente_json = {}
-            ambiente_json['label'] = ambiente.tipo
-            ambiente_json['value'] = ambiente.tipo
-            results.append(ambiente_json)
-
-        data_json = json.dumps(results)
-
-    else:
-        data_json = 'fail'
-    mimetype = "application/json"
-    return HttpResponse(data_json, mimetype)
-
-
+class estadoupdate(UpdateView):
+        model =Estado
+        fields = [ 'nome','Continentes','Paíss']
 
 ########################################################################################################################
+class cidadeupdate(UpdateView):
+        model =Cidade
+        fields = [ 'nome', 'geologia','Continentes','Paíss','Estados']
+
+########################################################################################################################
+class ambienteupdate(UpdateView):
+        model =Ambiente
+        fields = [ 'tipo','Continentes','Paíss','Estados','Cidades']
+
+########################################################################################################################
+class climaupdate(UpdateView):
+        model =Clima
+        fields = [ 'tipo','Continentes','Paíss','Estados','Cidades']
+
+########################################################################################################################
+def amostras(request):
+  if request.is_ajax():
+    q = request.GET.get('term')
+    amostras = Amostra.objects.filter(codigo__icontains=q)
+    results = []
+    for amostra in amostras:
+      amostra_json = {}
+      amostra_json = amostra.codigo
+      results.append(amostra_json)
+      data = json.dumps(results)
+  else:
+    data = 'fail'
+  mimetype = 'application/json'
+  return HttpResponse(data, mimetype)
+
+########################################################################################################################
+def grupo(request):
+        grupo = amostraFilter(request.GET, queryset=Amostra.objects.all())
+        return render(request, 'amostras/grupo.html', {'filter': grupo})
+
+########################################################################################################################
+def gru(request):
+    amostras=Amostra.objects.all()
+    return render(request,
+        "amostras/gru.html",{'amostras':amostras} )
+########################################################################################################################
+# as funções abaixo definem como são criados os exemplares bem como sua exclusão e visualização de detalhes
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 def create_amostra(request):
@@ -209,10 +147,8 @@ def create_continente(request):
             continente = form.save(commit=False)
             continente.user = request.user
             continente.save()
-            return render(request, 'amostras/detail.html', {continente: continente})
-        context = {
-            "form": form,
-        }
+            return render(request, 'amostras/concluido.html', {continente: continente})
+        context = {"form": form, }
         return render(request, 'amostras/continente_form.html', context)
 
 
@@ -236,7 +172,7 @@ def create_cidade(request):
             cidade = form.save(commit=False)
             cidade.user = request.user
             cidade.save()
-            return render(request, 'amostras/detail.html', {cidade: cidade})
+            return render(request, 'amostras/concluido.html', {cidade: cidade})
         context = {
             "form": form,
         }
@@ -263,7 +199,7 @@ def create_estado(request):
             estado = form.save(commit=False)
             estado.user = request.user
             estado.save()
-            return render(request, 'amostras/detail.html', {estado: estado})
+            return render(request, 'amostras/concluido.html', {estado: estado})
         context = {
             "form": form,
         }
@@ -290,7 +226,7 @@ def create_país(request):
             país = form.save(commit=False)
             país.user = request.user
             país.save()
-            return render(request, 'amostras/detail.html', {país: país})
+            return render(request, 'amostras/concluido.html', {país: país})
         context = {
             "form": form,
         }
@@ -317,7 +253,7 @@ def create_ambiente(request):
             ambiente = form.save(commit=False)
             ambiente.user = request.user
             ambiente.save()
-            return render(request, 'amostras/detail.html', {ambiente: ambiente})
+            return render(request, 'amostras/concluido.html', {ambiente: ambiente})
         context = {
             "form": form,
         }
@@ -344,7 +280,7 @@ def create_clima(request):
             clima = form.save(commit=False)
             clima.user = request.user
             clima.save()
-            return render(request, 'amostras/detail.html', {clima: clima})
+            return render(request, 'amostras/concluido.html', {clima: clima})
         context = {
             "form": form,
         }
@@ -361,7 +297,7 @@ def delete_clima(request, clima_id):
 
 ########################################################################################################################
 ########################################################################################################################
-
+# função de pagina inicial e pesquisa simples
 def index(request):
         amostras = Amostra.objects.filter()
         país_results = País.objects.all()
@@ -375,12 +311,14 @@ def index(request):
         page = request.GET.get('page', 1)
         paginator = Paginator(amostra_list, 24)
 
+
         try:
             amostras = paginator.page(page)
         except PageNotAnInteger:
             amostras = paginator.page(1)
         except EmptyPage:
-            amostras = paginator.page(paginator.num_pages)
+            amostras= paginator.page(paginator.num_pages)
+
 
         query = request.GET.get("q")
         if query:
@@ -396,8 +334,8 @@ def index(request):
                 Q(nome__icontains=query)
             ).distinct()
             continente_results = continente_results.filter(
-                Q(nome__icontains=query) |
-                Q(sigla__icontains=query)
+                Q(nome__icontains=query)
+
             ).distinct()
             estado_results = estado_results.filter(
                 Q(nome__icontains=query)
@@ -428,7 +366,7 @@ def index(request):
 
 ########################################################################################################################
 ########################################################################################################################
-
+# função de pagina inicial e pesquisa simples
 def amostra(request):
         amostras = Amostra.objects.filter()
         país_results = País.objects.all()
@@ -453,7 +391,7 @@ def amostra(request):
                 Q(nome__icontains=query)
             ).distinct()
             continente_results = continente_results.filter(
-                Q(nome__icontains=query) |
+                Q(americano__icontains=query) |
                 Q(sigla__icontains=query)
             ).distinct()
             estado_results = estado_results.filter(
@@ -485,7 +423,7 @@ def amostra(request):
 
 ########################################################################################################################
 ########################################################################################################################
-
+#fubnção que define a chamada de forms ou seja define as formas de campos atribuidas pelos templates
 class UserFormView(View):
     form_class=UserForm
     template_name='amostras/register_form.html'
@@ -519,7 +457,7 @@ class UserFormView(View):
 
 ########################################################################################################################
 ########################################################################################################################
-
+# função para desconectar do sistema
 def logout_user(request):
     logout(request)
     form = UserForm(request.POST or None)
@@ -530,17 +468,17 @@ def logout_user(request):
 
 ########################################################################################################################
 ########################################################################################################################
-
+#função de pagina inicial
 def inicial(request):
     form = UserForm(request.POST or None)
     context = {
         "form": form,
         }
-    return render(request, 'amostras/inicial.html', context)
+    return render(request, 'amostras/index.html', context)
 
 ########################################################################################################################
 ########################################################################################################################
-
+# função que define a chamada de pagina de login de usuario
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -550,7 +488,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 amostras = Amostra.objects.filter(user=request.user)
-                return render(request, 'amostras/inicial.html', {'amostras': amostras})
+                return render(request, 'amostras/index.html', {'amostras': amostras})
             else:
                 return render(request, 'amostras/login.html', {'error_message': 'Sua conta foi desativada'})
         else:
@@ -559,7 +497,7 @@ def login_user(request):
 
 ########################################################################################################################
 ########################################################################################################################
-
+#função de registro de usuarios
 def register(request):
     form = UserForm(request.POST or None)
     if form.is_valid():
@@ -581,33 +519,7 @@ def register(request):
 
 ########################################################################################################################
 ########################################################################################################################
-
-def contato(request):
-    form_class = ContatoForm
-    if request.method == 'POST':
-        form = form_class(data=request.POST)
-        if form.is_valid():
-            Nome = request.POST.get('Nome', '')
-            Email = request.POST.get('Email', '')
-            Mensagem = request.POST.get('Mensagem', '')
-            template = get_template('amostras/contato.html')
-            context = Context({
-                'Nome': Nome,
-                'Email': Email,
-                'Mensagem': Mensagem,
-            })
-            content = template.render(context)
-            email =EmailMessage (
-                "New contact form submission", content, "Adiministração" + '', ['fabio.carvalho.souza@usp.br'],
-                headers={'Reply-To': Email}
-            )
-            email.send()
-            return redirect('contato')
-    return render(request, 'amostras/contato.html', {'form': form_class, })
-
-########################################################################################################################
-########################################################################################################################
-
+#função que direciona para a pagina de seleção de criação de alguma informação ou exemplar
 def adicionar(request):
     if not request.user.is_authenticated():
         return render(request, 'amostras/login.html')
@@ -620,162 +532,133 @@ def adicionar(request):
 
 ########################################################################################################################
 ########################################################################################################################
-
+# função para direcionar a pagina de creditos de desenvolvimento
 def agradecimentos(request):
     form = UserForm(request.POST or None)
     context = {
         "form": form,
         }
     return render(request, 'amostras/agradecimentos.html', context)
-
 ########################################################################################################################
 ########################################################################################################################
-def amostras(request, filter_by):
+# as funções abaixo definem os filtros da pesquisa simples
+def continentes(request, filter_by):
         try:
-            amostra_ids = []
-            for amostra in Amostra.objects.filter():
-                for amostra in amostra.amostra_set.all():
-                    amostra_ids.append(amostra.pk)
-            users_amostras = Amostra.objects.filter(pk__in=amostra_ids)
+            continente_ids = []
+            for continente in Continente.objects.filter():
+
+                for continente in continente.amostra_set.all():
+                    continente_ids.append(continente.pk)
+
+            users_continentes = Continente.objects.filter(pk__in=continente_ids)
+
             if filter_by == 'favorites':
-                users_amostras = users_amostras.filter(is_favorite=True)
-        except Amostra.DoesNotExist:
-            users_amostras = []
-        return render(request, 'amostras/amostras.html', {
-            'amostra_list': users_amostras,
+                users_continentes = users_continentes.filter(is_favorite=True)
+        except Continente.DoesNotExist:
+            users_continentes = []
+
+        return render(request, 'amostras/continentes.html', {
+            'continente_list': users_continentes,
             'filter_by': filter_by,
         })
-
-
-########################################################################################################################
-########################################################################################################################
-
-def continentes(request, filter_by):
-    try:
-        continente_ids = []
-        for continente in Continente.objects.filter():
-
-            for continente in continente.amostra_set.all():
-                continente_ids.append(continente.pk)
-
-        users_continentes = Continente.objects.filter(pk__in=continente_ids)
-
-        if filter_by == 'favorites':
-            users_continentes = users_continentes.filter(is_favorite=True)
-    except Continente.DoesNotExist:
-        users_continentes = []
-
-    return render(request, 'amostras/continentes.html', {
-        'continente_list': users_continentes,
-        'filter_by': filter_by,
-    })
-
 
 ########################################################################################################################
 ########################################################################################################################
 
 def paíss(request, filter_by):
-    try:
-        país_ids = []
-        for país in País.objects.filter():
-            for país in país.amostra_set.all():
-                país_ids.append(país.pk)
-        users_paíss = País.objects.filter(pk__in=país_ids)
-        if filter_by == 'favorites':
-            users_paíss = users_paíss.filter(is_favorite=True)
-    except País.DoesNotExist:
-        users_paíss = []
-    return render(request, 'amostras/paíss.html', {
-        'país_list': users_paíss,
-        'filter_by': filter_by,
-    })
-
+        try:
+            país_ids = []
+            for país in País.objects.filter():
+                for país in país.amostra_set.all():
+                    país_ids.append(país.pk)
+            users_paíss = País.objects.filter(pk__in=país_ids)
+            if filter_by == 'favorites':
+                users_paíss = users_paíss.filter(is_favorite=True)
+        except País.DoesNotExist:
+            users_paíss = []
+        return render(request, 'amostras/paíss.html', {
+            'país_list': users_paíss,
+            'filter_by': filter_by,
+        })
 
 ########################################################################################################################
 ########################################################################################################################
 
 def estados(request, filter_by):
-    try:
-        estado_ids = []
-        for estado in Estado.objects.filter():
-            for estado in estado.amostra_set.all():
-                estado_ids.append(estado.pk)
-        users_estados = Estado.objects.filter(pk__in=estado_ids)
-        if filter_by == 'favorites':
-            users_estados = users_estados.filter(is_favorite=True)
-    except Estado.DoesNotExist:
-        users_estados = []
-    return render(request, 'amostras/estados.html', {
-        'estado_list': users_estados,
-        'filter_by': filter_by,
-    })
-
+        try:
+            estado_ids = []
+            for estado in Estado.objects.filter():
+                for estado in estado.amostra_set.all():
+                    estado_ids.append(estado.pk)
+            users_estados = Estado.objects.filter(pk__in=estado_ids)
+            if filter_by == 'favorites':
+                users_estados = users_estados.filter(is_favorite=True)
+        except Estado.DoesNotExist:
+            users_estados = []
+        return render(request, 'amostras/estados.html', {
+            'estado_list': users_estados,
+            'filter_by': filter_by,
+        })
 
 ########################################################################################################################
 ########################################################################################################################
 
 def cidades(request, filter_by):
-    try:
-        cidade_ids = []
-        for cidade in Cidade.objects.filter():
-            for cidade in cidade.amostra_set.all():
-                cidade_ids.append(cidade.pk)
-        users_cidades = Cidade.objects.filter(pk__in=cidade_ids)
-        if filter_by == 'favorites':
-            users_cidades = users_cidades.filter(is_favorite=True)
-    except Cidade.DoesNotExist:
-        users_cidades = []
-    return render(request, 'amostras/cidades.html', {
-        'cidade_list': users_cidades,
-        'filter_by': filter_by,
-    })
-
+        try:
+            cidade_ids = []
+            for cidade in Cidade.objects.filter():
+                for cidade in cidade.amostra_set.all():
+                    cidade_ids.append(cidade.pk)
+            users_cidades = Cidade.objects.filter(pk__in=cidade_ids)
+            if filter_by == 'favorites':
+                users_cidades = users_cidades.filter(is_favorite=True)
+        except Cidade.DoesNotExist:
+            users_cidades = []
+        return render(request, 'amostras/cidades.html', {
+            'cidade_list': users_cidades,
+            'filter_by': filter_by,
+        })
 
 ########################################################################################################################
 ########################################################################################################################
 
 def climas(request, filter_by):
-    try:
-        clima_ids = []
-        for clima in Clima.objects.filter():
-            for clima in clima.amostra_set.all():
-                clima_ids.append(clima.pk)
-        users_climas = Clima.objects.filter(pk__in=clima_ids)
-        if filter_by == 'favorites':
-            users_climas = users_climas.filter(is_favorite=True)
-    except Clima.DoesNotExist:
-        users_climas = []
-    return render(request, 'amostras/climas.html', {
-        'clima_list': users_climas,
-        'filter_by': filter_by,
-    })
-
+        try:
+            clima_ids = []
+            for clima in Clima.objects.filter():
+                for clima in clima.amostra_set.all():
+                    clima_ids.append(clima.pk)
+            users_climas = Clima.objects.filter(pk__in=clima_ids)
+            if filter_by == 'favorites':
+                users_climas = users_climas.filter(is_favorite=True)
+        except Clima.DoesNotExist:
+            users_climas = []
+        return render(request, 'amostras/climas.html', {
+            'clima_list': users_climas,
+            'filter_by': filter_by,
+        })
 
 ########################################################################################################################
 ########################################################################################################################
 
 def ambientes(request, filter_by):
-    try:
-        ambiente_ids = []
-        for ambiente in Ambiente.objects.filter():
-            for ambiente in ambiente.amostra_set.all():
-                ambiente_ids.append(ambiente.pk)
-        users_ambientes = Ambiente.objects.filter(pk__in=ambiente_ids)
-        if filter_by == 'favorites':
-            users_ambientes = users_ambientes.filter(is_favorite=True)
-    except Ambiente.DoesNotExist:
-        users_ambientes = []
-    return render(request, 'amostras/ambientes.html', {
-        'ambiente_list': users_ambientes,
-        'filter_by': filter_by,
-    })
-
-
+        try:
+            ambiente_ids = []
+            for ambiente in Ambiente.objects.filter():
+                for ambiente in ambiente.amostra_set.all():
+                    ambiente_ids.append(ambiente.pk)
+            users_ambientes = Ambiente.objects.filter(pk__in=ambiente_ids)
+            if filter_by == 'favorites':
+                users_ambientes = users_ambientes.filter(is_favorite=True)
+        except Ambiente.DoesNotExist:
+            users_ambientes = []
+        return render(request, 'amostras/ambientes.html', {
+            'ambiente_list': users_ambientes,
+            'filter_by': filter_by,
+        })
 ########################################################################################################################
 ########################################################################################################################
-########################################################################################################################
-########################################################################################################################
-
+#função para conclução de edição de exemplares
 def edit(request):
     form = UserForm(request.POST or None)
     context = {
@@ -785,6 +668,7 @@ def edit(request):
 
 ########################################################################################################################
 ########################################################################################################################
+#as 2 funções  abaixo para a visualização de perfil de usuario e de recuperação de informações no casoc senha
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
@@ -810,10 +694,10 @@ def view_profile(request):
 
 ########################################################################################################################
 ########################################################################################################################
+# edição de perfil
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
-
         if form.is_valid():
             form.save()
             return redirect(reverse('amostras:view_profile'))
@@ -821,167 +705,5 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
         return render(request, 'amostras/edit_profile.html', args)
-
 ########################################################################################################################
-########################################################################################################################
-def amostra_edit(request,amostra_id):
-    amostra = get_object_or_404(Amostra,pk=amostra_id)
-    if request.method == "POST":
-        form =amostraForm(request.POST, instance=amostra)
-        if form.is_valid():
-            amostra = form.save(commit=False)
-            amostra.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = amostraForm(instance=amostra)
-    return render(request, 'amostras/amostra_edit.html', {'form': form})
-########################################################################################################################
-########################################################################################################################
-def continente_edit(request,continente_id):
-    continente = get_object_or_404(Continente,pk=continente_id)
-    if request.method == "POST":
-        form =continenteForm(request.POST, instance=continente)
-        if form.is_valid():
-            continente = form.save(commit=False)
-            continente.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = continenteForm(instance=continente)
-    return render(request, 'amostras/continente_edit.html', {'form': form})
-
-########################################################################################################################
-########################################################################################################################
-def país_edit(request,país_id):
-    país = get_object_or_404(País,pk=país_id)
-    if request.method == "POST":
-        form =paísForm(request.POST, instance=país)
-        if form.is_valid():
-            país = form.save(commit=False)
-            país.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = paísForm(instance=país)
-    return render(request, 'amostras/país_edit.html', {'form': form})
-
-########################################################################################################################
-########################################################################################################################
-def estado_edit(request,estado_id):
-    estado = get_object_or_404(Estado,pk=estado_id)
-    if request.method == "POST":
-        form =estadoForm(request.POST, instance=estado)
-        if form.is_valid():
-            estado = form.save(commit=False)
-            estado.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = estadoForm(instance=estado)
-    return render(request, 'amostras/estado_edit.html', {'form': form})
-
-
-########################################################################################################################
-########################################################################################################################
-def cidade_edit(request,cidade_id):
-    cidade = get_object_or_404(Cidade,pk=cidade_id)
-    if request.method == "POST":
-        form =cidadeForm(request.POST, instance=cidade)
-        if form.is_valid():
-            cidade = form.save(commit=False)
-            cidade.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = cidadeForm(instance=cidade)
-    return render(request, 'amostras/cidade_edit.html', {'form': form})
-
-########################################################################################################################
-########################################################################################################################
-def clima_edit(request,clima_id):
-    clima = get_object_or_404(Clima,pk=clima_id)
-    if request.method == "POST":
-        form =climaForm(request.POST, instance=clima)
-        if form.is_valid():
-            clima = form.save(commit=False)
-            clima.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = climaForm(instance=clima)
-    return render(request, 'amostras/clima_edit.html', {'form': form})
-
-########################################################################################################################
-########################################################################################################################
-def ambiente_edit(request,ambiente_id):
-    ambiente = get_object_or_404(Ambiente,pk=ambiente_id)
-    if request.method == "POST":
-        form =ambienteForm(request.POST, instance=ambiente)
-        if form.is_valid():
-            ambiente = form.save(commit=False)
-            ambiente.save()
-            return redirect(reverse('amostras:inicial'))
-
-    else:
-        form = ambienteForm(instance=ambiente)
-    return render(request, 'amostras/ambiente_edit.html', {'form': form})
-
-
-
-
-
-def contact(request):
-    form_class = ContactForm
-    if request.method == 'POST':
-        form = form_class(data=request.POST)
-        if form.is_valid():
-            Nome = request.POST.get(
-                'Nome'
-            , '')
-            Email = request.POST.get(
-                'Email'
-            , '')
-            Mensagem = request.POST.get('content', '')
-            template =  get_template('amostras/contac_template.txt')
-            context = Context({
-                'Nome': Nome,
-                'Email': Email,
-                'Mensagem': Mensagem,
-            })
-            content = template.render(context)
-            email = EmailMessage(
-                "New contact form submission",
-                content,
-                "Your website" +'',
-                ['fabio.carvalho.souza@usp.br'],
-                headers = {'Reply-To': Email }
-            )
-            email.send(
-
-            )
-            return render(request, 'amostras/inicial.html', context)
-    return render(request, 'amostras/contact.html', { 'form': form_class, })
-
-
-
-
-#class AutoCompleteView(FormView):
- #   def get(self,request,*args,**kwargs):
-  #      amostra = request.GET
-   #     username = amostra.get("term")
-    #    if username:
-     #      users = User.objects.filter(username__icontain s= username)
-      #    else:
-       #       users = User.objects.all()
-        #      results = []
-       # for amostra in amostras:
-        #    user_json = {}
-         #   user_json['id'] = user.id
-          #  user_json['label'] = user.username
-           # user_json['value'] = user.username
-            #results.append(user_json)
-           # data = json.dumps(results)
-           # mimetype = 'application/json'
-       # return HttpResponse(data, mimetype)
 

@@ -1,6 +1,7 @@
 {% extends 'amostras/base2.html' %}
 {% block title %}All amostras{% endblock %}
 {% block amostras_active %}active{% endblock %}
+
 {% block body %}
 <div class="container-fluid amostras-container">
     <div class="row">
@@ -42,10 +43,10 @@
                                 </tr>
                             {% endfor %}
                         </tbody>
-                        <form method="post">{% csrf_token %}
+                         <form method="post">{% csrf_token %}
                              {{ form.as_p }}
-                        <input type="submit" value="Concluir" />
-                        </form>
+                             <input type="submit" value="Concluir" />
+                         </form>
                     </table>
                 </div>
             </div>

@@ -1,10 +1,9 @@
 body {
-     background: white url("imagens/IMG_0626.JPG"); repeat;
+     background: white url("imagens/IMG_0706.JPG"); repeat;
      box-sizing: border-box;
       width: 100%;
       height: 1080px;
 }
-
 ul.errorlist {
     padding-left: 0;
 }
@@ -29,3 +28,9 @@ ul.errorlist > li {
 .glyphicon-star.active {
     color: #FDB230;
 }
+.aumentaIMG a span{display:none;}
+.aumentaIMG a:hover span{background:white url("imagens/fundo.jpg"); repeat; display:block; position:absolute; z-index:100;}
+.aumentaIMG a:hover span img{background:white url("imagens/fundo.jpg"); repeat;}
+.aumentaIMG a:hover em{z-index:1; display:none;}
+.aumentaIMG a img{border:#000 1px solid;}
+.aumentaIMG a:hover img{border:#000 1px solid;}

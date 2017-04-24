@@ -1,450 +1,207 @@
 {% extends 'amostras/base2.html' %}
-{% block amostras_active %}active{% endblock %}
-
+{% load widget_tweaks %}
 {% block body %}
-     <ul><h3>Amostras</h3></ul>
-   {% if amostras %}
-         <div class="row">
-          <div class="col-sm-12">
-        <h3> Amostras :</h3>
-        </div>
-            {% for amostra in amostras %}
-
-                <div class="col-sm-3 col-lg-2">
-                    <div class="thumbnail">
-
-                        <a href="{% url 'amostras:detail' amostra.id %}">
-
-                   {% if amostra.imagem %}
-                            <img src="{{ amostra.imagem.url }}" class="img-responsive">
-                           {% else %}
-                   {% endif %}
-                            {% if amostra.granulometria %}
-                            <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 250px; float:left; margin-right: 250px;">
-                           {% else %}
-                   {% endif %}
-                        </a>
-                        <div class="caption">
-                            <h3>{{ amostra.codigo }}</h3>
-                            <h4>{{ amostra.tipo }}</h4>
 
 
-                            <a href="{% url 'amostras:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
-                           {% if user.is_authenticated %}
-                             <a class="btn btn-default" href="{% url 'amostras:amostra_edit' amostra.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your keywords">
+    <meta name="author" content="Your name">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="/static/js/jquery-1.7.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/static/js/superfish.js"></script>
+    <script src="/static/js/jquery.easing.1.3.js"></script>
+    <script src="/static/js/tms-0.4.1.js"></script>
+    <script src="/static/js/slider.js"></script>
+    <script type="text/javascript">
+                $(function(){
+                        function equalHeight(group) {
+                                var tallest = 0;
+                                group.each(function() {
+                                        var thisHeight = $(this).height();
+                                        if(thisHeight > tallest) {
+                                                tallest = thisHeight;
+                                        }
+                                });
+                                group.height(tallest);
+                        }
+                        equalHeight($(".box-1 .inner"));
 
-                            <form action="{% url 'amostras:delete_amostra' amostra.id %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </form>
-                            {% else %}
-                            {% endif %}
-                        </div>
-                    </div>
+                        $("#tags4").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags4").val();
+                                        $.ajax({
+                                                url:'/autoamostras/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'GET',
+                                                data:{ 'start': search,},
+                                                success: function(data){
+                                                        var suggestions=[];
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto.codigo);
+                                                        });
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+
+                });
+    </script>
+
+        <script src="js/html5.js"></script>
+        <link rel="stylesheet" href="css/ie.css">
+
+
+
+       <ul>
+        <div class="col-sm-10 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h4>Em Que Consiste o Sistema?</h4>
+                    <p> É um acervo de exemplares de amostras de sedimentos de diversas regiões do mundo que podem ser usados para estudos,
+                        de forma geral sendo principalmente focado em atividades didáticas da área de Geociências. </p>
+                    <h4>Quem Pode Acessar?</h4>
+                    <p>O acesso é livre a todos, sendo que as funções de alterações de qualquer informação são exclusivas aos administradores do sistema.</p>
+                    <h4>Como Realizar Pesquisas?</h4>
+                    <ul>
+                        <li>Pode realizar a pesquisa por código da amostra, país, cidade, estado, ambiente, clima, entre outros.</li>
+                        <li>Ou pode clicar na listagem geral de exemplares</li>
+                    </ul>
+                    <h4> Quais são as informações apresentadas na lista geral de Exemplares?</h4>
+                    <p>Para cada amostra, é fornecida uma descrição geral com informações  como origem, tipo e granulometria</p>
+
                 </div>
-                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
-            {% endfor %}
-        {% endif %}
+                 <a href="DIAGRAMA ENTIDATE(1)2.pdf" target=_blank" download> Clique Aqui Para Matérial De Apoio </a>
+            </div>
+        </div>
+       </ul>
+
+
+
+        <div class="col-sm-10 col-md-5">
+         <div class="panel panel-default">
+          <body id="page1">
+            <header>
+              <font size="4" face="Arial">
+                <ul><h5><p><li>Pesquisa simples voltada para usuários que já tem o código da amostra e pode filtra-lá mais rapidamente,
+                 aos que não tem informações completas usem o campo pesquisa avançada
+                 esse campo lhe dará melhores opções para que obtenha o exemplar desejado.</li></p>
+                 <P><li>OBS: As amostras internacionais apresentam as letras e números do código a amostra separados por hífen (-) devendo ser colocada dessa forma no campo de pesquisa: BB-0000
+                 as nacionais são do tipo SP000BR onde os dois primeiros caracteres se referem ao estado e os dois finais ao país no caso Brasil.</P></li></h5>
+                </ul>
+              </font>
+              <div class="inner">
+                 <div class="fright">
+                    <div class="header-meta">
+                      <div class="ui-widget">
+
+                              <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'amostras:index' %}">
+                                <font face="Serifa Th BT">
+                                   <h4>Código da Amostra:</h4>
+                                </font>
+                                <input id="tags4" name="q" value="{{ request.GET.q }}"  placeholder="Ex:SP000BR">
+                                <button type="submit" class="btn btn-default">Pesquisar</button>
+                              </form>
+
+                      </div>
+                    </div>
+                 </div>
+              </div>
+            </header>
+          </body>
+         </div>
+        </div>
+
+
+
+
+
+<!--
+<ul>
+<div class="col-sm-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body">
+               <table class="table">
+<h4>Sigla Dos Países Listados Para Possíveis Dúvidas Durante As Pesquisas </h4>
+<h4>Código   / País    </h4>
+<h6>BR/	  Brasil</h6>
+    <h6>MV	/  Maldivas</h6>
+    <h6>GR/	      Grécia</h6>
+<h6>CA	 / Canada</h6>
+    <h6>MX	/  México</h6>
+    <h6>FR /       França</h6>
+<h6>CL	/  Chile</h6>
+    <h6>NO	/  Noruega</h6>
+    <h6>CH	/      Suiça</h6>
+<h6>CO	/  Colombia</h6>
+    <h6>NZ	/  Nova Zelândia</h6>
+    <h6>ES	/      Espanha</h6>
+<h6>CR	/  Costa Rica</h6>
+    <h6>OM	/  Omã</h6>
+    <h6>RE	/      Reunião</h6>
+<h6>EG	/  Egito</h6>
+    <h6>PE	/  Peru</h6>
+    <h6>US/	      Estados Unidos</h6>
+<h6>DM	/  Dominica</h6>
+    <h6>PF	/  Polinesia Francesa</h6>
+    <h6>GB	/  Reino Unido</h6>
+<h6>DK	/  Dinamarca</h6>
+    <h6>PY	/  Paraguai</h6>
+<h6>    PT	/      Portugal</h6>
+<h6>AE	 / Emiratos Arabes Unidos </h6>
+                   </table>
+</div>
+                </div>
     </div>
+         <div class="col-sm-6 col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body">
+               <table class="table">
+                    <h4>Sigla Dos Países Listados Para Possíveis Dúvidas Durante As Pesquisas </h4>
+<h4>Código   / País    </h4>
+<h6>AQ   / Antartica</h6>
+   <h6> GF	 / Guiana Francesa</h6>
+   <h6> TW	 /     Taiwan</h6>
+<h6>AR   / Argentina</h6>
+    <h6>GY	 / Guiana</h6>
+   <h6> TR	/      Turquia</h6>
+<h6>AW  /  Aruba</h6>
+   <h6> ID	  /Indonesia</h6>
+   <h6> UY	/      Uruguai</h6>
+<h6>BS	/  Bahamas</h6>
+    <h6>IL	 / Israel</h6>
+    <h6>TH  /      Tailândia</h6>
+<h6>AU	/  Australia</h6>
+    <h6>IS	 / Islândia</h6>
+    <h6>VE	/      Venezuela</h6>
+    <h6>BB	/  Barbados</h6>
+    <h6>IT	/  Italia</h6>
+    <h6>PR	/      Porto Rico</h6>
+<h6>BO/	  Bolivia</h6>
+    <h6>JP	/  Japão</h6>
+    <h6>SE/	      Suecia</h6>
+<h6>CV	/  Cabo Verde</h6>
+    <h6>MA	/  Marrocos</h6>
+   <h6>EQ	/      Equador</h6>
 
 
-         <div class="row">
-               <div class="col-md-6 col-md-offset-3">
-               <form class="form-horizontal" role="form">
-              <fieldset>
-
-              <!-- Form Name -->
-              <legend>Pesquisa Avançada</legend>
-
-          <!-- Text input-->
-            <div class="form-group">
-            <label class="col-sm-2 control-label" for="textimput">Amostra</label>
-            <div class="col-sm-3">
-              <input type="text" placeholder="Ex:BR000SP" class="form-control">
-            </div>
-        </div>
-              <div class="form-group">
-               <label class="col-sm-2 control-label" for="ddlContinente">Continente</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <select class="form-control col-sm-2" name="Continente" id="ddlContinente">
-                                <option>Continentes</option>
-                                <option value="01">Americano </option>
-                                <option value="02">Asiatico</option>
-                                <option value="03">Africano</option>
-                                <option value="04">Europeu</option>
-                                <option value="05">Oceania</option>
-                                <option value="06">Antartida</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </DIV>
-            <div class="form-group">
-               <label class="col-sm-2 control-label">País</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                       <div class="col-sm-4">
-              <input type="text" placeholder="Ex:Brasil" class="form-control">
-            </div>
-                    </div>
-                </div>
-            </DIV>
-            <div class="form-group">
-               <label class="col-sm-2 control-label">Estado</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-sm-4">
-              <input type="text" placeholder="Ex:São Paulo" class="form-control">
-            </div>
-                    </div>
-                </div>
-            </DIV>
-            <div class="form-group">
-               <label class="col-sm-2 control-label" >Cidade</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                       <div class="col-sm-4">
-              <input type="text" placeholder="Ex:Santos" class="form-control">
-            </div>
-                    </div>
-                </div>
-            </DIV>
-              <div class="form-group">
-               <label class="col-sm-2 control-label">Clima</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                       <div class="col-sm-4">
-              <input type="text" placeholder="Ex:Tropical de Altitude" class="form-control">
-            </div>
-                    </div>
-                </div>
-            </DIV>
-              <div class="form-group">
-               <label class="col-sm-2 control-label">Ambiente</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                       <div class="col-sm-4">
-              <input type="text" placeholder="Ex:Lacrustes" class="form-control">
-            </div>
-                    </div>
-                </div>
-            </DIV>
-
-               <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-9">
-
-
-                <button  class="btn btn-default" name="q" value="{{ request.GET.q }}">Pesquisar</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-      </div><!-- /.col-lg-12 -->
-       </div><!-- /.row -->
-
-     {% if continentes %}
-        <div class="row">
-            <div class="col-sm-10">
-              <ul> <h3>Continente</h3></ul>
-            </div>
-            <div class="col-sm-10">
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-
-                            <thead>
-                                <tr>
-
-                                    <th>Nome</th>
-                                    <th>Sigla</th>
-                                    <th>Imagem e Código da Amostra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for continente in continentes %}
-                                    <tr>
-                                        <td>{{ continente.nome }}</td>
-                                        <td>{{ continente.sigla}}</td>
-
-                                        <td>
-                                            <a href="{% url 'amostras:detail' continente.amostra.id %}">
-                                                 {% if continente.amostra.imagem %}
-                                                <img class="expa" src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                                 {%else%}
-                                                {%endif%}
-                                            </a>
-                                            <a href="{% url 'amostras:detail' continente.amostra.id %}">{{ continente.amostra.codigo }}</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                             {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-     {% endif %}
-
-
-
-
-     <!-- If user searches and there are paises -->
-    {% if paíss %}
-        <div class="row">
-            <div class="col-sm-10">
-
-               <ul> <h3>Países</h3></ul>
-            </div>
-            <div class="col-sm-10">
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Região</th>
-                                    <th>Imagem  e Código da Amostra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for país in paíss %}
-                                    <tr>
-                                        <td>{{ país.nome }}</td>
-                                        <td>{{ país.região}}</td>
-
-                                        <td>
-                                            <a href="{% url 'amostras:detail' país.amostra.id %}">
-                                                 {% if país.amostra.imagem %}
-                                                <img class="expa" src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                                {%else%}
-                                                {%endif%}
-
-                                            </a>
-                                            <a href="{% url 'amostras:detail' país.amostra.id %}">{{ país.amostra.codigo }}</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-
-
-
- <!-- If user searches and there are estados -->
-    {% if estados %}
-        <div class="row">
-            <div class="col-sm-10">
-               <ul> <h3>Estados</h3></ul>
-            </div>
-            <div class="col-sm-10">
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>País</th>
-                                    <th>Imagem e Código da amostra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for estado in estados %}
-                                    <tr>
-                                        <td>{{ estado.nome }}</td>
-                                        <td>{{ estado.país}}</td>
-
-                                        <td>
-                                            <a href="{% url 'amostras:detail' estado.amostra.id %}">
-                                                 {% if estado.amostra.imagem %}
-                                                <img class="expa" src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                                {%else%}
-                                                {%endif%}
-                                            </a>
-                                            <a href="{% url 'amostras:detail' estado.amostra.id %}">{{ estado.amostra.codigo }}</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-
-
-
-
- <!-- If user searches and there are cidades -->
-    {% if cidades %}
-        <div class="row">
-            <div class="col-sm-10">
-                <ul><h3>Cidades</h3></ul>
-            </div>
-            <div class="col-sm-10">
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Estado</th>
-                                    <th>Imagem e Código da amostra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for cidade in cidades %}
-                                    <tr>
-                                        <td>{{ cidade.nome }}</td>
-                                        <td>{{ cidade.estado}}</td>
-
-                                        <td>
-                                            <a href="{% url 'amostras:detail' cidade.amostra.id %}">
-                                                 {% if cidade.amostra.imagem %}
-                                                <img class="expa" src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                                {%else%}
-                                                {%endif%}
-
-                                            </a>
-                                            <a href="{% url 'amostras:detail' cidade.amostra.id %}">{{ cidade.amostra.codigo }}</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-
-
-
- <!-- If user searches and there are climas -->
-
-    {% if climas %}
-        <div class="row">
-            <div class="col-sm-10">
-                <ul><h3>Climas</h3></ul>
-            </div>
-            <div class="col-sm-10">
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Tipo</th>
-                                    <th>Imagem e Código da amostra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for clima in climas %}
-                                    <tr>
-                                        <td>{{ clima.tipo }}</td>
-
-
-                                        <td>
-                                            <a href="{% url 'amostras:detail' clima.amostra.id %}">
-                                                 {% if clima.amostra.imagem %}
-                                                <img class="expa" src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                                {%else%}
-                                                {%endif%}
-
-                                            </a>
-                                            <a href="{% url 'amostras:detail' clima.amostra.id %}">{{ clima.amostra.codigo }}</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-
- <!-- If user searches and there are ambientes -->
-    {% if ambientes %}
-        <div class="row">
-            <div class="col-sm-10">
-                <ul><h3>Ambientes</h3></ul>
-            </div>
-            <div class="col-sm-10">
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Tipo</th>
-                                    <th>Imagem e Código da amostra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for ambiente in ambientes %}
-                                    <tr>
-                                        <td>{{ ambiente.tipo }}</td>
-
-
-                                        <td>
-                                            <a href="{% url 'amostras:detail' ambiente.amostra.id %}">
-                                                 {% if ambiente.amostra.imagem %}
-                                                <img class="expa" src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
-                                                {%else%}
-                                                {%endif%}
-
-                                            </a>
-                                            <a href="{% url 'amostras:detail' ambiente.amostra.id %}">{{ ambiente.amostra.codigo }}</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-   <!-- {% if amostras.has_other_pages %}
-  <ul class="pagination">
-    {% if amostras.has_previous %}
-      <li><a href="?page={{ amostras.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in amostras.paginator.page_range %}
-      {% if amostras.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if amostras.has_next %}
-      <li><a href="?page={{ amostras.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
+                   </table>
+</div>
+</div>
+</div>
+</ul>
+</ul>
 -->
 {% endblock %}
+

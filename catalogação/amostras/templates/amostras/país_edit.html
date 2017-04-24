@@ -14,9 +14,9 @@
         <title>Sistema de Catalogação</title>
         {% endblock %}
     </head>
+    <section class="container-fluid " >
     <body>
         <br>
-        <div class="container">
             <nav class="navbar navbar-default">
             <div class="container-fluid">
               <div class="navbar-header">
@@ -25,74 +25,65 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                                          <tr>
-       <td width="180" rowspan="3" align="center">
-            <a href="http://www5.usp.br/" target="_blank">
-            <img src="/static/amostras/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: -3px;">
-
-            </a>
-       </td>
-       <td width="180" rowspan="3" align="center">
-            <a href="http://www.igc.usp.br/" target="_blank">
-            <img src="/static/amostras/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: -3px;">
-            </a>
-       </td>
-       <td width="180" rowspan="3" align="center">
-            <a href="https://www.ime.usp.br/" target="_blank">
-             <img src="/static/amostras/imagens/logoime.png" width="250" height="65" alt="" border="0" style="position: relative; top: -3px;">
-            </a>
-       </td>
-   </tr>
+                  <tr>
+                     <td width="180" rowspan="3" align="center">
+                        <a href="http://www5.usp.br/" target="_blank">
+                        <img src="/static/amostras/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: 3px;">
+                        </a>
+                     </td>
+                     <td width="180" rowspan="3" align="center">
+                         <a href="http://www.igc.usp.br/" target="_blank">
+                         <img src="/static/amostras/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: 3px;">
+                         </a>
+                     </td>
+                     <td width="180" rowspan="3" align="center">
+                         <a href="https://www.ime.usp.br/" target="_blank">
+                         <img src="/static/amostras/imagens/imeusp.png" width="60" height="60" alt="" border="0" style="position: relative; top: 3px;">
+                         </a>
+                     </td>
+                  </tr>
                   <br>
-           <i>
-    <a class="navbar-brand" href="{% url 'amostras:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
-        <br>
-    </i>
+                  <i>
+                  <a class="navbar-brand" href="{% url 'amostras:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+                  <br>
+                  </i>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                  <li class="{% block inicial_active %}{% endblock %}"><a href="{% url 'amostras:inicial' %}"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Inicio</a></li>
-                   <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'amostras:index' %}"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Amostras</a></li>
-                   <li> <a href="/lista_continente"><span aria-hidden="true"></span>&nbsp; Continentes</a></li>
-                   <li class="{% block paíss_active %}{% endblock %}"> <a href="/lista_país"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Países</a></li>
-                   <li class="{% block estados_active %}{% endblock %}"><a href="/lista_estado"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Estados</a></li>
-                   <li class="{% block cidades_active %}{% endblock %}"> <a href="/lista_cidade"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Cidades</a></li>
-                   <li class="{% block climas_active %}{% endblock %}"><a href="/lista_clima"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Climas</a></li>
-                   <li class="{% block ambientes_active %}{% endblock %}"><a href="/lista_ambiente"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Ambientes</a></li>
+                  <ul class="nav navbar-nav">
+                    <li class="{% block inicial_active %}{% endblock %}"><a href="{% url 'amostras:inicial' %}"><span class="glyphicon glyphicon-amostras" aria-hidden="true"></span>&nbsp; Inicio</a></li>
                   </ul>
                    <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                 <li class="">
-                    <a href="{% url 'amostras:adicionar'%}">
-                        <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Informações da Administração
-                    </a>
-                </li>
-                {% else %}
-                <ul class="nav navbar-nav">
-                <li class="{% block login_active %}{% endblock %}"><a href="{% url 'amostras:login_user' %}">Login</a></li>
-                </ul>
-                 {% endif %}
-
-            </ul>
-                    <ul>
-      <h2>Edição de País</h2>
-     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Guardar</button>
-    </form>
-  </ul>
-              </div><!--/.nav-collapse -->
-            </div><!--/.container-fluid -->
+                       {% if user.is_authenticated %}
+                          <li class="">
+                          <a href="{% url 'amostras:adicionar'%}">
+                          <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Informações da Administração
+                          </a>
+                          </li>
+                       {% else %}
+                          <ul class="nav navbar-nav">
+                          <li class="{% block login_active %}{% endblock %}"><a href="{% url 'amostras:login_user' %}">Login</a></li>
+                         </ul>
+                       {% endif %}
+                   </ul>
+              <ul>
+               <h2>Edição de País</h2>
+                <form method="POST" class="post-form">{% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="save btn btn-default">Guardar</button>
+                </form>
+              </ul>
+              </div>
+            </div>
           </nav>
-        </div>
+        </section>
         {% block body %}
-                           <ul>
-      <h2>Edição de País</h2>
-     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Guardar</button>
-    </form>
-  </ul>
+         <ul>
+            <h2>Edição de País</h2>
+            <form method="POST" class="post-form">{% csrf_token %}
+               {{ form.as_p }}
+               <button type="submit" class="save btn btn-default">Guardar</button>
+            </form>
+         </ul>
         {% endblock %}
     </body>
     <script
@@ -108,10 +99,8 @@
             <td align="center">
                 <font face="Arial,Hevetica,sans-serif" size="2">
                     <hr size="0">
-
                       <ul>
                         <i>
-
                             <a href="http://www5.usp.br/" target="_blank">
                               <img src="/static/amostras/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
                             </a>
@@ -119,20 +108,19 @@
                             <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
                             <br>
                             <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
-                           <br>
-                           <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                            <br>
+                            <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
                         </i>
                       </ul>
-                    <a href="/amostras/agradecimentos"  target="_self">Créditos |</a>
-                    <a href="/amostras/contact">Fale Conosco |</a>
-                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
-                    <br>
+                      <a href="/amostras/agradecimentos"  target="_self">Créditos |</a>
+                      <a href="/amostras/contato"> Fale Conosco |</a>
+                      <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
+                     <br>
                      © 2016 - 2017  Instituto De Geociências-USP
-                    <br>
+                     <br>
                     Universidade De São Paulo
                 </font>
             </td>
         </tr>
-        </tbody>
-
-    </table>
+     </tbody>
+</table>

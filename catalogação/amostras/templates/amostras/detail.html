@@ -5,86 +5,87 @@
 
 
 {% block body %}
-
 <div class="container-fluid cidades-container">
-
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <div class="row">
         <!-- Left amostra Info -->
         <div class="col-sm-3 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-
-
                         {% if amostra.imagem %}
-                            <img src="{{ amostra.imagem.url }} " class="img-responsive" style="width: 350px; float:left; margin-right: 350px;">
-                        {% else %}
+                            <img src="{{ amostra.imagem.url }} " class="img-responsive"  width="240" height="170" alt="" border="" style="position: relative; top: 3px;">
+                           {% else %}
+                         {% endif %}
+                          <h4>Detalhes Gerais da Amostra:</h4>
+                          <h5>Código:</h5>
+                          <h4>{{ amostra.codigo }}<small></small></h4>
+
+                        {% if amostra.tipo %}
+                          <h5>Tipo:</h5>
+                          <h4>{{ amostra.tipo }}</h4>
+                         {% else %}
                         {% endif %}
 
-                     <h4>Detalhes Gerais da Amostra:</h4>
-                     <h4>Código:</h4>
-                     <h5>{{ amostra.codigo }}<small></small></h5>
-                     {% if amostra.tipo %}
-                     <h4>Tipo:</h4>
-                     <h5>{{ amostra.tipo }}</h5>
-                     {% else %}
-                     {% endif %}
-                      {% if amostra.descrição %}
-                     <h4>Descrição:</h4>
-                     <h5>{{amostra.descrição}}</h5>
-                    {% else %}
-                    {% endif %}
-                    {% if amostra.granulometria %}
-                     <h4>Granulometria:</h4>
-                     <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 250px; float:left; margin-right: 250px;">
-                    {% else %}
-                   {% endif %}
-                     {% if amostra.data %}
-                     <h4>Data de Coleta:</h4>
-                     <h5>{{amostra.data}}</h5>
-                    {% else %}
-                   {% endif %}
-                    {% if amostra.coletador %}
-                     <h4>Responsável Pela Coleta:</h4>
-                     <h5>{{amostra.coletador}}</h5>
-                    {% else %}
-                   {% endif %}
+                        {% if amostra.descrição %}
+                          <h5>Descrição:</h5>
+                          <h4>{{amostra.descrição}}</h4>
+                          {% else %}
+                        {% endif %}
 
+                        {% if amostra.granulometria %}
+                          <h5>Granulometria:</h5>
+                          <img src="{{ amostra.granulometria.url }}" class="img-responsive"  width="240" height="170" alt="" border="" style="position: relative; top: 3px;">
+                         {% else %}
+                        {% endif %}
 
+                        {% if amostra.data %}
+                           <h5>Data de Coleta:</h5>
+                           <h4>{{amostra.data}}</h4>
+                         {% else %}
+                        {% endif %}
+
+                        {% if amostra.coletador %}
+                           <h5>Responsável Pela Coleta:</h5>
+                           <h4>{{amostra.coletador}}</h4>
+                         {% else %}
+                        {% endif %}
+
+                        {% if amostra.Contato %}
+                           <h5>Contato do coletador:</h5>
+                           <h4>{{amostra.Contato}}</h4>
+                         {% else %}
+                        {% endif %}
                 </div>
             </div>
         </div>
 
-        <!-- Right continente Info -->
-        <div class="col-sm-2 col-md-2">
+
+<!--
+        <div class="col-sm-2 col-md-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3> Continente</h3>
+                    <h5> Continente</h5>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Sigla</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                         {% for amostra in amostras %}
-                            {{amostra.codigo}}
-                            {%for continente in amostra.continentes%}
-                            {{continente}}
-                            {%endfor%}
-                         {%endfor%}
-
-                        {% for amostra in continente.amostra_set.all %}
+                       {%for amostra in amostras%}
+                        {% for continente in amostra.Continentes_set.all %}
                             <tr>
                                 <td>{{ continente.nome}}</td>
-                                 <td>{{continente.sigla}}</td>
+
                                 <td>
                                 </td>
                             </tr>
                         {% endfor %}
+
+                        {%endfor%}
                         </tbody>
                     </table>
                 </div>
@@ -92,26 +93,23 @@
         </div>
 
 
-         <!-- Right país Info -->
-         <div class="col-sm-2 col-md-2">
+         <div class="col-sm-2 col-md-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3> País</h3>
+                    <h5> País</h5>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Região</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        {% for país in amostra.país_set.all %}
+                        {% for país in amostra.paíss_set.all %}
                             <tr>
                                 <td>{{ país.nome}}</td>
-                                <td>{{ país.região}}</td>
                                 <td>
                                 </td>
                             </tr>
@@ -123,18 +121,17 @@
         </div>
 
 
-         <!-- Right estado Info -->
-         <div class="col-sm-2 col-md-2">
+         <div class="col-sm-2 col-md-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3> Estado</h3>
+                    <h5> Estado</h5>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Nome</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -152,18 +149,17 @@
         </div>
 
 
-         <!-- Right cidade Info -->
-         <div class="col-sm-2 col-md-2">
+         <div class="col-sm-2 col-md-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Cidade</h3>
+                    <h5>Cidade</h5>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Nome</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -181,18 +177,18 @@
         </div>
 
 
-        <!-- Right clima Info -->
-         <div class="col-sm-2 col-md-2">
+
+         <div class="col-sm-2 col-md-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3> Clima</h3>
+                    <h5> Clima</h5>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Tipo</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -209,18 +205,18 @@
             </div>
         </div>
 
-        <!-- Right ambiente Info -->
-        <div class="col-sm-2 col-md-2">
+
+        <div class="col-sm-2 col-md-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Ambiente</h3>
+                    <h5>Ambiente</h5>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Tipo</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -239,92 +235,112 @@
     </div>
 
 
-     <div class="aumentaIMG">
+-->
+
         <span>
-        <div class="col-sm-2 col-md-2">
-            {% if amostra.imagem1 %}
-        <div class="panel panel-default">
-                <div class="panel-body">
-                <img src="{{ amostra.imagem1.url }}"  width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
-          {% else %}
-          {% endif %}
-        </div>
-        </div>
-        </div>
-       <div class="col-sm-3 col-md-2">
-            {% if amostra.imagem2 %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa" src="{{ amostra.imagem2.url }}"   width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
-             {% else %}
-             {% endif %}
-        </div>
-            </div>
-         </div>
-         <div class="col-sm-3 col-md-2">
-             {% if amostra.imagem3 %}
-             <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa" src="{{ amostra.imagem3.url }}"   width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
+            <script language="javascript">
+            <!--
+              function expand(obj){
+              obj.height=obj.height*1.55;
+              obj.width=obj.width*1.55;
+              }
+
+              function shorten(obj){
+              obj.height=obj.height/1.55;
+              obj.width=obj.width/1.55;
+              }
+            //-->
+            </script>
+              <div class="col-sm-3 col-md-2">
+                {% if amostra.imagem1 %}
+                  <div class="panel-body">
+                  <img src="{{ amostra.imagem1.url }}"  width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                {% else %}
+                {% endif %}
+                  </div>
+
+              </div>
+
+              <div class="col-sm-3 col-md-2">
+                {% if amostra.imagem2 %}
+
+                  <div class="panel-body">
+                  <img class="expa" src="{{ amostra.imagem2.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                {% else %}
+                {% endif %}
+
+                  </div>
+              </div>
+
+              <div class="col-sm-3 col-md-2">
+                 {% if amostra.imagem3 %}
+
+                   <div class="panel-body">
+                   <img class="expa" src="{{ amostra.imagem3.url }}"    width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
                  {% else %}
                  {% endif %}
-             </div>
-             </div>
-             </div>
+                   </div>
+
+              </div>
+
               <div class="col-sm-3 col-md-2">
                   {% if amostra.imagem4 %}
-                  <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa"  src="{{ amostra.imagem4.url }}"  width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
-                 {% else %}
-                 {% endif %}
-                  </div>
-                  </div>
+
+                     <div class="panel-body">
+                     <img class="expa"  src="{{ amostra.imagem4.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                  {% else %}
+                  {% endif %}
+
+                     </div>
               </div>
-             <div class="col-sm-3 col-md-2">
+
+              <div class="col-sm-3 col-md-2">
                  {% if amostra.imagem5 %}
-                 <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa" src="{{ amostra.imagem5.url }}"   width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
+
+                     <div class="panel-body">
+                     <img class="expa" src="{{ amostra.imagem5.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
                  {% else %}
                  {% endif %}
-                 </div>
-                 </div>
-             </div>
-            <div class="col-sm-3 col-md-2">
+
+                     </div>
+              </div>
+
+             <div class="col-sm-3 col-md-2">
                 {% if amostra.imagem6 %}
-                <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa" src="{{ amostra.imagem6.url }}"   width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
-               {% else %}
-               {% endif %}
-                </div>
-                </div>
+
+                    <div class="panel-body">
+                    <img class="expa" src="{{ amostra.imagem6.url }}"    width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                {% else %}
+                {% endif %}
+
+                    </div>
             </div>
+
+            <div class="col-sm-3 col-md-2">
+                {% if amostra.imagem7 %}
+
+                   <div class="panel-body">
+                   <img class="expa" src="{{ amostra.imagem7.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                {% else %}
+                {% endif %}
+                   </div>
+                   </div>
+            </div>
+
            <div class="col-sm-3 col-md-2">
-               {% if amostra.imagem7 %}
-               <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa" src="{{ amostra.imagem7.url }}"   width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
-               {% else %}
-               {% endif %}
-               </div>
-               </div>
-           </div>
-          <div class="col-sm-3 col-md-2">
                 {% if amostra.imagem8 %}
-              <div class="panel panel-default">
-                <div class="panel-body">
-                <img class="expa"  src="{{ amostra.imagem8.url }}"   width="220" height="150" alt="" border="0" style="position: relative; top: -3px;">
-               {% else %}
-                    {% endif %}
-              </div>
-              </div>
+
+                    <div class="panel-body">
+                    <img class="expa"  src="{{ amostra.imagem8.url }}"    width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                {% else %}
+                {% endif %}
+                    </div>
+                    </div>
            </div>
         </span>
-     </div>
+    </div>
 </div>
 
 
-
 {% endblock %}
+

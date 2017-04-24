@@ -3,16 +3,14 @@
 
 {%block body %}
 <div class="continentes-container container-fluid">
-
     <div class="row">
-
         <div class="col-sm-4 col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body">
                      <h2>Continente</h2>
                     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                        {%csrf_token%}
-                        {% include 'amostras/form_template.html' %}
+                           {%csrf_token%}
+                           {% include 'amostras/form_template.html' %}
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-sucess">concluir</button>

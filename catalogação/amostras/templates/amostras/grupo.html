@@ -1,0 +1,299 @@
+{% extends 'amostras/base2.html' %}
+{% load widget_tweaks %}
+{%block body%}
+
+  <form method="get">
+
+    <div class="well">
+        <h4 style="margin-top: 0">Na pesquisa avançada é possível realizar pesquisas com atributos mais específicos facilitando na obtenção do exemplar de interesse.</h4>
+
+        <div class="row">
+
+          <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.codigo.label_tag }}
+            {% render_field filter.form.codigo class="filter-control" %}
+          </div>
+
+          <div class="form-group col-sm-4 col-md-3">
+           {{filter.form.tipo.label_tag }}
+           {% render_field filter.form.tipo class="filter-control" %}
+          </div>
+
+          <div class="form-group col-sm-4 col-md-3">
+          </div>
+
+          <div class="form-group col-sm-4 col-md-3">
+           <button type="submit" class="btn btn-primary">
+             <span class="glyphicon glyphicon-search"></span> Pesquisar
+           </button>
+          </div>
+
+          <input type="button" id="campos" value="Lista de Campos" onClick="ativa()">
+           <div id='campo' style='display:none'>
+             <div class="form-group col-sm-3 col-md-2">
+               <h5>Continentes:</h5>
+             <div>
+             {% for continente in filter.form.Continentes %}
+                 <label class="checkbox">
+                 {{ continente}}
+                 </label>
+             {% endfor %}
+           </div>
+        </div>
+
+       <div class="form-group col-sm-3 col-md-2">
+          <h5>Países:</h5>
+          <div>
+            {% for país in filter.form.Paíss %}
+              <label class="checkbox">
+                {{ país }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+
+       <div class="form-group col-sm-3 col-md-2">
+        <h5>Estados:</h5>
+          <div>
+            {% for estado in filter.form.Estados %}
+              <label class="checkbox">
+                {{ estado }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+       <div class="form-group col-sm-3 col-md-2">
+         <h5>Cidades:</h5>
+          <div>
+            {% for cidade in filter.form.Cidades %}
+              <label class="checkbox">
+                {{ cidade }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3 col-md-2">
+         <h5>Climas:</h5>
+          <div>
+            {% for clima in filter.form.Climas %}
+              <label class="checkbox">
+                {{ clima }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+       <div class="form-group col-sm-3 col-md-2">
+          <h5>Ambientes:</h5>
+          <div>
+            {% for ambiente in filter.form.Ambientes %}
+              <label class="checkbox">
+              {{ ambiente }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+       </div>
+    </div>
+    </div>
+    <script>
+    function ativa(){
+    var div = document.getElementById('campo')
+    /* se conteúdo está escondido, mostra e troca o valor do botão para: esconde */
+    if (div.style.display == 'none') {
+    document.getElementById("campos").value='Lista de Campos'
+    div.style.display = 'block'
+    } else {
+    /* se conteúdo está a mostra, esconde o conteúdo e troca o valor do botão para: mostra */
+    div.style.display = 'none'
+   document.getElementById("campos").value='Lista de Campos'
+   }
+   }
+   </script>
+
+   <input type="button" id="Resultados" value="Listar  Resultados" onClick="ativ()">
+   <div id='Resultado' style='display:none'>
+     <form method="get">
+
+         <table class="table table-bordered">
+          <thead>
+           <tr>
+           <th>Código</th>
+           <th>Tipo</th>
+           <th>Imagem</th>
+           <th>Data</th>
+           <th>Continente</th>
+           <th>País</th>
+           <th>Estado</th>
+           <th>Cidade</th>
+           <th>Clima</th>
+           <th>Ambiente</th>
+          </tr>
+         </thead>
+          <tbody>
+          {% for amostra in filter.qs %}
+           <tr>
+             <td>{{ amostra.codigo }}
+               <a href="{% url 'amostras:detail' amostra.id %}" class="btn btn-primary btn-sm" role="button">Detalhes</a>
+                {% if user.is_authenticated %}
+                     <a href="{% url 'amostras:amostraupdate' amostra.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                     <!-- Delete amostra -->
+                     <form action="{% url 'amostras:delete_amostra' amostra.id %}" method="post" style="display: inline;">
+                       {% csrf_token %}
+                       <input type="hidden" name="amostra_id" value="{{ amostra.id }}" />
+                        <button type="submit" class="btn btn-default btn-sm">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                     </form>
+                {% else %}
+                {% endif %}
+             </td>
+             <td>{{ amostra.tipo }}</td>
+             <td>{{ amostra }}
+                <script language="javascript">
+                <!--
+                function expand(obj){
+                obj.height=obj.height*1.5;
+                obj.width=obj.width*1.5;
+                }
+
+                function shorten(obj){
+                obj.height=obj.height/1.5;
+                obj.width=obj.width/1.5;
+                }
+                //-->
+                </script>
+              <a href="{% url 'amostras:detail' amostra.id %}">
+                            {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }}" class="img-responsive"  width="200" height="140" alt="" border="" style="position: relative; top: -3px;" onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                            {% else %}
+                            {% endif %}
+              </a>
+             </td>
+             <td>{{amostra.data}}</td>
+             <td>
+             {% for continente in amostra.Continentes.all %}
+               {{ continente.nome}}
+              {% if user.is_authenticated %}
+               <a href="{% url 'amostras:continenteupdate' continente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+               <form action="{% url 'amostras:delete_continente' continente.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="continente_id" value="{{ continente.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                     <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+               </form>
+               {% else %}
+               {% endif %}
+             {% endfor %}
+             </td>
+
+            <td>
+             {% for país in amostra.Paíss.all %}
+              {{ país.nome}}
+               {% if user.is_authenticated %}
+                <a href="{% url 'amostras:paísupdate' país.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <form action="{% url 'amostras:delete_país' país.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="país_id" value="{{ país.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                     <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+               </form>
+                {% else %}
+                {% endif %}
+             {% endfor %}
+            </td>
+
+            <td>
+             {% for estado in amostra.Estados.all %}
+              {{ estado.nome}}
+               {% if user.is_authenticated %}
+                <a href="{% url 'amostras:estadoupdate' estado.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <form action="{% url 'amostras:delete_estado' estado.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                     <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+               </form>
+                {% else %}
+                {% endif %}
+             {% endfor %}
+            </td>
+
+            <td>
+             {% for cidade in amostra.Cidades.all %}
+              {{ cidade.nome}}
+               {% if user.is_authenticated %}
+                <a href="{% url 'amostras:cidadeupdate' cidade.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <form action="{% url 'amostras:delete_cidade' cidade.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="cidade_id" value="{{ cidade.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                     <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+               </form>
+                {% else %}
+                {% endif %}
+             {% endfor %}
+            </td>
+
+            <td>
+             {% for clima in amostra.Climas.all %}
+              {{ clima.tipo}}
+               {% if user.is_authenticated %}
+                <a href="{% url 'amostras:climaupdate' clima.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <form action="{% url 'amostras:delete_clima' clima.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="clima_id" value="{{ clima.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                     <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+               </form>
+                {% else %}
+                {% endif %}
+             {% endfor %}
+            </td>
+
+            <td>
+            {% for ambiente in amostra.Ambientes.all %}
+              {{ ambiente.tipo}}
+               {% if user.is_authenticated %}
+                <a href="{% url 'amostras:ambienteupdate' ambiente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <form action="{% url 'amostras:delete_ambiente' ambiente.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="ambiente_id" value="{{ ambiente.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                     <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </form>
+                {% else %}
+                {% endif %}
+            {% endfor %}
+            </td>
+           </tr>
+       {% endfor %}
+      </tbody>
+     </table>
+   </div>
+  </form>
+<script>
+function ativ(){
+var div = document.getElementById('Resultado')
+/* se conteúdo está escondido, mostra e troca o valor do botão para: esconde */
+if (div.style.display == 'none') {
+document.getElementById("Resultados").value='Listar  Resultados'
+div.style.display = 'block'
+} else {
+/* se conteúdo está a mostra, esconde o conteúdo e troca o valor do botão para: mostra */
+div.style.display = 'none'
+document.getElementById("Resultados").value='Listar  Resultados'
+}
+}
+</script>
+</form>
+{% endblock %}

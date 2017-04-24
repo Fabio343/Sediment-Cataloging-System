@@ -1,6 +1,9 @@
+# arquivo que valida os models assim eles podem ser usados como tabelas no banco de dados e apresentados no site
 from django.contrib import admin
 
+
 # Register your models here.
+
 from .models import Amostra
 admin.site.register(Amostra)
 
