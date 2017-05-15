@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'django_filters',
 
 
 ]
@@ -125,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'pt-br'
 
 
-TIME_ZONE = 'BTR'
+TIME_ZONE = 'BRT'
 
 USE_I18N = True
 

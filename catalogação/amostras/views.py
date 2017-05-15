@@ -22,8 +22,6 @@ from .filters import amostraFilter
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView
 
-
-
 #função para contato com administração
 def contato(request):
     if request.method == 'POST':
