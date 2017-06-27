@@ -1,0 +1,14 @@
+{% extends 'catalogação/base2.html' %}
+
+{% block body %}
+<ul><h3>Contato com a administração</h3></ul>
+  <div class="col-sm-2">
+    <ul>
+      <form role="form" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Concluir</button>
+      </form>
+    </ul>
+  </div>
+{% endblock %}

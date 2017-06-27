@@ -1,0 +1,56 @@
+{% extends 'catalogação/base2.html' %}
+{% block title %}All amostras{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid amostras-container">
+    <div class="row">
+      <ul><u><h3>Todas as Amostras Registradas no Sistema:</h3></u></ul>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                    <th>Código</th>
+                                    <th> Tipo</th>
+                                    <th> Descrição</th>
+                                    <th> Coletador</th>
+                                    <th>Granulometria</th>
+                                    <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for amostra in amostra_list %}
+                                <tr>
+                                    <td>{{ amostra.tipo }}</td>
+                                    <td>{{ amostra.amostra.codigo }}</td>
+                                    <td>
+                                        <a href="{% url 'catalogação:detail' amostra.amostra.id %}">
+                                             {% if amostra.amostra.imagem %}
+                                            <img src="{{ amostra.amostra.imagem.url }}" class="img-responsive" style="width: 200px; float: left; margin-right: 200px;" />
+                                            {% else %}
+                                            {%endif%}
+                                             {% if amostra.granulometria %}
+                                            <img src="{{ amostra.granulometria.url }}" class="img-responsive" style="width: 600px; float:left; margin-right: 600px;">
+                                            {%else%}
+                                            {%endif%}
+                                        </a>
+                                        <a href="{% url 'catalogação:detail' amostra.amostra.id %}">{{ amostra.amostra.tipo }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                         <form method="post">{% csrf_token %}
+                             {{ form.as_p }}
+                             <input type="submit" value="Concluir" />
+                         </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

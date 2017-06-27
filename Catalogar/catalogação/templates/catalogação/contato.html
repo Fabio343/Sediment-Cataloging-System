@@ -1,0 +1,20 @@
+{% extends 'catalogação/base2.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+{% block body  %}
+<ul>
+  <h3>Informe seus dados abaixo:</h3>
+
+  <form method="post">
+    <table>
+          {% csrf_token %}
+          {{ form }}
+      <tr>
+        <th>&nbsp;</th>
+        <td><input type="submit" value="Enviar"/></td>
+      </tr>
+    </table>
+  </form>
+</ul>
+{% endblock %}

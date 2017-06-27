@@ -1,0 +1,62 @@
+body {
+     background: white url("imagens/IMG_0706.JPG"); repeat;
+     box-sizing: border-box;
+      width: 100%;
+      height: 1080px;
+}
+ul.errorlist {
+    padding-left: 0;
+}
+
+ul.errorlist > li {
+    list-style: none;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'arial', cursive;
+}
+
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+
+.window{
+    display:none;
+    width:300px;
+    height:300px;
+    position:absolute;
+    left:0;
+    top:0;
+    background:#FFF;
+    z-index:9900;
+    padding:10px;
+    border-radius:10px;
+}
+
+#mascara{
+    display:none;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+}
+
+.fechar{display:block; text-align:right;}
+
+
+.aumentaIMG a span{display:none;}
+.aumentaIMG a:hover span{background:white url("imagens/fundo.jpg"); repeat; display:block; position:absolute; z-index:100;}
+.aumentaIMG a:hover span img{background:white url("imagens/fundo.jpg"); repeat;}
+.aumentaIMG a:hover em{z-index:1; display:none;}
+.aumentaIMG a img{border:#000 1px solid;}
+.aumentaIMG a:hover img{border:#000 1px solid;}

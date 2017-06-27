@@ -1,0 +1,266 @@
+{% extends 'catalogação/base2.html' %}
+{% load widget_tweaks %}
+{% block body %}
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your keywords">
+    <meta name="author" content="Your name">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="/static/js/jquery-1.7.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/static/js/superfish.js"></script>
+    <script src="/static/js/jquery.easing.1.3.js"></script>
+    <script src="/static/js/tms-0.4.1.js"></script>
+    <script src="/static/js/slider.js"></script>
+    <script type="text/javascript">
+                $(function(){
+                        function equalHeight(group) {
+                                var tallest = 0;
+                                group.each(function() {
+                                        var thisHeight = $(this).height();
+                                        if(thisHeight > tallest) {
+                                                tallest = thisHeight;
+                                        }
+                                });
+                                group.height(tallest);
+                        }
+                        equalHeight($(".box-1 .inner"));
+
+                        $("#tags4").autocomplete({
+                                minLength:3,
+                                source: function(req, add){
+                                        var search=$("#tags4").val();
+                                        $.ajax({
+                                                url:'/autoamostras/',
+                                                async:false,
+                                                dataType:'json',
+                                                type:'GET',
+                                                data:{ 'start': search,},
+                                                success: function(data){
+                                                        var suggestions=[];
+                                                        $.each(data, function(index, objeto){
+                                                                suggestions.push(objeto.codigo);
+                                                        });
+                                                        add(suggestions);
+                                                },
+                                                error:function(err){
+                                                        alert("error");
+                                                }
+                                        });
+                                }
+                        });
+
+                });
+    </script>
+
+        <script src="js/html5.js"></script>
+        <link rel="stylesheet" href="css/ie.css">
+
+
+
+       <ul>
+        <div class="col-sm-10 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h4>Em Que Consiste o Sistema?</h4>
+                    <p> É um acervo de exemplares de amostras de sedimentos de diversas regiões do mundo que podem ser usados para estudos,
+                        de forma geral sendo principalmente focado em atividades didáticas da área de Geociências. </p>
+                    <h4>Quem Pode Acessar?</h4>
+                    <p>O acesso é livre a todos, sendo que as funções de alterações de qualquer informação são exclusivas aos administradores do sistema.</p>
+                    <h4>Como Realizar Pesquisas?</h4>
+                    <ul>
+                        <li>Pode realizar a pesquisa por código da amostra, país, cidade, estado, ambiente, clima, entre outros.</li>
+                        <li>Ou pode clicar na listagem geral de exemplares</li>
+                    </ul>
+                    <h4> Quais são as informações apresentadas na lista geral de Exemplares?</h4>
+                    <p>Para cada amostra, é fornecida uma descrição geral com informações  como origem, tipo e granulometria</p>
+
+                </div>
+                 <a href="/media/downloads/DIAGRAMA ENTIDADE (1)2.pdf" target=_blank" download> Clique Aqui Para Matérial De Apoio </a>
+            </div>
+        </div>
+       </ul>
+
+        <div class="col-sm-5 col-md-5">
+        <div class="panel panel-default">
+        <a href="#janela70" class="Click Para ter acesso a listagem de siglas dos paises presentes nesse sitema" rel="modal">Click Para ter acesso a listagem de siglas dos paises presentes nesse sitema</a>
+        </div>
+        </div>
+	    <div class="window" id="janela70">
+		     <a href="#" class="fechar">X Fechar</a>
+        <div align="left" id="test6" style="width:450px;height:450px;overflow-x:hidden;overflow-y:scroll;">
+             <h5>Sigla dos países listados para possíveis dúvidas durante as pesquisas </h5>
+               <table>
+                <h5>Código   / País    </h5>
+                <h5>BR/	  Brasil</h5>
+                <h5>MV	/  Maldivas</h5>
+                <h5>AE	 / Emiratos Arabes Unidos </h5>
+                <h5>GR/	   Grécia</h5>
+                <h5>CA	 / Canada</h5>
+                <h5>MX	/  México</h5>
+                <h5>FR /   França</h5>
+                <h5>CL	/  Chile</h5>
+                <h5>NO	/  Noruega</h5>
+                <h5>CH	/  Suiça</h5>
+                <h5>CO	/  Colombia</h5>
+                <h5>NZ	/  Nova Zelândia</h5>
+                <h5>ES	/  Espanha</h5>
+                <h5>CR	/  Costa Rica</h5>
+                <h5>OM	/  Omã</h5>
+                <h5>EG	/  Egito</h5>
+                <h5>PE	/  Peru</h5>
+                <h5>US/	   Estados Unidos</h5>
+                <h5>DM	/  Dominica</h5>
+                <h5>PF	/  Polinesia Francesa</h5>
+                <h5>GB	/  Reino Unido</h5>
+                <h5>DK	/  Dinamarca</h5>
+                <h5>PY	/  Paraguai</h5>
+                <h5> PT	/  Portugal</h5>
+                <h5>AQ   / Antartica</h5>
+                <h5> GF	 / Guiana Francesa</h5>
+                <h5> TW	 / Taiwan</h5>
+                <h5>AR   / Argentina</h5>
+                <h5>GY	 / Guiana</h5>
+                <h5> TR	/  Turquia</h5>
+                <h5>AW  /  Aruba</h5>
+                <h5> ID	  /Indonesia</h5>
+                <h5> UY	/  Uruguai</h5>
+                <h5>BS	/  Bahamas</h5>
+                <h5>IL	 / Israel</h5>
+                <h5>TH  /  Tailândia</h5>
+                <h5>AU	/  Australia</h5>
+                <h5>IS	 / Islândia</h5>
+                <h5>VE	/  Venezuela</h5>
+                <h5>BB	/  Barbados</h5>
+                <h5>IT	/  Italia</h5>
+                <h5>PR	/  Porto Rico</h5>
+                <h5>BO  /  Bolivia</h5>
+                <h5>JP	/  Japão</h5>
+                <h5>SE  /  Suecia</h5>
+                <h5>CV	/  Cabo Verde</h5>
+                <h5>MA	/  Marrocos</h5>
+                <h5>EQ	/  Equador</h5>
+               </table>
+        </div>
+        </div>
+
+        <div class="col-sm-10 col-md-5">
+         <div class="panel panel-default">
+          <body id="page1">
+            <header>
+              <font size="4" face="Arial">
+                <ul><h5><p><li>Pesquisa simples voltada para usuários que já tem o código da amostra e pode filtra-lá mais rapidamente,
+                 aos que não tem informações completas usem o campo pesquisa avançada
+                 esse campo lhe dará melhores opções para que obtenha o exemplar desejado.</li></p>
+                 <P><li>OBS: As amostras internacionais apresentam as letras e números do código a amostra separados por hífen (-) devendo ser colocada dessa forma no campo de pesquisa: BB-0000
+                 as nacionais são do tipo SP000BR onde os dois primeiros caracteres se referem ao estado e os dois finais ao país no caso Brasil.</P></li></h5>
+                </ul>
+              </font>
+              <div class="inner">
+                 <div class="fright">
+                    <div class="header-meta">
+                      <div class="ui-widget">
+
+                              <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'catalogação:index' %}">
+                                <font face="Serifa Th BT">
+                                   <h4>Código da Amostra:</h4>
+                                </font>
+                                <input id="tags4" name="q" value="{{ request.GET.q }}"  placeholder="Ex:SP000BR">
+                                <button type="submit" class="btn btn-default">Pesquisar</button>
+                              </form>
+
+                      </div>
+                    </div>
+                 </div>
+              </div>
+            </header>
+          </body>
+         </div>
+        </div>
+
+
+
+ <script type="text/javascript">
+    function CheckBoxClick(arg)
+    {
+        var boxId = document.getElementById(arg);
+
+        alert("BoxID: "+arg+"\nStatus: "+boxId.checked);
+    }
+    </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel=modal]").click( function(ev){
+					ev.preventDefault();
+
+					var id = $(this).attr("href");
+
+					var alturaTela = $(document).height();
+					var larguraTela = $(window).width();
+
+					//colocando o fundo preto
+					$('#mascara').css({'width':larguraTela,'height':alturaTela});
+					$('#mascara').fadeIn(1000);
+					$('#mascara').fadeTo("slow",0.8);
+
+					var left = ($(window).width() /2) - ( $(id).width() / 2 );
+					var top = ($(window).height() / 2) - ( $(id).height() / 2 );
+
+					$(id).css({'top':top,'left':left});
+					$(id).show();
+ 				});
+
+ 				$("#mascara").click( function(){
+ 					$(this).hide();
+ 					$(".window").hide();
+ 				});
+
+ 				$('.fechar').click(function(ev){
+ 					ev.preventDefault();
+ 					$("#mascara").hide();
+ 					$(".window").hide();
+ 				});
+			});
+		</script>
+
+		<style type="text/css">
+
+		.window{
+			display:none;
+			width:500px;
+			height:500px;
+			position:absolute;
+			left:0;
+			top:0;
+			background:#FFF;
+			z-index:10000;
+			padding:20px;
+			border-radius:20px;
+		}
+
+		#mascara{
+			position:absolute;
+  			left:0;
+  			top:0;
+  			z-index:10000;
+  			background-color:#000;
+  			display:none;
+		}
+
+		.fechar{display:block; text-align:right;}
+
+		</style>
+
+
+
+
+
+{% endblock %}
+

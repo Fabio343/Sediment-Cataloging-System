@@ -1,0 +1,21 @@
+{% extends 'catalogação/basevisitante.html' %}
+{% block head %}
+<title>Perfil do Usuario</title>
+{% endblock %}
+{% block body %}
+
+  <div class="container">
+    <h4>Perfil do Usuario</h4>
+    <p>Nome: {{ user.first_name }}</p>
+    <p>Sobrenome: {{ user.last_name }}</p>
+    <p>Username: {{ user }}</p>
+    <p>Email: {{ user.email }}</p>
+     <li class="">
+     <a href="{% url 'catalogação:logout_user' %}">
+         <button type="submit">Logout</button>
+     </a>
+     </li>
+  </div>
+
+{% endblock %}
+

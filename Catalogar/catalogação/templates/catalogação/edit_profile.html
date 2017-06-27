@@ -1,0 +1,16 @@
+{% extends 'catalogação/basevisitante.html' %}
+{% load widget_tweaks %}
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+   <div class="col-sm-3">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Concluir</button>
+        </form>
+  </div>
+</div>
+{% endblock %}

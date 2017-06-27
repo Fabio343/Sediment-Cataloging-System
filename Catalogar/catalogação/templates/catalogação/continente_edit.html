@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         {% load staticfiles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'catalogação/style.css' %}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=0.65">
+        {% block head %}
+        <title>Sistema de Catalogação</title>
+        {% endblock %}
+    </head>
+<section class="container-fluid ">
+    <body>
+        <br>
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <tr>
+                   <td width="180" rowspan="3" align="center">
+                       <a href="http://www5.usp.br/" target="_blank">
+                       <img src="/static/catalogação/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: 3px;">
+                       </a>
+                   </td>
+                   <td width="180" rowspan="3" align="center">
+                       <a href="http://www.igc.usp.br/" target="_blank">
+                       <img src="/static/catalogação/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: 3px;">
+                       </a>
+                   </td>
+                   <td width="180" rowspan="3" align="center">
+                       <a href="https://www.ime.usp.br/" target="_blank">
+                       <img src="/static/catalogação/imagens/imeusp.png" width="60" height="60" alt="" border="0" style="position: relative; top: 3px;">
+                       </a>
+                   </td>
+                </tr>
+                 <br>
+                 <i>
+                 <a class="navbar-brand" href="{% url 'catalogação:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+                 <br>
+                 </i>
+              </div>
+               <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                       <li class="{% block inicial_active %}{% endblock %}"><a href="{% url 'catalogação:inicial' %}"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Inicio</a></li>
+                       <li class="{% block amostras_active %}{% endblock %}"><a href="{% url 'catalogação:index' %}"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Amostras</a></li>
+                       <li> <a href="/lista_continente"><span aria-hidden="true"></span>&nbsp; Continentes</a></li>
+                       <li class="{% block paíss_active %}{% endblock %}"> <a href="/lista_país"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Países</a></li>
+                       <li class="{% block estados_active %}{% endblock %}"><a href="/lista_estado"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Estados</a></li>
+                       <li class="{% block cidades_active %}{% endblock %}"> <a href="/lista_cidade"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Cidades</a></li>
+                       <li class="{% block climas_active %}{% endblock %}"><a href="/lista_clima"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Climas</a></li>
+                       <li class="{% block ambientes_active %}{% endblock %}"><a href="/lista_ambiente"><span class="glyphicon glyphicon-catalogação" aria-hidden="true"></span>&nbsp; Ambientes</a></li>
+                    </ul>
+                   <ul class="nav navbar-nav navbar-right">
+                       {% if user.is_authenticated %}
+                        <li class="">
+                          <a href="{% url 'catalogação:adicionar'%}">
+                          <span class="glyphicon glyphicoon-plus" aria-hidden="true"></span>&nbsp;Informações da Administração
+                          </a>
+                        </li>
+                        {% else %}
+                        <ul class="nav navbar-nav">
+                        <li class="{% block login_active %}{% endblock %}"><a href="{% url 'catalogação:login_user' %}">Login</a></li>
+                        </ul>
+                        {% endif %}
+                   </ul>
+               </div>
+            </div>
+          </nav>
+</section>
+        {% block body %}
+          <ul>
+            <h2>Edição de Continente</h2>
+              <form method="POST" class="post-form">{% csrf_token %}
+               {{ form.as_p }}
+               <button type="submit" class="save btn btn-default">Guardar</button>
+              </form>
+          </ul>
+        {% endblock %}
+    </body>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+     <tbody>
+        <tr>
+            <td align="center">
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="0">
+                      <ul>
+                        <i>
+                            <a href="http://www5.usp.br/" target="_blank">
+                              <img src="/static/catalogação/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+                            </a>
+                            <br>
+                            <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
+                            <br>
+                            <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
+                            <br>
+                            <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                        </i>
+                      </ul>
+                     <a href="/catalogação/agradecimentos"  target="_self">Créditos |</a>
+                     <a href="/catalogação/contato"> Fale Conosco |</a>
+                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
+                     <br>
+                     © 2016 - 2017  Instituto De Geociências-USP
+                     <br>
+                    Universidade De São Paulo
+                </font>
+            </td>
+        </tr>
+     </tbody>
+</table>

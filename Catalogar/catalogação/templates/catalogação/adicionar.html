@@ -1,0 +1,192 @@
+<!--Sessão responsável por funções de adição de dados ao banco de  dados bem como a visualização de informações cdo usuário logado ou a edição dos mesmos, é a pagina de administração geral
+do sistema web-->
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         {% load staticfiles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'catalogação/style.css' %}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=0.65">
+        {% block head %}
+        <title>Sistema de Catalogação</title>
+        {% endblock %}
+      </head>
+      <section class="container-fluid ">
+      <body>
+         <br>
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+         <tr>
+         <td width="180" rowspan="3" align="center">
+            <a href="http://www5.usp.br/" target="_blank">
+            <img src="/static/catalogação/imagens/usp.png" width="100" height="50" alt="" border="0" style="position: relative; top: 3px;">
+
+            </a>
+         </td>
+         <td width="180" rowspan="3" align="center">
+            <a href="http://www.igc.usp.br/" target="_blank">
+            <img src="/static/catalogação/imagens/logoigc.png" width="165" height="50" alt="" border="0" style="position: relative; top: 3px;">
+            </a>
+         </td>
+         <td width="180" rowspan="3" align="center">
+            <a href="https://www.ime.usp.br/" target="_blank">
+             <img src="/static/catalogação/imagens/imeusp.png" width="60" height="60" alt="" border="0" style="position: relative; top: 3px;">
+            </a>
+         </td>
+         </tr>
+          <br>
+        <i>
+        <a class="navbar-brand" href="{% url 'catalogação:inicial' %}">SISTEMA DE CATALOGAÇÃO DE SEDIMENTOS</a>
+        <br>
+        </i>
+
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                   <li class="{% block inicial_active %}{% endblock %}"><a href="{% url 'catalogação:inicial' %}"><span class="glyphicon glyphico-amostras" aria-hidden="true"></span>&nbsp; Inicio</a></li>
+                  </ul>
+              </div>
+              </section>
+              <br>
+
+
+        <ul class="nav navbar-nav navbar-left">
+
+                <ul><h4> Adicionar: </h4></ul>
+
+              <li class="active">
+                    <a href="{% url 'catalogação:create_amostra'%}">
+                         <button type="submit">&nbsp; Amostra </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'catalogação:create_cidade'%}">
+                         <button type="submit">&nbsp;  Cidade </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'catalogação:create_estado'%}">
+                         <button type="submit">&nbsp;Estado </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'catalogação:create_país'%}">
+                         <button type="submit">&nbsp;País </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'catalogação:create_continente'%}">
+                         <button type="submit">&nbsp;Continente </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'catalogação:create_ambiente'%}">
+                         <button type="submit">&nbsp;Ambiente </button>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="{% url 'catalogação:create_clima'%}">
+                         <button type="submit">&nbsp;Clima </button>
+                    </a>
+                </li>
+            <br>
+            <br>
+            <ul><h4>Registrar Usuario: </h4></ul>
+            <ul class="nav navbar-nav navbar-center">
+                 <li class="">
+                    <a href="{%url 'catalogação:register' %}">
+                         <button type="submit">&nbsp;Registrar </button>
+                    </a>
+                 </li>
+            </ul>
+            <br>
+            <br>
+            <br>
+            <ul><h4>Alterar Suas Informações:</h4></ul>
+            <ul class="nav navbar-nav navbar-center">
+                    <li><a href="{% url 'catalogação:edit_profile' %}">
+                         <button type="submit">Editar Pefil</button></a></li>
+                    <li><a href="{% url 'catalogação:change_password' %}">
+                         <button type="submit">Alterar Senha</button></a></li>
+            </ul>
+
+           <li class="active">
+            <a href="{% url 'catalogação:gru'%}">
+             <button type="submit">&nbsp;Visualização Geral</button>
+            </a>
+          </li>
+        </ul>
+           <div class="col-sm-5 col-md-4">
+               <div class="panel panel-default">
+                   <div class="panel-body">
+                         <title>Perfil do Usuário</title>
+                         <div class="container">
+                                <h3>Perfil do Usuário:</h3>
+                                   <h5><p>Nome: {{ user.first_name }}</p>
+                                   <p>Sobrenome: {{ user.last_name }}</p>
+                                   <p>Nome de Usuário: {{ user }}</p>
+                                   <p>Email: {{ user.email }}</p><h5>
+                                <li class="">
+                                   <a href="{% url 'catalogação:logout_user' %}">
+                                        <button type="submit">Sair</button>
+                                   </a>
+                                </li>
+                         </div>
+                   </div>
+               </div>
+           </div>
+      </body>
+
+      <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+      </script>
+
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+     <tbody>
+        <tr>
+            <td align="center">
+                <font face="Arial,Hevetica,sans-serif" size="2">
+                    <hr size="0">
+
+                      <ul>
+                        <i>
+
+                            <a href="http://www5.usp.br/" target="_blank">
+                              <img src="/static/catalogação/imagens/usp.gif" width="150" height="50" alt="" border="0" style="position: relative; top: -3px;">
+                            </a>
+                            <br>
+                            <a href="http://www.igc.usp.br/" target="_blank">Institudo de Geociências/USP</a>
+                            <br>
+                            <a href="https://www.ime.usp.br/" target="_blank">Instituto de Matemática e Estatística/USP</a>
+                           <br>
+                           <a href="http://www.prg.usp.br/" target="_blank">Pró-Reitoria de Graduação/USP</a>
+                        </i>
+                      </ul>
+                    <a href="/catalogação/agradecimentos"  target="_self">Créditos |</a>
+                    <a href="/catalogação/contato"> Fale Conosco |</a>
+                     <a href="https://github.com/Fabio343/Sediment-Cataloging-System" target="_blank">GitHub</a>
+                    <br>
+                     © 2016 - 2017  Instituto De Geociências-USP
+                    <br>
+                    Universidade De São Paulo
+                </font>
+            </td>
+        </tr>
+        </tbody>
+
+</table>

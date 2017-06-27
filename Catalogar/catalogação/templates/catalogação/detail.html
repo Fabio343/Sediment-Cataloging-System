@@ -1,0 +1,249 @@
+{% extends 'catalogação/base2.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+
+
+{% block body %}
+<div class="container-fluid cidades-container">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <div class="row">
+        <!--  amostra Info -->
+        <div class="col-sm-3 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                        {% if amostra.imagem %}
+                            <img src="{{ amostra.imagem.url }} " class="img-responsive"  width="240" height="170" alt="" border="" style="position: relative; top: 3px;">
+                           {% else %}
+                         {% endif %}
+                          <h4>Detalhes Gerais da Amostra:</h4>
+                          <h5>Código:</h5>
+                          <h4>{{ amostra.codigo }}<small></small></h4>
+
+                        {% if amostra.tipo %}
+                          <h5>Tipo:</h5>
+                          <h4>{{ amostra.tipo }}</h4>
+                         {% else %}
+                        {% endif %}
+
+                        {% if amostra.descrição %}
+                          <h5>Descrição:</h5>
+                          <h4>{{amostra.descrição}}</h4>
+                          {% else %}
+                        {% endif %}
+
+                        {% if amostra.granulometria %}
+                          <h5>Granulometria:</h5>
+                          <img src="{{ amostra.granulometria.url }}" class="img-responsive"  width="240" height="170" alt="" border="" style="position: relative; top: 3px;">
+                         {% else %}
+                        {% endif %}
+
+                        {% if amostra.data %}
+                           <h5>Data de Coleta:</h5>
+                           <h4>{{amostra.data}}</h4>
+                         {% else %}
+                        {% endif %}
+
+                        {% if amostra.coletador %}
+                           <h5>Responsável Pela Coleta:</h5>
+                           <h4>{{amostra.coletador}}</h4>
+                         {% else %}
+                        {% endif %}
+
+                        {% if amostra.Contato %}
+                           <h5>Contato do coletador:</h5>
+                           <h4>{{amostra.Contato}}</h4>
+                         {% else %}
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+        <span>
+            <script language="javascript">
+           <!--
+                function expand(obj){
+                obj.height=obj.height*3.0;
+                obj.width=obj.width*3.0;
+                }
+
+                function shorten(obj){
+                obj.height=obj.height/3.0;
+                obj.width=obj.width/3.0;
+                }
+                //-->
+            </script>
+                    <h4>Click para ver outras imagens da amostra</h4>
+                     {% if amostra.imagem1 %}
+                      <a href="#janela10"  rel="modal"><h4>A</h4></a>
+                      <div class="window"  id="janela10">
+                      <a href="#" class="fechar">X Fechar</a>
+                      <h5>click para ampliar</h5>
+                           <div class="panel-body">
+                              <img src="{{ amostra.imagem1.url }}"  width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                           </div>
+                      </div>
+                    {% else %}
+                    {% endif %}
+
+
+                    {% if amostra.imagem2 %}
+                       <a href="#janela11"  rel="modal"><h4>B</h4></a>
+                       <div class="window" id="janela11">
+                        <a href="#" class="fechar">X Fechar</a>
+                        <h5>click para ampliar</h5>
+                              <div class="panel-body">
+                                 <img  src="{{ amostra.imagem2.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                              </div>
+                       </div>
+                    {% else %}
+                    {% endif %}
+
+
+                   {% if amostra.imagem3 %}
+                     <a href="#janela12"  rel="modal"><h4>C</h4></a>
+                     <div class="window" id="janela12">
+                       <a href="#" class="fechar">X Fechar</a>
+                       <h5>click para ampliar</h5>
+                              <div class="panel-body">
+                                 <img  src="{{ amostra.imagem3.url }}"    width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                              </div>
+                     </div>
+                   {% else %}
+                   {% endif %}
+
+
+                   {% if amostra.imagem4 %}
+                     <a href="#janela13"  rel="modal"><h4>D</h4></a>
+                      <div class="window" id="janela13">
+                       <a href="#" class="fechar">X Fechar</a>
+                       <h5>click para ampliar</h5>
+                               <div class="panel-body">
+                                   <img  src="{{ amostra.imagem4.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                               </div>
+                      </div>
+                   {% else %}
+                   {% endif %}
+
+
+                  {% if amostra.imagem5 %}
+                     <a href="#janela14"  rel="modal"><h4>E</h4></a>
+                     <div class="window" id="janela14">
+                      <a href="#" class="fechar">X Fechar</a>
+                      <h5>click para ampliar</h5>
+                             <div class="panel-body">
+                                <img src="{{ amostra.imagem5.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                             </div>
+                    </div>
+                  {% else %}
+                  {% endif %}
+
+
+                  {% if amostra.imagem6 %}
+                    <a href="#janela15"  rel="modal"><h4>F</h4></a>
+                    <div class="window" id="janela15">
+                      <a href="#" class="fechar">X Fechar</a>
+                      <h5>click para ampliar</h5>
+                             <div class="panel-body">
+                                 <img src="{{ amostra.imagem6.url }}"    width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                             </div>
+                    </div>
+                  {% else %}
+                  {% endif %}
+
+
+                 {% if amostra.imagem7 %}
+                   <a href="#janela16"  rel="modal"><h4>G</h4></a>
+                   <div class="window" id="janela16">
+                     <a href="#" class="fechar">X Fechar</a>
+                     <h5>click para ampliar</h5>
+                           <div class="panel-body">
+                              <img src="{{ amostra.imagem7.url }}"   width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                           </div>
+                   </div>
+                 {% else %}
+                 {% endif %}
+
+
+                 {% if amostra.imagem8 %}
+                    <a href="#janela17"  rel="modal"><h4>H</h4></a>
+                   <div class="window" id="janela17">
+                      <a href="#" class="fechar">X Fechar</a>
+                      <h5>click para ampliar</h5>
+                           <div class="panel-body">
+                               <img class="expa"  src="{{ amostra.imagem8.url }}"    width="200" height="130" alt="" border="" style="position: relative; top: 2px;"  onMouseOver="expand(this)" onMouseOut="shorten(this)">
+                           </div>
+                   </div>
+                {% else %}
+                {% endif %}
+        </span>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel=modal]").click( function(ev){
+					ev.preventDefault();
+
+					var id = $(this).attr("href");
+
+					var alturaTela = $(document).height();
+					var larguraTela = $(window).width();
+
+					//colocando o fundo preto
+					$('#mascara').css({'width':larguraTela,'height':alturaTela});
+					$('#mascara').fadeIn(1000);
+					$('#mascara').fadeTo("slow",0.8);
+
+					var left = ($(window).width() /2) - ( $(id).width() / 2 );
+					var top = ($(window).height() / 2) - ( $(id).height() / 2 );
+
+					$(id).css({'top':top,'left':left});
+					$(id).show();
+ 				});
+
+ 				$("#mascara").click( function(){
+ 					$(this).hide();
+ 					$(".window").hide();
+ 				});
+
+ 				$('.fechar').click(function(ev){
+ 					ev.preventDefault();
+ 					$("#mascara").hide();
+ 					$(".window").hide();
+ 				});
+			});
+		</script>
+
+		<style type="text/css">
+
+		.window{
+			display:none;
+			width:700px;
+			height:500px;
+			position:absolute;
+			left:0;
+			top:0;
+			background:#FFF;
+			z-index:10000;
+			padding:20px;
+			border-radius:20px;
+		}
+
+		#mascara{
+			position:absolute;
+  			left:0;
+  			top:0;
+  			z-index:10000;
+  			background-color:#000;
+  			display:none;
+		}
+
+		.fechar{display:block; text-align:right;}
+
+		</style>
+
+{% endblock %}
+

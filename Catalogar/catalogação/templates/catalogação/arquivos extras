@@ -1,0 +1,1042 @@
+url(r'^amostra-edit/(?P<amostra_id>[0-9]+)/edit/$', views.amostra_edit, name='amostra_edit'),
+url(r'^continente-edit/(?P<continente_id>[0-9]+)/edit/$', views.continente_edit, name='continente_edit'),
+url(r'^país-edit/(?P<país_id>[0-9]+)/edit/$', views.país_edit, name='país_edit'),
+url(r'^estado-edit/(?P<estado_id>[0-9]+)/edit/$', views.estado_edit, name='estado_edit'),
+url(r'^cidade-edit/(?P<cidade_id>[0-9]+)/edit/$', views.cidade_edit, name='cidade_edit'),
+url(r'^clima-edit/(?P<clima_id>[0-9]+)/edit/$', views.clima_edit, name='clima_edit'),
+url(r'^ambiente-edit/(?P<ambiente_id>[0-9]+)/edit/$', views.ambiente_edit, name='ambiente_edit'),
+
+
+def amostra_edit(request,amostra_id):
+    amostra = get_object_or_404(Amostra,pk=amostra_id)
+    if request.method == "POST":
+        form =amostraForm(request.POST, instance=amostra)
+        if form.is_valid():
+            amostra = form.save(commit=False)
+            amostra.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = amostraForm(instance=amostra)
+    return render(request, 'amostras/amostra_edit.html', {'form': form})
+########################################################################################################################
+########################################################################################################################
+def continente_edit(request,continente_id):
+    continente = get_object_or_404(Continente,pk=continente_id)
+    if request.method == "POST":
+        form =continenteForm(request.POST, instance=continente)
+        if form.is_valid():
+            continente = form.save(commit=False)
+            continente.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = continenteForm(instance=continente)
+    return render(request, 'amostras/continente_edit.html', {'form': form})
+
+########################################################################################################################
+########################################################################################################################
+def país_edit(request,país_id):
+    país = get_object_or_404(País,pk=país_id)
+    if request.method == "POST":
+        form =paísForm(request.POST, instance=país)
+        if form.is_valid():
+            país = form.save(commit=False)
+            país.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = paísForm(instance=país)
+    return render(request, 'amostras/país_edit.html', {'form': form})
+
+########################################################################################################################
+########################################################################################################################
+def estado_edit(request,estado_id):
+    estado = get_object_or_404(Estado,pk=estado_id)
+    if request.method == "POST":
+        form =estadoForm(request.POST, instance=estado)
+        if form.is_valid():
+            estado = form.save(commit=False)
+            estado.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = estadoForm(instance=estado)
+    return render(request, 'amostras/estado_edit.html', {'form': form})
+
+
+########################################################################################################################
+########################################################################################################################
+def cidade_edit(request,cidade_id):
+    cidade = get_object_or_404(Cidade,pk=cidade_id)
+    if request.method == "POST":
+        form =cidadeForm(request.POST, instance=cidade)
+        if form.is_valid():
+            cidade = form.save(commit=False)
+            cidade.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = cidadeForm(instance=cidade)
+    return render(request, 'amostras/cidade_edit.html', {'form': form})
+
+########################################################################################################################
+########################################################################################################################
+def clima_edit(request,clima_id):
+    clima = get_object_or_404(Clima,pk=clima_id)
+    if request.method == "POST":
+        form =climaForm(request.POST, instance=clima)
+        if form.is_valid():
+            clima = form.save(commit=False)
+            clima.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = climaForm(instance=clima)
+    return render(request, 'amostras/clima_edit.html', {'form': form})
+
+########################################################################################################################
+########################################################################################################################
+def ambiente_edit(request,ambiente_id):
+    ambiente = get_object_or_404(Ambiente,pk=ambiente_id)
+    if request.method == "POST":
+        form =ambienteForm(request.POST, instance=ambiente)
+        if form.is_valid():
+            ambiente = form.save(commit=False)
+            ambiente.save()
+            return redirect(reverse('amostras:inicial'))
+
+    else:
+        form = ambienteForm(instance=ambiente)
+    return render(request, 'amostras/ambiente_edit.html', {'form': form})
+
+
+
+Funções acima são de edição/|\
+
+
+
+
+<!--
+ {% if continentes %}
+        <div class="row">
+            <div class="col-sm-10">
+              <ul> <h3>Continente</h3></ul>
+            </div>
+            <div class="col-sm-5">
+             <ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Imagem  e  Código da Amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for continente in continentes %}
+                                    <tr>
+                                        <td>{{ continente.nome }}</td>
+
+                                        <td>
+                                            <a href="{% url 'amostras:detail' continente.id %}">
+                                                 {% if continente.amostra.imagem %}
+                                                <img src="{{ continente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                 {%else%}
+                                                {%endif%}
+                                            </a>
+                                            <a href="{% url 'amostras:detail' continente.id %}">{{ continente.amostra.codigo }}</a>
+                                                   {% if user.is_authenticated %}
+                                         <a class="btn btn-default" href="{% url 'amostras:continente_edit' continente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+                                           <form action="{% url 'amostras:delete_continente' continente.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="continente_id" value="{{ continente.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                               {% else %}
+                                 {% endif %}
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                             {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </ul>
+            </div>
+
+      {% endif %}
+
+
+
+
+     <!-- If user searches and there are paises
+    {% if paíss %}
+        <div class="row">
+            <div class="col-sm-10">
+
+               <ul> <h3>Países</h3></ul>
+            </div>
+            <div class="col-sm-5">
+              <ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Imagem  e Código da Amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for país in paíss %}
+                                    <tr>
+                                        <td>{{ país.nome }}</td>
+
+                                        <td>
+                                            <a href="{% url 'amostras:detail' país.id %}">
+                                                 {% if país.amostra.imagem %}
+                                                <img src="{{ país.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                {%else%}
+                                                {%endif%}
+                                            </a>
+                                            <a href="{% url 'amostras:detail' país.id %}">{{ país.amostra.codigo }}</a>
+                                      {% if user.is_authenticated %}
+                           <a class="btn btn-default" href="{% url 'amostras:país_edit' país.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                 <form action="{% url 'amostras:delete_país' país.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="país_id" value="{{ país.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                {% else %}
+                                 {% endif %}
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </ul>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+ <!-- If user searches and there are estados
+    {% if estados %}
+        <div class="row">
+            <div class="col-sm-10">
+               <ul> <h3>Estados</h3></ul>
+            </div>
+            <div class="col-sm-5">
+              <ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>País</th>
+                                    <th>Imagem e Código da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for estado in estados %}
+                                    <tr>
+                                        <td>{{ estado.nome }}</td>
+                                        <td>{{ estado.país}}</td>
+
+                                        <td>
+                                            <a href="{% url 'amostras:detail' estado.id %}">
+                                                 {% if estado.amostra.imagem %}
+                                                <img src="{{ estado.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                {%else%}
+                                                {%endif%}
+                                            </a>
+                                            <a href="{% url 'amostras:detail' estado.id %}">{{ estado.amostra.codigo }}</a>
+                                              {% if user.is_authenticated %}
+                                <a class="btn btn-default" href="{% url 'amostras:estado_edit' estado.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                   <form action="{% url 'amostras:delete_estado' estado.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="estado_id" value="{{ estado.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                 {% else %}
+                                 {% endif %}
+
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </ul>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+
+ <!-- If user searches and there are cidades
+    {% if cidades %}
+        <div class="row">
+            <div class="col-sm-10">
+                <ul><h3>Cidades</h3></ul>
+            </div>
+            <div class="col-sm-5">
+              <ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Estado</th>
+                                    <th>Imagem e Código da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cidade in cidades %}
+                                    <tr>
+                                        <td>{{ cidade.nome }}</td>
+                                        <td>{{ cidade.estado}}</td>
+
+                                        <td>
+                                            <a href="{% url 'amostras:detail' cidade.id %}">
+                                                 {% if cidade.amostra.imagem %}
+                                                <img src="{{ cidade.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                {%else%}
+                                                {%endif%}
+                                            </a>
+                                            <a href="{% url 'amostras:detail' cidade.id %}">{{ cidade.amostra.codigo }}</a>
+                                      {% if user.is_authenticated %}
+                                <a class="btn btn-default" href="{% url 'amostras:cidade_edit' cidade.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <form action="{% url 'amostras:delete_cidade' cidade.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="cidade_id" value="{{ cidade.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                 {% else %}
+                                 {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </ul>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+ <!-- If user searches and there are climas
+
+    {% if climas %}
+        <div class="row">
+            <div class="col-sm-10">
+                <ul><h3>Climas</h3></ul>
+            </div>
+            <div class="col-sm-5">
+              <ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Imagem e Código da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for clima in climas %}
+                                    <tr>
+                                        <td>{{ clima.tipo }}</td>
+
+
+                                        <td>
+                                            <a href="{% url 'amostras:detail' clima.id %}">
+                                                 {% if clima.amostra.imagem %}
+                                                <img src="{{ clima.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                {%else%}
+                                                {%endif%}
+                                            </a>
+                                            <a href="{% url 'amostras:detail' clima.id %}">{{ clima.amostra.codigo }}</a>
+                                    {% if user.is_authenticated %}
+                                <a class="btn btn-default" href="{% url 'amostras:clima_edit' clima.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <form action="{% url 'amostras:delete_clima' clima.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="clima_id" value="{{ clima.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                        {% else %}
+                                 {% endif %}
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </ul>
+            </div>
+        </div>
+    {% endif %}
+
+
+ <!-- If user searches and there are ambientes
+    {% if ambientes %}
+        <div class="row">
+            <div class="col-sm-10">
+                <ul><h3>Ambientes</h3></ul>
+            </div>
+            <div class="col-sm-5">
+              <ul>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Imagem e Código da amostra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ambiente in ambientes %}
+                                    <tr>
+                                        <td>{{ ambiente.tipo }}</td>
+
+
+                                        <td>
+                                            <a href="{% url 'amostras:detail' ambiente.id %}">
+                                                 {% if ambiente.amostra.imagem %}
+                                                <img src="{{ ambiente.amostra.imagem.url }}" class="img-responsive" style="width: 100px; float: left; margin-right: 100px;" />
+                                                {%else%}
+                                                {%endif%}
+                                            </a>
+                                            <a href="{% url 'amostras:detail' ambiente.id %}">{{ ambiente.amostra.codigo }}</a>
+                               {% if user.is_authenticated %}
+                                 <a class="btn btn-default" href="{% url 'amostras:ambiente_edit' ambiente.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                             <form action="{% url 'amostras:delete_ambiente' ambiente.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="ambiente_id" value="{{ ambiente.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                                        {% else %}
+                                 {% endif %}
+                                        </td>
+
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </ul>
+            </div>
+        </div>
+
+    {% endif %}
+          -->
+
+
+          funções acima de pesquisa
+
+
+
+def contact(request):
+    form_class = ContactForm
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            Nome = request.POST.get(
+                'Nome'
+            , '')
+            Email = request.POST.get(
+                'Email'
+            , '')
+            Mensagem = request.POST.get('content', '')
+            template =  get_template('amostras/contact_template.txt')
+            context = Context({
+                'Nome': Nome,
+                'Email': Email,
+                'Mensagem': Mensagem,
+            })
+            content = template.render(context)
+            email = EmailMessage(
+                "Mensagem enviada pelo site",
+                content,
+                "Your website" +'',
+                ['fabio.carvalho.souza@usp.br'],
+                headers = {'Reply-To': Email }
+            )
+            email.send(
+                ['fabio.carvalho.souza@usp.br']
+            )
+            return render(request, 'amostras/index.html', context)
+    return render(request, 'amostras/contact.html', { 'form': form_class, })
+
+funçoes acima contato
+
+
+{% extends 'amostras/base2.html' %}
+{% block title %}{{ amostra }}{% endblock %}
+{% block amostras_active %}active{% endblock %}
+
+{%block body%}
+<div class="row">
+ <ul>
+      <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                   <table class="table table-bordered table-hover" id="id_tabela">
+                        <thead>
+                            <tr>
+                                  <th>Ambiente</th>
+                                  <th>Amostra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for amostra in amostras %}
+                          <tr>
+                            {% for ambiente in amostra.Ambientes.all %}
+                            {% if ambiente.tipo %}
+                            <td>{{ambiente.tipo}}</td>
+                            {%else%}
+                            {%endif%}
+                            {% endfor %}
+                            {% if amostra.codigo %}
+                            <td>{{amostra.codigo}}</td>
+                            {%else%}
+                            {%endif%}
+                          </tr>
+                          {%endfor%}
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+      </div>
+ </ul>
+</div>
+
+
+ <div class="row">
+  <ul>
+  <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover" id="id_tabela">
+                        <thead>
+                            <tr>
+                                 <th>Cidade</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                       {% for amostra in amostras %}
+                       <tr>
+                       {% for cidade in amostra.Cidades.all %}
+                       {% if cidade.nome %}
+                       <td>{{cidade.nome}}</td>
+                       {%else%}
+                       {%endif%}
+                       {% endfor %}
+                       {% if amostra.codigo %}
+                       <td>{{amostra.codigo}}</td>
+                       {%else%}
+                       {%endif%}
+                      </tr>
+                     {%endfor%}
+                   </tbody>
+                   </table>
+                </div>
+            </div>
+      </div>
+  </ul>
+</div>
+
+
+ <div class="row">
+  <ul>
+  <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                   <table class="table table-bordered table-hover" id="id_tabela">
+                        <thead>
+                            <tr>
+                                 <th>Clima</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                     <tbody>
+                        {% for amostra in amostras %}
+                          <tr>
+                          {% for clima in amostra.Climas.all %}
+                          {% if clima.tipo %}
+                          <td>{{clima.tipo}}</td>
+                          {%else%}
+                          {%endif%}
+                          {% endfor %}
+                          {% if amostra.codigo %}
+                          <td>{{amostra.codigo}}</td>
+                          {%else%}
+                          {%endif%}
+                         </tr>
+                        {%endfor%}
+                   </tbody>
+                   </table>
+                </div>
+            </div>
+      </div>
+  </ul>
+</div>
+
+
+
+ <div class="row">
+    <ul>
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover" id="id_tabela">
+                        <thead>
+                            <tr>
+                                <th>Continente</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                      <tbody>
+                          {% for amostra in amostras %}
+                            <tr>
+                             {% for continente in amostra.Continentes.all %}
+                             {% if continente.nome %}
+                             <td>{{continente.nome}}</td>
+                             {%else%}
+                             {%endif%}
+                             {% if amostra.codigo %}
+                             <td>{{amostra.codigo}}</td>
+                            {%else%}
+                            {%endif%}
+                            {% endfor %}
+                           </tr>
+                          {%endfor%}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </ul>
+</div>
+
+
+ <div class="row">
+     <ul>
+      <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                   <table class="table table-bordered table-hover" id="id_tabela">
+                        <thead>
+                            <tr>
+                                  <th>Estado</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for amostra in amostras %}
+                            <tr>
+                            {% for estado in amostra.Estados.all %}
+                            {% if estado.nome %}
+                            <td>{{estado.nome}}</td>
+                            {%else%}
+                            {%endif%}
+                            {% endfor %}
+                            {% if amostra.codigo %}
+                            <td>{{amostra.codigo}}</td>
+                            {%else%}
+                            {%endif%}
+                            </tr>
+                           {%endfor%}
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+      </div>
+     </ul>
+ </div>
+
+
+ <div class="row">
+   <ul>
+      <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover" id="id_tabela">
+                        <thead>
+                            <tr>
+                                  <th>País</th>
+                                 <th>Amostra</th>
+                            </tr>
+                        </thead>
+                      <tbody>
+                          {% for amostra in amostras %}
+                           <tr>
+                            {% for país in amostra.Paíss.all %}
+                            {% if país.nome %}
+                            <td> {{país.nome}}</td>
+                            {%else%}
+                            {%endif%}
+                            {% endfor %}
+                            {% if amostra.codigo %}
+                            <td>{{amostra.codigo}}</td>
+                            {%else%}
+                            {%endif%}
+                            </tr>
+                        {%endfor%}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+      </div>
+   </ul>
+ </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <link rel="stylesheet" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	    <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+	    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
+	    <script>
+	    $(document).ready(function(){
+		    $('#id_da_tabela').DataTable({
+		    	"language": {
+		            "lengthMenu": "Mostrando _MENU_ registros por página",
+		            "zeroRecords": "Nada encontrado",
+		            "info": "Mostrando página _PAGE_ de _PAGES_",
+		            "infoEmpty": "Nenhum registro disponível",
+		            "infoFiltered": "(filtrado de _MAX_ registros no total)"
+		        }
+		    });
+		});
+	    </script>
+
+{% endblock %}
+
+funções acima de listagem
+
+
+<!--
+        <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> Continente</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                       {%for amostra in amostras%}
+                        {% for continente in amostra.Continentes_set.all %}
+                            <tr>
+                                <td>{{ continente.nome}}</td>
+
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> País</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for país in amostra.paíss_set.all %}
+                            <tr>
+                                <td>{{ país.nome}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> Estado</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for estado in amostra.estado_set.all %}
+                            <tr>
+                                <td>{{ estado.nome}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>Cidade</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cidade in amostra.cidade_set.all %}
+                            <tr>
+                                <td>{{ cidade.nome}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+         <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5> Clima</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for clima in amostra.clima_set.all %}
+                            <tr>
+                                <td>{{ clima.tipo}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-2 col-md-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>Ambiente</h5>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ambiente in amostra.ambiente_set.all %}
+                            <tr>
+                                <td>{{ ambiente.tipo}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+-->
+
+funções acima de detalhes
+
+
+
+	<title>Janela modal</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel=modal]").click( function(ev){
+					ev.preventDefault();
+
+					var id = $(this).attr("href");
+
+					var alturaTela = $(document).height();
+					var larguraTela = $(window).width();
+
+					//colocando o fundo preto
+					$('#mascara').css({'width':larguraTela,'height':alturaTela});
+					$('#mascara').fadeIn(1000);
+					$('#mascara').fadeTo("slow",0.8);
+
+					var left = ($(window).width() /2) - ( $(id).width() / 2 );
+					var top = ($(window).height() / 2) - ( $(id).height() / 2 );
+
+					$(id).css({'top':top,'left':left});
+					$(id).show();
+ 				});
+
+ 				$("#mascara").click( function(){
+ 					$(this).hide();
+ 					$(".window").hide();
+ 				});
+
+ 				$('.fechar').click(function(ev){
+ 					ev.preventDefault();
+ 					$("#mascara").hide();
+ 					$(".window").hide();
+ 				});
+			});
+		</script>
+
+		<style type="text/css">
+
+		.window{
+			display:none;
+			width:300px;
+			height:300px;
+			position:absolute;
+			left:0;
+			top:0;
+			background:#FFF;
+			z-index:9900;
+			padding:10px;
+			border-radius:10px;
+		}
+
+		#mascara{
+			position:absolute;
+  			left:0;
+  			top:0;
+  			z-index:9000;
+  			background-color:#000;
+  			display:none;
+		}
+
+		.fechar{display:block; text-align:right;}
+
+		</style>
+
+	</head>
+
+
+<body>
+		<a href="#janela1" rel="modal">Janela modal</a>
+		<a href="#janela2" rel="modal">Janela 2 modal</a>
+
+
+		<div class="window" id="janela1">
+			<a href="#" class="fechar">X Fechar</a>
+			<h4>Primeira janela moda</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis auctor tempus. Lorem ipsum dolor sit amet,</p>
+			<p>Morbi dui lacus, placerat eget pretium vehicula, mollis id ligula. Nulla facilisi. </p>
+		</div>
+
+		<div class="window" id="janela2" style="top: 325px; left: 810px; display: block;">
+			<a href="#" class="fechar">X Fechar</a>
+			<h4>Formulario</h4>
+			<form action="#" method="post">
+				<label for="nome">Nome:</label>
+				<input type="text" name="nome" id="nome">
+				<br>
+
+				<label for="nome">Senha:</label>
+				<input type="text" name="senha" id="senha">
+				<br>
+
+				<input type="submit" value="enviar">
+
+			</form>
+		</div>
+
+		<!-- mascara para cobrir o site -->
+		<div id="mascara" style="width: 1920px; height: 950px; display: block; opacity: 0.8;"></div>
+
+
+</body>
+
+
+funções acima de pagina de aviso
+
+
