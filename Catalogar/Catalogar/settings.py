@@ -148,7 +148,7 @@ MEDIA_URL='/media/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'fabio.carvalho.souza@usp.br'
-EMAIL_HOST_PASSWORD = 'fcs@357159258'
+EMAIL_HOST_PASSWORD = '**************'
 EMAIL_SUBJECT_PREFIX = '[Sitema de Catalogação]'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
