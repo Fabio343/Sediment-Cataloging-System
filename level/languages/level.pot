@@ -1,0 +1,624 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-03 15:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: 404.php:28
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:32
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+
+#: 404.php:40
+msgid "Most Used Categories"
+msgstr ""
+
+#. %1$s: smiley
+#: 404.php:57
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#: author.php:24
+msgid "About: "
+msgstr ""
+
+#: comments.php:31
+#, php-format
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:40 comments.php:61
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:43 comments.php:64
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:44 comments.php:65
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:77
+msgid "Comments are closed."
+msgstr ""
+
+#: functions.php:61 template-parts/top.php:50
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:62
+msgid "Mobile Menu"
+msgstr ""
+
+#: functions.php:63
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:104
+msgid "Search for:"
+msgstr ""
+
+#: functions.php:105
+msgid "Search.."
+msgstr ""
+
+#: functions.php:106
+msgid "Go"
+msgstr ""
+
+#: functions.php:142
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:144
+msgid "Sidebar widget for all pages included Post, Pages"
+msgstr ""
+
+#: functions.php:151
+msgid "Post Widget"
+msgstr ""
+
+#: functions.php:153
+msgid "This will aside post content and show widgets "
+msgstr ""
+
+#: functions.php:160
+msgid "Below Top Navigation"
+msgstr ""
+
+#: functions.php:162
+msgid "This widget show just above content and below main navigation"
+msgstr ""
+
+#: functions.php:169
+msgid "Post and Pages footer"
+msgstr ""
+
+#: functions.php:171
+msgid "After post content and above comment"
+msgstr ""
+
+#: functions.php:178
+msgid "Footer 1"
+msgstr ""
+
+#: functions.php:180
+msgid "Footer widget area first from left"
+msgstr ""
+
+#: functions.php:187
+msgid "Footer 2"
+msgstr ""
+
+#: functions.php:189
+msgid "Footer widget area Second from left"
+msgstr ""
+
+#: functions.php:196
+msgid "Footer 3"
+msgstr ""
+
+#: functions.php:198
+msgid "Footer widget area Third from left"
+msgstr ""
+
+#: functions.php:205
+msgid "Footer 4"
+msgstr ""
+
+#: functions.php:207
+msgid "Footer widget area fourth from left"
+msgstr ""
+
+#: header.php:28
+msgid "Skip to content"
+msgstr ""
+
+#: search.php:18
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: inc/custom-function.php:42
+msgid "Name"
+msgstr ""
+
+#: inc/custom-function.php:44
+msgid "Email"
+msgstr ""
+
+#: inc/custom-function.php:46
+msgid "Website"
+msgstr ""
+
+#: inc/custom-function.php:104
+msgid "&laquo; Previous"
+msgstr ""
+
+#: inc/custom-function.php:105
+msgid "Next &raquo;"
+msgstr ""
+
+#: inc/custom-function.php:113
+msgid "Posts navigation"
+msgstr ""
+
+#: inc/customizer.php:17
+msgid "Site Titles & Logo"
+msgstr ""
+
+#: inc/customizer.php:19
+msgid "Display Site Title"
+msgstr ""
+
+#: inc/customizer.php:21
+msgid "Logo Text & Background Color"
+msgstr ""
+
+#: inc/customizer.php:33
+msgid "* Fully Mobile Responsive"
+msgstr ""
+
+#: inc/customizer.php:34
+msgid "* Dedicated Option Panel"
+msgstr ""
+
+#: inc/customizer.php:35
+msgid "* Customize Theme Color"
+msgstr ""
+
+#: inc/customizer.php:36
+msgid "* WooCommerce & bbPress Support"
+msgstr ""
+
+#: inc/customizer.php:37
+msgid "* SEO Optimized"
+msgstr ""
+
+#: inc/customizer.php:38
+msgid ""
+"* Control Individual Meta Option like: Category, date, Author, Tags etc. "
+msgstr ""
+
+#: inc/customizer.php:39
+msgid "* Full Support"
+msgstr ""
+
+#: inc/customizer.php:40
+msgid "* Google Fonts"
+msgstr ""
+
+#: inc/customizer.php:41
+msgid "* Theme Color Customization"
+msgstr ""
+
+#: inc/customizer.php:42
+msgid "* Custom CSS"
+msgstr ""
+
+#: inc/customizer.php:43
+msgid "* Website Layout"
+msgstr ""
+
+#: inc/customizer.php:44
+msgid "* Select Number of Columns"
+msgstr ""
+
+#: inc/customizer.php:45
+msgid "* Website Width Control"
+msgstr ""
+
+#: inc/customizer.php:51
+msgid "Level Pro"
+msgstr ""
+
+#: inc/customizer.php:55
+msgid "Contact us"
+msgstr ""
+
+#: inc/customizer.php:68
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: inc/customizer.php:83 inc/customizer.php:374
+msgid "Custom CSS"
+msgstr ""
+
+#: inc/customizer.php:89 inc/customizer.php:388
+msgid "Top Navigation Color"
+msgstr ""
+
+#: inc/customizer.php:143
+msgid "Layout"
+msgstr ""
+
+#: inc/customizer.php:160
+msgid "Post and Page Layout"
+msgstr ""
+
+#: inc/customizer.php:164
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/customizer.php:165 inc/metabox.php:30 inc/pagemetabox.php:29
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/customizer.php:166
+msgid "Full Width [No sidebar]"
+msgstr ""
+
+#: inc/customizer.php:177
+msgid "Body Fonts"
+msgstr ""
+
+#: inc/customizer.php:190
+msgid "Title"
+msgstr ""
+
+#: inc/customizer.php:205
+msgid "Body"
+msgstr ""
+
+#: inc/customizer.php:217
+msgid "Post Settings"
+msgstr ""
+
+#: inc/customizer.php:233
+msgid "Random Post Below Post"
+msgstr ""
+
+#: inc/customizer.php:237 inc/customizer.php:255
+msgid "Enable"
+msgstr ""
+
+#: inc/customizer.php:238 inc/customizer.php:256
+msgid "Disable"
+msgstr ""
+
+#: inc/customizer.php:251
+msgid "Show Author Profile in Post and Pages"
+msgstr ""
+
+#: inc/customizer.php:266
+msgid "Custom Footer Text"
+msgstr ""
+
+#: inc/customizer.php:267
+msgid "Enter your Own Copyright Text."
+msgstr ""
+
+#: inc/customizer.php:295
+msgid "Social Icons"
+msgstr ""
+
+#: inc/customizer.php:301
+msgid "-"
+msgstr ""
+
+#: inc/customizer.php:302
+msgid "Facebook"
+msgstr ""
+
+#: inc/customizer.php:303
+msgid "Twitter"
+msgstr ""
+
+#: inc/customizer.php:304
+msgid "Google Plus"
+msgstr ""
+
+#: inc/customizer.php:305
+msgid "Instagram"
+msgstr ""
+
+#: inc/customizer.php:306
+msgid "RSS Feeds"
+msgstr ""
+
+#: inc/customizer.php:307
+msgid "Vine"
+msgstr ""
+
+#: inc/customizer.php:308
+msgid "Vimeo"
+msgstr ""
+
+#: inc/customizer.php:309
+msgid "Youtube"
+msgstr ""
+
+#: inc/customizer.php:310
+msgid "Flickr"
+msgstr ""
+
+#: inc/customizer.php:325 inc/customizer.php:338
+msgid "Icon "
+msgstr ""
+
+#: inc/customizer.php:338
+msgid " Url"
+msgstr ""
+
+#: inc/customizer.php:375
+msgid "Define custom CSS be used for your site. Do not enclose in script tags."
+msgstr ""
+
+#: inc/customizer.php:380
+msgid "Top Navigation Position"
+msgstr ""
+
+#: inc/customizer.php:384
+msgid "Float"
+msgstr ""
+
+#: inc/customizer.php:385
+msgid "Fixed"
+msgstr ""
+
+#: inc/customizer.php:393
+msgid "Sub Menu Color"
+msgstr ""
+
+#: inc/customizer.php:398
+msgid "Top Menu Font Color"
+msgstr ""
+
+#: inc/customizer.php:405
+msgid "Search Bar"
+msgstr ""
+
+#: inc/customizer.php:409
+msgid "Show"
+msgstr ""
+
+#: inc/customizer.php:410
+msgid "Hide"
+msgstr ""
+
+#: inc/customizer.php:422
+msgid "General Settings"
+msgstr ""
+
+#: inc/customizer.php:423
+msgid "Configure color and layout settings for the Theme Name Theme"
+msgstr ""
+
+#: inc/customizer.php:431
+msgid "Color, Design & CSS"
+msgstr ""
+
+#: inc/customizer.php:432
+msgid "Configure color and layout settings for the Level Theme"
+msgstr ""
+
+#: inc/customizer.php:440
+msgid "Advance Settings"
+msgstr ""
+
+#: inc/customizer.php:441
+msgid "Advance Settings related to footer copyright and Enable options"
+msgstr ""
+
+#: inc/installs.php:12
+msgid "Theme Options"
+msgstr ""
+
+#: inc/installs.php:13
+msgid "Need Help?"
+msgstr ""
+
+#: inc/metabox.php:7
+msgid ""
+"<span class=\"dashicons dashicons-layout\"></span> Post Layout Select [Pro "
+"Only]"
+msgstr ""
+
+#: inc/metabox.php:21 inc/pagemetabox.php:21
+msgid "Get Level Pro"
+msgstr ""
+
+#: inc/metabox.php:29 inc/pagemetabox.php:28
+msgid "Right Sidebar - Default"
+msgstr ""
+
+#: inc/metabox.php:31 inc/pagemetabox.php:30
+msgid "Left - Right Sidebars"
+msgstr ""
+
+#: inc/metabox.php:32 inc/pagemetabox.php:31
+msgid "Full Content - No Sidebar"
+msgstr ""
+
+#: inc/pagemetabox.php:7
+msgid ""
+"<span class=\"dashicons dashicons-layout\"></span> Page Layout Select [Pro "
+"Only]"
+msgstr ""
+
+#: inc/template-tags.php:28
+#, php-format
+msgctxt "post date"
+msgid "%s"
+msgstr ""
+
+#: inc/template-tags.php:33
+#, php-format
+msgctxt "post author"
+msgid "%s"
+msgstr ""
+
+#. used between list items, there is a space after the comma
+#. used between list items, there is a space after the comma
+#. used between list items, there is a space after the comma
+#. used between list items, there is a space after the comma
+#. used between list items, there is a space after the comma
+#: inc/template-tags.php:50 inc/template-tags.php:56
+#: template-parts/content-search.php:22 template-parts/content-single.php:19
+#: template-parts/content.php:22
+msgid ", "
+msgstr ""
+
+#: inc/template-tags.php:52
+#, php-format
+msgid "Posted in %1$s"
+msgstr ""
+
+#: inc/template-tags.php:58 template-parts/content-search.php:24
+#: template-parts/content-single.php:21 template-parts/content.php:24
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: inc/template-tags.php:64
+msgid "Leave a comment"
+msgstr ""
+
+#: inc/template-tags.php:64
+msgid "1 Comment"
+msgstr ""
+
+#: inc/template-tags.php:64
+msgid "% Comments"
+msgstr ""
+
+#. %s: Name of current post
+#. %s: Name of current post
+#: inc/template-tags.php:71 template-parts/content-page.php:32
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr ""
+
+#: template-parts/content-none.php:20
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:24
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:29
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:21 template-parts/content-single.php:32
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content-single.php:45
+msgid "Article By :"
+msgstr ""
+
+#: inc/core/core.php:18 inc/core/core.php:19
+msgid "MORE Themes"
+msgstr ""
+
+#: inc/core/core.php:20
+msgid "administrator"
+msgstr ""
+
+#: inc/core/core.php:21
+msgid "level-themes"
+msgstr ""
+
+#: inc/core/core.php:22
+msgid "level_display_core"
+msgstr ""
+
+#: inc/core/core.php:47
+msgid "You Should Try Our Other Themes Also"
+msgstr ""
+
+#: inc/core/core.php:82
+msgid ": Current"
+msgstr ""
+
+#: inc/core/core.php:83
+msgid "Customize"
+msgstr ""
+
+#: inc/core/core.php:132
+msgid "Activate"
+msgstr ""
+
+#: inc/core/core.php:143
+msgid "Install Now"
+msgstr ""
+
+#: inc/core/core.php:147
+msgid "Live Preview"
+msgstr ""
+
+#. Name of the theme
+msgid "Level"
+msgstr ""
+
+#. Description of the theme
+msgid ""
+"Best theme for design for blog, news, articles and theme also support "
+"WooCommerce an eCommerce plugin, with proper Google structure data, for "
+"better user experience we included Jetpack infinite scroll support, WP-"
+"rating support for live demo https://demo.baztro.com/level/"
+msgstr ""
+
+#. URI of the theme
+msgid "https://www.insertcart.com/level-theme-setup-guide/"
+msgstr ""
+
+#. Author of the theme
+msgid "InsertCart.com"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://www.insertcart.com"
+msgstr ""
