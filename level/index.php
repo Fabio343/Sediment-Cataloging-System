@@ -33,13 +33,16 @@ get_header(); ?>
                 </div>
             </div>
         </div>	
-        
+       
+        <a href="./wp-content/themes/level/downloads/arq.pdf" download="Arquivo de apoio">Baixe arquivos de apoio</a>
+        <br>
         <div class="col-sm-10 col-md-8">
         <div class="panel panel-default">
         <a href="#janela70" class="Click Para Ter Acesso a Listagem Dos Países Listados Para Possíveis Dúvidas Durante As Pesquisas" rel="modal">Click Para Ter Acesso a Listagem Dos Países Listados Para Possíveis Dúvidas Durante As Pesquisas</a>
         </div>
         </div>
-	    <div class="window" id="janela70">
+      
+	      <div class="window" id="janela70">
 		     <a href="#" class="fechar">X Fechar</a>
         <div align="left" id="test6" style="width:400px;height:400px;overflow-x:hidden;overflow-y:scroll;">
           <h4>Sigla Dos Países Listados Para Possíveis Dúvidas Durante As Pesquisas </h4>

@@ -37,7 +37,7 @@ else { echo '<div class="large-12 columns">';}?>
 
 					<?php if ( level_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
 					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'level' ); ?></h2>
+						<h2 class="widget-title"><?php esc_html_e( 'Categorias mais utilizadas', 'level' ); ?></h2>
 						<ul>
 						<?php
 							wp_list_categories( array(
@@ -54,7 +54,7 @@ else { echo '<div class="large-12 columns">';}?>
 
 					<?php
 						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'level' ), convert_smilies( ':)' ) ) . '</p>';
+						$archive_content = '<p>' . sprintf( esc_html__( 'Tente pesquisar nos arquivos mensais. %1$s', 'level' ), convert_smilies( ':)' ) ) . '</p>';
 						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
 					?>
 
